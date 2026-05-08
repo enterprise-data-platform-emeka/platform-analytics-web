@@ -1,0 +1,13 @@
+{
+  "name": "platform-analytics-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Custom HTML frontend for the Enterprise Data Platform analytics agent.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

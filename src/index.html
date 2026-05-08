@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDP Analytics Web</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">EDP</div>
+      <div>
+        <strong>Enterprise Analytics</strong>
+        <span>Custom web dashboard</span>
+      </div>
+    </div>
+    <nav class="top-actions">
+      <button id="newSessionBtn" class="ghost-btn" type="button">New session</button>
+      <button id="downloadLogBtn" class="ghost-btn" type="button" disabled>Download log</button>
+      <button id="healthBtn" class="status-pill" type="button">Checking backend...</button>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-kicker">Session</div>
+        <h2>Ask questions in plain English</h2>
+        <p>
+          This dashboard uses the existing FastAPI analytics backend. Streamlit remains unchanged.
+        </p>
+        <dl class="session-stats">
+          <div>
+            <dt>Questions</dt>
+            <dd id="questionCount">0</dd>
+          </div>
+          <div>
+            <dt>Total cost</dt>
+            <dd id="totalCost">$0.0000</dd>
+          </div>
+          <div>
+            <dt>Session ID</dt>
+            <dd id="sessionId">New</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="panel">
+        <div class="panel-kicker">Examples</div>
+        <div id="examples" class="examples"></div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div class="hero">
+        <div>
+          <div class="panel-kicker">Natural language analytics</div>
+          <h1>Ask the platform. Inspect the answer.</h1>
+          <p>
+            Charts, raw rows, SQL, verdicts, cost, and reports in one stakeholder-ready surface.
+          </p>
+        </div>
+        <div class="hero-metrics">
+          <div><strong id="lastChart">None</strong><span>Chart type</span></div>
+          <div><strong id="lastRows">0</strong><span>Rows</span></div>
+          <div><strong id="lastVerdict">No</strong><span>Mismatch</span></div>
+        </div>
+      </div>
+
+      <section id="timeline" class="timeline empty">
+        <div class="empty-state">
+          <h2>No questions yet</h2>
+          <p>Try one of the examples, or ask your own question below.</p>
+        </div>
+      </section>
+
+      <form id="askForm" class="askbar">
+        <input
+          id="questionInput"
+          name="question"
+          type="text"
+          autocomplete="off"
+          placeholder="Ask a business question, e.g. Show monthly revenue trends for the last year"
+        >
+        <button id="askBtn" type="submit">Ask</button>
+      </form>
+    </section>
+  </main>
+
+  <template id="turnTemplate">
+    <article class="turn-card">
+      <div class="turn-head">
+        <div>
+          <span class="turn-number"></span>
+          <h2 class="turn-question"></h2>
+        </div>
+        <span class="turn-time"></span>
+      </div>
+      <div class="status-line"></div>
+      <div class="insight"></div>
+      <div class="chart-frame"></div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" type="button" data-tab="table">Data</button>
+        <button class="tab" type="button" data-tab="sql">SQL</button>
+        <button class="tab" type="button" data-tab="details">Details</button>
+      </div>
+      <div class="tab-panel table-panel"></div>
+      <div class="tab-panel sql-panel hidden"></div>
+      <div class="tab-panel details-panel hidden"></div>
+      <div class="turn-actions">
+        <button class="download-report ghost-btn" type="button">Download PDF</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
