@@ -230,6 +230,7 @@ async function ask(question) {
     updateStats(donePayload);
     refreshEngineerLog();
   } catch (err) {
+    card.classList.add("failed");
     status.textContent = "Request failed";
     insight.textContent = err.message || String(err);
   } finally {

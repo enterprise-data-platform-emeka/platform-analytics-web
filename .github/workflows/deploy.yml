@@ -1,0 +1,99 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        type: choice
+        options: [dev, staging, prod]
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.environment || 'dev' }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'dev' }}
+
+    permissions:
+      id-token: write
+      contents: read
+
+    env:
+      ENV: dev
+      AWS_REGION: eu-central-1
+      CONTAINER_NAME: web
+
+    steps:
+      - name: Set environment
+        run: echo "ENV=${{ inputs.environment || 'dev' }}" >> "$GITHUB_ENV"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/edp-${{ env.ENV }}-github-actions-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push image to ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: edp-${{ env.ENV }}-analytics-web
+          IMAGE_TAG: sha-${{ github.sha }}
+        run: |
+          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+          docker build \
+            -t "${IMAGE_URI}" \
+            -t "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest" \
+            .
+          docker push "${IMAGE_URI}"
+          docker push "${ECR_REGISTRY}/${ECR_REPOSITORY}:latest"
+          echo "image=${IMAGE_URI}" >> "$GITHUB_OUTPUT"
+
+      - name: Download current task definition
+        env:
+          TASK_FAMILY: edp-${{ env.ENV }}-analytics-web
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition "${TASK_FAMILY}" \
+            --query taskDefinition \
+            > task-definition.json
+
+      - name: Update task definition with new image
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy new task definition to ECS service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: edp-${{ env.ENV }}-analytics-web
+          cluster: edp-${{ env.ENV }}-analytics-web
+          wait-for-service-stability: true
+
+      - name: Start web service
+        run: |
+          aws ecs update-service \
+            --cluster "edp-${ENV}-analytics-web" \
+            --service "edp-${ENV}-analytics-web" \
+            --desired-count 1 \
+            --force-new-deployment
+
+      - name: Deployment summary
+        run: |
+          echo "Deployed analytics web dashboard to ECS"
+          echo "Environment : ${ENV}"
+          echo "Cluster     : edp-${ENV}-analytics-web"
+          echo "Service     : edp-${ENV}-analytics-web"
+          echo "Port        : 3000 on the analytics agent ALB"

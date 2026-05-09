@@ -80,6 +80,10 @@ function proxy(req, res) {
 }
 
 const server = http.createServer((req, res) => {
+  if (req.url === "/healthz") {
+    send(res, 200, "ok", { "content-type": "text/plain; charset=utf-8" });
+    return;
+  }
   if (req.url && req.url.startsWith("/api/")) {
     proxy(req, res);
     return;
