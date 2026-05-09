@@ -13,7 +13,7 @@ const els = {
   askBtn: document.querySelector("#askBtn"),
   timeline: document.querySelector("#timeline"),
   template: document.querySelector("#turnTemplate"),
-  examples: document.querySelector("#examples"),
+  historyList: document.querySelector("#historyList"),
   healthBtn: document.querySelector("#healthBtn"),
   newSessionBtn: document.querySelector("#newSessionBtn"),
   downloadLogBtn: document.querySelector("#downloadLogBtn"),
@@ -33,6 +33,149 @@ function formatCurrency(value) {
   return `$${Number(value || 0).toFixed(4)}`;
 }
 
+function formatValue(value, column = "") {
+  const raw = text(value).replaceAll(",", "").replaceAll("$", "").replaceAll("€", "");
+  const num = Number(raw);
+  if (!Number.isFinite(num)) return text(value);
+
+  const moneyHints = ["revenue", "amount", "sales", "profit", "income", "spend", "price", "value", "payment"];
+  const prefix = moneyHints.some((hint) => column.toLowerCase().includes(hint)) ? "€" : "";
+  return `${prefix}${num.toLocaleString(undefined, {
+    maximumFractionDigits: Number.isInteger(num) ? 0 : 2,
+  })}`;
+}
+
+function labelize(column) {
+  return text(column)
+    .replaceAll("_", " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function formatPeriod(value) {
+  const raw = text(value).trim();
+  const match = raw.match(/^(\d{4})-(\d{1,2})(?:-\d{1,2})?$/);
+  if (!match) return raw;
+  const date = new Date(Number(match[1]), Number(match[2]) - 1, 1);
+  return date.toLocaleDateString(undefined, { month: "short", year: "numeric" });
+}
+
+function periodSortValue(value) {
+  const raw = text(value).trim();
+  const match = raw.match(/^(\d{4})-(\d{1,2})(?:-\d{1,2})?$/);
+  if (!match) return `z-${raw}`;
+  return `${match[1]}-${match[2].padStart(2, "0")}`;
+}
+
+function isNumericValue(value) {
+  const raw = text(value).replaceAll(",", "").replaceAll("$", "").replaceAll("€", "");
+  return raw !== "" && Number.isFinite(Number(raw));
+}
+
+function extractKpis(columns = [], rows = []) {
+  if (!columns.length || !rows.length) return [];
+
+  const timeHints = ["year", "month", "date", "week", "quarter", "period"];
+  const metricPriority = ["revenue", "amount", "sales", "profit", "income", "spend", "price", "value", "payment"];
+  const metricAny = ["revenue", "total", "amount", "sales", "profit", "sum", "value", "orders", "avg", "average"];
+  const countHints = ["count", "customers", "users", "visitors", "quantity", "qty"];
+  const rankHints = ["rank", "position", "pos", "row_num", "row_number", "rn", "ntile", "dense_rank"];
+
+  const numericCols = [];
+  const catCols = [];
+
+  for (const col of columns) {
+    if (timeHints.some((hint) => col.toLowerCase().includes(hint))) {
+      catCols.push(col);
+      continue;
+    }
+
+    const firstValue = rows.map((row) => row[col]).find((value) => text(value).trim() && !["none", "null"].includes(text(value).toLowerCase()));
+    if (isNumericValue(firstValue)) numericCols.push(col);
+    else catCols.push(col);
+  }
+
+  const isRankCol = (col) => {
+    const lower = col.toLowerCase();
+    return rankHints.includes(lower) || lower.endsWith("_rank") || lower.endsWith("_position") || lower.endsWith("_pos");
+  };
+
+  const pickMetric = (cols) => {
+    const candidates = cols.filter((col) => !isRankCol(col));
+    const usable = candidates.length ? candidates : cols;
+    return (
+      usable.find((col) => metricPriority.some((hint) => col.toLowerCase().includes(hint))) ||
+      usable.find((col) => metricAny.some((hint) => col.toLowerCase().includes(hint)) && !countHints.some((hint) => col.toLowerCase().includes(hint))) ||
+      usable.find((col) => metricAny.some((hint) => col.toLowerCase().includes(hint))) ||
+      usable[usable.length - 1]
+    );
+  };
+
+  const kpis = [];
+
+  if (catCols.length && numericCols.length) {
+    const metricCol = pickMetric(numericCols);
+    const catCol = catCols[0];
+    const yearCol = catCols.find((col) => col.toLowerCase().includes("year"));
+    const monthCol = catCols.find((col) => col.toLowerCase().includes("month") && col !== yearCol);
+    const isTime = timeHints.some((hint) => catCol.toLowerCase().includes(hint)) || Boolean(yearCol && monthCol);
+
+    const periodFor = (row) => {
+      if (yearCol && monthCol) {
+        const year = text(row[yearCol]);
+        const month = text(row[monthCol]);
+        if (/^\d+$/.test(year) && /^\d+$/.test(month)) return `${year}-${month.padStart(2, "0")}-01`;
+      }
+      return text(row[catCol]);
+    };
+
+    const orderedRows = isTime ? [...rows].sort((a, b) => periodSortValue(periodFor(a)).localeCompare(periodSortValue(periodFor(b)))) : rows;
+
+    if (isTime && numericCols.length > 1) {
+      for (const col of numericCols.slice(0, 3)) {
+        const row = [...orderedRows].reverse().find((item) => text(item[col]).trim() && !["none", "null"].includes(text(item[col]).toLowerCase()));
+        if (row) kpis.push({ label: labelize(col), value: formatValue(row[col], col), sub: formatPeriod(periodFor(row)), badge: "" });
+      }
+      return kpis;
+    }
+
+    const displayRow = isTime ? orderedRows[orderedRows.length - 1] : rows[0];
+    const category = isTime ? formatPeriod(periodFor(displayRow)) : labelize(displayRow[catCol]);
+    let badge = "";
+
+    if (isTime && orderedRows.length >= 2) {
+      const current = Number(text(orderedRows[orderedRows.length - 1][metricCol]).replaceAll(",", ""));
+      const previous = Number(text(orderedRows[orderedRows.length - 2][metricCol]).replaceAll(",", ""));
+      if (Number.isFinite(current) && Number.isFinite(previous) && previous !== 0) {
+        const pct = ((current - previous) / Math.abs(previous)) * 100;
+        badge = `${pct >= 0 ? "+" : ""}${pct.toFixed(1)}% vs prior`;
+      }
+    }
+
+    kpis.push({ label: labelize(metricCol), value: formatValue(displayRow[metricCol], metricCol), sub: category, badge });
+    kpis.push({ label: isTime ? "Periods Covered" : "Total Entries", value: rows.length.toLocaleString(), sub: isTime ? "Periods" : labelize(catCol), badge: "" });
+
+    const total = rows.reduce((sum, row) => {
+      const value = Number(text(row[metricCol]).replaceAll(",", ""));
+      return Number.isFinite(value) ? sum + value : sum;
+    }, 0);
+    const firstPeriod = isTime ? formatPeriod(periodFor(orderedRows[0])) : "All entries";
+    const lastPeriod = isTime ? formatPeriod(periodFor(orderedRows[orderedRows.length - 1])) : "";
+    const baseMetric = labelize(metricCol.replace(/^total_/i, "").replace(/_total$/i, ""));
+    kpis.push({
+      label: `Total ${baseMetric} (All)`,
+      value: formatValue(total, metricCol),
+      sub: isTime ? `${firstPeriod} - ${lastPeriod}` : "All entries",
+      badge: "",
+    });
+  } else if (numericCols.length) {
+    for (const col of numericCols.slice(0, 3)) {
+      kpis.push({ label: labelize(col), value: formatValue(rows[0][col], col), sub: "", badge: "" });
+    }
+  }
+
+  return kpis.slice(0, 3);
+}
+
 function setBusy(isBusy) {
   els.askBtn.disabled = isBusy;
   els.input.disabled = isBusy;
@@ -48,8 +191,20 @@ function updateStats(last = null) {
   if (last) {
     els.lastChart.textContent = last.chart_type || "None";
     els.lastRows.textContent = text(last.row_count || 0);
-    els.lastVerdict.textContent = last.verdict || "No";
+    els.lastVerdict.textContent = last.verdict === "Yes" ? "Mismatch" : "Matched";
   }
+}
+
+function updateHistory() {
+  if (!els.historyList) return;
+  if (!state.turns.length) {
+    els.historyList.innerHTML = "<p>No questions yet.</p>";
+    return;
+  }
+
+  els.historyList.innerHTML = state.turns
+    .map((turn, index) => `<div class="history-item"><span>${index + 1}</span><p>${escapeHtml(turn.question || "Question")}</p></div>`)
+    .join("");
 }
 
 function download(name, mime, content) {
@@ -78,6 +233,37 @@ function renderTable(columns = [], rows = []) {
     .join("");
 
   return `<div class="table-wrap"><table class="data-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+function renderKpis(columns = [], rows = []) {
+  const kpis = extractKpis(columns, rows);
+  if (!kpis.length) return "";
+
+  return kpis
+    .map((kpi) => {
+      const trendClass = kpi.badge.startsWith("-") ? "negative" : "positive";
+      return `
+        <div class="kpi-card">
+          <span>${escapeHtml(kpi.label)}</span>
+          <strong>${escapeHtml(kpi.value)}</strong>
+          ${kpi.sub ? `<small>${escapeHtml(kpi.sub)}</small>` : ""}
+          ${kpi.badge ? `<em class="${trendClass}">${escapeHtml(kpi.badge)}</em>` : ""}
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function rowsToCsv(columns = [], rows = []) {
+  const escapeCsv = (value) => {
+    const raw = text(value);
+    return /[",\n]/.test(raw) ? `"${raw.replaceAll('"', '""')}"` : raw;
+  };
+
+  return [
+    columns.map(escapeCsv).join(","),
+    ...rows.map((row) => columns.map((column) => escapeCsv(row[column])).join(",")),
+  ].join("\n");
 }
 
 function escapeHtml(value) {
@@ -165,9 +351,16 @@ function populateTurn(card, data) {
     chartFrame.appendChild(iframe);
   }
 
+  card.querySelector(".kpi-grid").innerHTML = renderKpis(data.columns || [], data.rows || []);
   card.querySelector(".table-panel").innerHTML = renderTable(data.columns || [], data.rows || []);
   card.querySelector(".sql-panel").innerHTML = `<pre>${escapeHtml(data.sql || "No SQL for this response.")}</pre>`;
   card.querySelector(".details-panel").innerHTML = renderDetails(data);
+  const csvButton = card.querySelector(".download-csv");
+  csvButton.disabled = !(data.columns || []).length || !(data.rows || []).length;
+  csvButton.addEventListener("click", () => {
+    const number = Math.max(state.turns.findIndex((turn) => turn.request_id === data.request_id) + 1, 1);
+    download(`edp_data_q${number}.csv`, "text/csv", rowsToCsv(data.columns || [], data.rows || []));
+  });
   card.querySelector(".download-report").addEventListener("click", () => buildPdf(data));
 }
 
@@ -228,6 +421,7 @@ async function ask(question) {
     state.totalCost += Number(donePayload.cost_usd || 0);
     populateTurn(card, donePayload);
     updateStats(donePayload);
+    updateHistory();
     refreshEngineerLog();
   } catch (err) {
     card.classList.add("failed");
@@ -299,27 +493,6 @@ async function checkHealth() {
   }
 }
 
-async function loadExamples() {
-  try {
-    const response = await fetch(`${API_BASE}/examples`);
-    const payload = await response.json();
-    els.examples.innerHTML = "";
-    for (const question of payload.questions || []) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "example-btn";
-      button.textContent = question;
-      button.addEventListener("click", () => {
-        els.input.value = question;
-        els.input.focus();
-      });
-      els.examples.appendChild(button);
-    }
-  } catch {
-    els.examples.innerHTML = "<p>Examples load when the backend is online.</p>";
-  }
-}
-
 els.form.addEventListener("submit", (event) => {
   event.preventDefault();
   const question = els.input.value.trim();
@@ -333,9 +506,10 @@ els.newSessionBtn.addEventListener("click", () => {
   state.turns = [];
   state.totalCost = 0;
   state.lastLog = "";
-  els.timeline.innerHTML = '<div class="empty-state"><h2>No questions yet</h2><p>Try one of the examples, or ask your own question below.</p></div>';
+  els.timeline.innerHTML = '<div class="empty-state"><h2>No questions yet</h2><p>Ask a business question below to generate an insight, KPI summary, chart, and evidence table.</p></div>';
   els.timeline.classList.add("empty");
   updateStats();
+  updateHistory();
 });
 
 els.downloadLogBtn.addEventListener("click", () => {
@@ -347,5 +521,4 @@ els.downloadLogBtn.addEventListener("click", () => {
 els.healthBtn.addEventListener("click", checkHealth);
 
 checkHealth();
-loadExamples();
 setInterval(checkHealth, 30000);

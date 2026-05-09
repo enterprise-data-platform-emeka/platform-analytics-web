@@ -24,11 +24,11 @@
 
   <main class="shell">
     <aside class="sidebar">
-      <section class="panel">
+      <section class="panel session-panel">
         <div class="panel-kicker">Session</div>
-        <h2>Boardroom-ready answers</h2>
+        <h2>Analysis session</h2>
         <p>
-          Ask in plain English, review the insight, and export a polished report.
+          Ask questions, inspect the answer, and export the evidence behind each result.
         </p>
         <dl class="session-stats">
           <div>
@@ -46,32 +46,34 @@
         </dl>
       </section>
 
-      <section class="panel">
-        <div class="panel-kicker">Examples</div>
-        <div id="examples" class="examples"></div>
+      <section class="panel history-panel">
+        <div class="panel-kicker">History</div>
+        <div id="historyList" class="history-list">
+          <p>No questions yet.</p>
+        </div>
       </section>
     </aside>
 
     <section class="workspace">
       <div class="hero">
         <div>
-          <div class="panel-kicker">Natural language analytics</div>
-          <h1>Executive answers from governed data.</h1>
+          <div class="panel-kicker">Gold layer analytics</div>
+          <h1>EDP Analytics Agent</h1>
           <p>
-            Turn business questions into clear insights, trustworthy SQL, charts, and downloadable reports.
+            Ask business questions in plain English and review governed answers from the Gold layer.
           </p>
         </div>
-        <div class="hero-metrics">
-          <div><strong id="lastChart">None</strong><span>Chart type</span></div>
-          <div><strong id="lastRows">0</strong><span>Rows</span></div>
-          <div><strong id="lastVerdict">No</strong><span>Mismatch</span></div>
+        <div class="hero-metrics" aria-label="Latest answer summary">
+          <div><span>Latest chart</span><strong id="lastChart">None</strong></div>
+          <div><span>Rows returned</span><strong id="lastRows">0</strong></div>
+          <div><span>Intent check</span><strong id="lastVerdict">Ready</strong></div>
         </div>
       </div>
 
       <section id="timeline" class="timeline empty">
         <div class="empty-state">
           <h2>No questions yet</h2>
-          <p>Try one of the examples, or ask your own question below.</p>
+          <p>Ask a business question below to generate an insight, KPI summary, chart, and evidence table.</p>
         </div>
       </section>
 
@@ -81,7 +83,7 @@
           name="question"
           type="text"
           autocomplete="off"
-          placeholder="Ask a business question, e.g. Show monthly revenue trends for the last year"
+          placeholder="Ask a question about your data..."
         >
         <button id="askBtn" type="submit">Ask</button>
       </form>
@@ -99,6 +101,7 @@
       </div>
       <div class="status-line"></div>
       <div class="insight"></div>
+      <div class="kpi-grid"></div>
       <div class="chart-frame"></div>
       <div class="tabs" role="tablist">
         <button class="tab active" type="button" data-tab="table">Data</button>
@@ -109,6 +112,7 @@
       <div class="tab-panel sql-panel hidden"></div>
       <div class="tab-panel details-panel hidden"></div>
       <div class="turn-actions">
+        <button class="download-csv ghost-btn" type="button">Download CSV</button>
         <button class="download-report ghost-btn" type="button">Download PDF</button>
       </div>
     </article>
