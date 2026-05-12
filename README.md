@@ -1,3 +1,5 @@
+> **Prefer a visual version?** Open the [responsive HTML README](https://enterprise-data-platform-emeka.github.io/platform-analytics-web/html/?v=latest).
+
 # Platform Analytics Web
 
 Custom HTML dashboard for the Enterprise Data Platform analytics agent.
