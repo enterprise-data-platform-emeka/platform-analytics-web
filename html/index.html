@@ -19,6 +19,10 @@
       --olive-soft: #f1f5e9;
       --amber: #b7791f;
       --amber-soft: #fff6df;
+      --gold: #ca8a04;
+      --gold-soft: #fffbea;
+      --violet: #6d28d9;
+      --violet-soft: #f3e8ff;
       --rose: #b42318;
       --rose-soft: #fff0ef;
       --shadow: 0 24px 80px rgba(16,24,40,.12);
@@ -109,8 +113,84 @@
     .metric strong { font-size: 1.45rem; line-height: 1; }
     .diagram-card { margin: 1rem 0; background: rgba(255,255,255,.94); }
     .diagram-head { padding: 1.25rem 1.35rem .3rem; }
+    .diagram-head.split { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }
     .svg-frame { overflow-x: auto; padding: .25rem; }
     svg { display: block; width: 100%; min-width: 980px; height: auto; }
+    .walkthrough { display: grid; gap: 1rem; margin: 1rem 0; }
+    .story-card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      scroll-margin-top: 96px;
+    }
+    .story-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 1.35rem .35rem;
+    }
+    .story-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      font-weight: 950;
+      box-shadow: 0 12px 24px rgba(37,99,235,.22);
+    }
+    .story-head h3 { font-size: clamp(1.2rem, 2vw, 1.65rem); }
+    .story-head p { margin-top: .18rem; font-size: .94rem; }
+    .story-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+    .story-action {
+      min-height: 36px;
+      padding: .56rem .72rem;
+      border: 1px solid #bdcbe0;
+      border-radius: 999px;
+      color: #344054;
+      background: #fff;
+      font-size: .78rem;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(16,24,40,.05);
+      cursor: pointer;
+    }
+    .story-action:hover { color: var(--blue); border-color: #9cc2ff; }
+    .story-card:fullscreen {
+      display: grid;
+      align-content: center;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      background: #f8fbff;
+    }
+    .story-card:fullscreen .svg-frame { padding: 1rem 1.5rem; }
+    .story-card:fullscreen svg { max-height: calc(100vh - 120px); min-width: 0; }
+    .legend-row { display: flex; flex-wrap: wrap; gap: .5rem; padding: .3rem 1.35rem 1.1rem; }
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .42rem;
+      min-height: 30px;
+      padding: .35rem .58rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #344054;
+      font-size: .76rem;
+      font-weight: 850;
+    }
+    .legend-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--blue); }
+    .dot-blue { background: var(--blue); }
+    .dot-amber { background: var(--amber); }
+    .dot-slate { background: #64748b; }
+    .dot-gold { background: var(--gold); }
+    .dot-violet { background: var(--violet); }
+    .dot-teal { background: var(--teal); }
+    .dot-rose { background: var(--rose); }
     .diagram-note { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; padding: .2rem 1.25rem 1.25rem; }
     .note { padding: .95rem; border: 1px solid var(--line); border-radius: 18px; background: rgba(248,251,255,.88); box-shadow: 0 10px 26px rgba(16,24,40,.04); }
     .note strong { display: block; margin-bottom: .25rem; color: var(--ink); }
@@ -120,6 +200,8 @@
     .node-teal { fill: var(--teal-soft); stroke: #86d7cd; }
     .node-olive { fill: var(--olive-soft); stroke: #bdcda0; }
     .node-amber { fill: var(--amber-soft); stroke: #f4c77a; }
+    .node-gold { fill: var(--gold-soft); stroke: #f0c85a; }
+    .node-violet { fill: var(--violet-soft); stroke: #c7a5ff; }
     .node-rose { fill: var(--rose-soft); stroke: #f2aaa5; }
     .node-dark { fill: #172033; stroke: #172033; }
     .title { fill: var(--ink); font-size: 15px; font-weight: 950; }
@@ -151,6 +233,9 @@
     @media (max-width: 960px) {
       .topbar { align-items: flex-start; flex-direction: column; }
       .nav { justify-content: flex-start; }
+      .story-head { grid-template-columns: auto minmax(0, 1fr); }
+      .story-actions { grid-column: 1 / -1; justify-content: flex-start; }
+      .diagram-head.split { display: block; }
       .hero, .diagram-note, .grid { grid-template-columns: 1fr; }
       svg { min-width: 900px; }
       .wrap { width: min(100% - 1rem, 1320px); }
@@ -169,6 +254,7 @@
       <a href="#request">Request flow</a>
       <a href="#contract">API contract</a>
       <a href="#deploy">Deploy</a>
+      <a href="#walkthrough">Walkthrough</a>
     </nav>
   </header>
 
@@ -400,6 +486,354 @@
       </div>
     </section>
 
+    <section id="walkthrough" class="diagram-card">
+      <div class="diagram-head split">
+        <div>
+          <div class="eyebrow">Platform walkthrough</div>
+          <h2>Video-ready diagrams for explaining the full project from start to finish.</h2>
+          <p>Each frame explains one part of the platform, so the demo can move step by step without crowding everything into one diagram.</p>
+        </div>
+        <div class="story-actions" aria-label="Walkthrough shortcuts">
+          <a class="story-action" href="#story-foundation">1</a>
+          <a class="story-action" href="#story-ingestion">2</a>
+          <a class="story-action" href="#story-lakehouse">3</a>
+          <a class="story-action" href="#story-orchestration">4</a>
+          <a class="story-action" href="#story-agent">5</a>
+          <a class="story-action" href="#story-security">6</a>
+        </div>
+      </div>
+      <div class="legend-row" aria-label="Diagram color legend">
+        <span class="legend-chip"><span class="legend-dot dot-blue"></span>Source and apps</span>
+        <span class="legend-chip"><span class="legend-dot dot-amber"></span>Bronze raw data</span>
+        <span class="legend-chip"><span class="legend-dot dot-slate"></span>Silver cleaned data</span>
+        <span class="legend-chip"><span class="legend-dot dot-gold"></span>Gold analytics</span>
+        <span class="legend-chip"><span class="legend-dot dot-violet"></span>Orchestration and AI</span>
+        <span class="legend-chip"><span class="legend-dot dot-teal"></span>Stakeholder access</span>
+        <span class="legend-chip"><span class="legend-dot dot-rose"></span>Security and monitoring</span>
+      </div>
+
+      <div class="walkthrough">
+        <article class="story-card" id="story-foundation">
+          <div class="story-head">
+            <div class="story-number">1</div>
+            <div>
+              <h3>Cloud foundation and environment control</h3>
+              <p>Start the story with Terraform creating repeatable dev, staging, and prod foundations.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-foundation">Full screen</button><a class="story-action" href="#story-ingestion">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 520" role="img" aria-label="Cloud foundation and environment control">
+              <defs>
+                <marker id="story-arrow-1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker>
+              </defs>
+              <rect width="1320" height="520" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Foundation: one Terraform pattern, three controlled environments</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">I use short lived sessions: apply, test the platform, then destroy runtime resources when the demo is done.</text>
+
+              <rect class="node node-dark" x="70" y="205" width="180" height="90" rx="22"/>
+              <text x="160" y="238" text-anchor="middle" class="title white-text">GitHub Actions</text>
+              <text x="160" y="262" text-anchor="middle" class="sub white-text">OIDC, no long lived keys</text>
+
+              <rect class="node node-blue" x="340" y="105" width="210" height="92" rx="22"/>
+              <text x="445" y="138" text-anchor="middle" class="title">Bootstrap</text>
+              <text x="445" y="162" text-anchor="middle" class="sub">state bucket, locks, OIDC</text>
+              <rect class="node node-violet" x="340" y="255" width="210" height="92" rx="22"/>
+              <text x="445" y="288" text-anchor="middle" class="title">Live Terraform</text>
+              <text x="445" y="312" text-anchor="middle" class="sub">modules wired per env</text>
+
+              <rect x="650" y="78" width="560" height="330" rx="28" fill="#f8fbff" stroke="#d8e2ef"/>
+              <text x="930" y="115" text-anchor="middle" class="title">AWS account environment</text>
+              <rect class="node node-blue" x="690" y="150" width="145" height="72" rx="18"/>
+              <text x="762" y="180" text-anchor="middle" class="small-title">VPC</text>
+              <text x="762" y="200" text-anchor="middle" class="tiny">private subnets</text>
+              <rect class="node node-rose" x="870" y="150" width="145" height="72" rx="18"/>
+              <text x="942" y="180" text-anchor="middle" class="small-title">IAM</text>
+              <text x="942" y="200" text-anchor="middle" class="tiny">least privilege</text>
+              <rect class="node node-rose" x="1050" y="150" width="145" height="72" rx="18"/>
+              <text x="1122" y="180" text-anchor="middle" class="small-title">KMS</text>
+              <text x="1122" y="200" text-anchor="middle" class="tiny">encryption</text>
+              <rect class="node node-amber" x="690" y="270" width="145" height="72" rx="18"/>
+              <text x="762" y="300" text-anchor="middle" class="small-title">S3 lake</text>
+              <text x="762" y="320" text-anchor="middle" class="tiny">bronze, silver, gold</text>
+              <rect class="node node-violet" x="870" y="270" width="145" height="72" rx="18"/>
+              <text x="942" y="300" text-anchor="middle" class="small-title">ECS, Glue</text>
+              <text x="942" y="320" text-anchor="middle" class="tiny">runtime services</text>
+              <rect class="node node-teal" x="1050" y="270" width="145" height="72" rx="18"/>
+              <text x="1122" y="300" text-anchor="middle" class="small-title">Monitoring</text>
+              <text x="1122" y="320" text-anchor="middle" class="tiny">logs, alarms</text>
+
+              <path d="M250 250 H340" fill="none" stroke="#344054" stroke-width="2.6" marker-end="url(#story-arrow-1)"/>
+              <path d="M550 151 C606 155 616 194 650 198" fill="none" stroke="#344054" stroke-width="2.6" marker-end="url(#story-arrow-1)"/>
+              <path d="M550 301 C606 301 616 290 650 286" fill="none" stroke="#344054" stroke-width="2.6" marker-end="url(#story-arrow-1)"/>
+              <text x="455" y="435" text-anchor="middle" class="sub">Demo pattern: apply infrastructure, run the pipeline, show analytics, then destroy runtime resources.</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="story-card" id="story-ingestion">
+          <div class="story-head">
+            <div class="story-number">2</div>
+            <div>
+              <h3>Source simulation and change data capture</h3>
+              <p>Explain how realistic source changes become immutable Bronze data in the lake.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-ingestion">Full screen</button><a class="story-action" href="#story-foundation">Prev</a><a class="story-action" href="#story-lakehouse">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 520" role="img" aria-label="Source simulation and change data capture">
+              <defs>
+                <marker id="story-arrow-2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/></marker>
+              </defs>
+              <rect width="1320" height="520" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Ingestion: source changes are captured without overwriting history</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The simulator creates operational transactions, then AWS Database Migration Service writes change files to Bronze.</text>
+
+              <rect class="node node-blue" x="70" y="178" width="190" height="112" rx="24"/>
+              <text x="165" y="215" text-anchor="middle" class="title">Source simulator</text>
+              <text x="165" y="240" text-anchor="middle" class="sub">customers, products</text>
+              <text x="165" y="260" text-anchor="middle" class="sub">orders, payments</text>
+
+              <rect class="node node-blue" x="350" y="178" width="190" height="112" rx="24"/>
+              <text x="445" y="215" text-anchor="middle" class="title">PostgreSQL RDS</text>
+              <text x="445" y="240" text-anchor="middle" class="sub">OLTP tables</text>
+              <text x="445" y="260" text-anchor="middle" class="sub">WAL changes</text>
+
+              <rect class="node node-violet" x="630" y="178" width="190" height="112" rx="24"/>
+              <text x="725" y="215" text-anchor="middle" class="title">AWS DMS</text>
+              <text x="725" y="240" text-anchor="middle" class="sub">full load</text>
+              <text x="725" y="260" text-anchor="middle" class="sub">continuous CDC</text>
+
+              <rect class="node node-amber" x="910" y="178" width="230" height="112" rx="24"/>
+              <text x="1025" y="215" text-anchor="middle" class="title">S3 Bronze</text>
+              <text x="1025" y="240" text-anchor="middle" class="sub">raw parquet CDC files</text>
+              <text x="1025" y="260" text-anchor="middle" class="sub">date partitioned</text>
+
+              <rect class="node node-rose" x="910" y="350" width="230" height="74" rx="20"/>
+              <text x="1025" y="380" text-anchor="middle" class="title">Quarantine path</text>
+              <text x="1025" y="402" text-anchor="middle" class="sub">bad records and reason</text>
+
+              <path d="M260 234 H350" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#story-arrow-2)"/>
+              <path d="M540 234 H630" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#story-arrow-2)"/>
+              <path d="M820 234 H910" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#story-arrow-2)"/>
+              <path d="M1025 290 V350" fill="none" stroke="#b42318" stroke-width="2.6" stroke-dasharray="8 7"/>
+              <text x="305" y="218" text-anchor="middle" class="tiny">transactions</text>
+              <text x="585" y="218" text-anchor="middle" class="tiny">WAL stream</text>
+              <text x="865" y="218" text-anchor="middle" class="tiny">parquet files</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="story-card" id="story-lakehouse">
+          <div class="story-head">
+            <div class="story-number">3</div>
+            <div>
+              <h3>Bronze, Silver, and Gold lakehouse journey</h3>
+              <p>Show the data quality journey from raw changes to business-ready marts.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-lakehouse">Full screen</button><a class="story-action" href="#story-ingestion">Prev</a><a class="story-action" href="#story-orchestration">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 520" role="img" aria-label="Bronze Silver Gold data lakehouse">
+              <defs>
+                <marker id="story-arrow-3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker>
+              </defs>
+              <rect width="1320" height="520" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Lakehouse: each layer has a different job</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Bronze preserves raw events, Silver reconciles facts and dimensions, Gold serves business questions.</text>
+
+              <rect x="75" y="132" width="300" height="265" rx="28" fill="#fff6df" stroke="#f4c77a"/>
+              <text x="225" y="170" text-anchor="middle" class="title">Bronze</text>
+              <rect class="node node-amber" x="115" y="210" width="220" height="70" rx="18"/>
+              <text x="225" y="239" text-anchor="middle" class="small-title">Raw CDC parquet</text>
+              <text x="225" y="259" text-anchor="middle" class="tiny">append only, partitioned</text>
+              <rect class="node node-amber" x="115" y="305" width="220" height="54" rx="16"/>
+              <text x="225" y="338" text-anchor="middle" class="small-title">landing evidence</text>
+
+              <rect x="510" y="132" width="300" height="265" rx="28" fill="#f1f5f9" stroke="#c7d2df"/>
+              <text x="660" y="170" text-anchor="middle" class="title">Silver</text>
+              <rect class="node" x="550" y="210" width="220" height="70" rx="18"/>
+              <text x="660" y="239" text-anchor="middle" class="small-title">Glue PySpark jobs</text>
+              <text x="660" y="259" text-anchor="middle" class="tiny">latest row per key</text>
+              <rect class="node" x="550" y="305" width="220" height="54" rx="16"/>
+              <text x="660" y="338" text-anchor="middle" class="small-title">star schema tables</text>
+
+              <rect x="945" y="132" width="300" height="265" rx="28" fill="#fffbea" stroke="#f0c85a"/>
+              <text x="1095" y="170" text-anchor="middle" class="title">Gold</text>
+              <rect class="node node-gold" x="985" y="210" width="220" height="70" rx="18"/>
+              <text x="1095" y="239" text-anchor="middle" class="small-title">dbt + Athena</text>
+              <text x="1095" y="259" text-anchor="middle" class="tiny">models, tests, docs</text>
+              <rect class="node node-gold" x="985" y="305" width="220" height="54" rx="16"/>
+              <text x="1095" y="338" text-anchor="middle" class="small-title">business marts</text>
+
+              <path d="M375 265 H510" fill="none" stroke="#344054" stroke-width="2.8" marker-end="url(#story-arrow-3)"/>
+              <path d="M810 265 H945" fill="none" stroke="#344054" stroke-width="2.8" marker-end="url(#story-arrow-3)"/>
+              <text x="442" y="246" text-anchor="middle" class="tiny">clean, dedupe</text>
+              <text x="878" y="246" text-anchor="middle" class="tiny">model, test</text>
+              <text x="660" y="448" text-anchor="middle" class="sub">The agent queries Gold only, so stakeholders see business-ready answers instead of raw operational noise.</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="story-card" id="story-orchestration">
+          <div class="story-head">
+            <div class="story-number">4</div>
+            <div>
+              <h3>Pipeline orchestration paths</h3>
+              <p>Explain why Step Functions is the fast daily path and MWAA validates the Airflow path.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-orchestration">Full screen</button><a class="story-action" href="#story-lakehouse">Prev</a><a class="story-action" href="#story-agent">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 520" role="img" aria-label="Pipeline orchestration with Step Functions and MWAA">
+              <defs>
+                <marker id="story-arrow-4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker>
+              </defs>
+              <rect width="1320" height="520" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: fast sessions first, Airflow validation when needed</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Both orchestrators represent the same pipeline idea, but Step Functions is the default demo path because it starts quickly.</text>
+
+              <rect class="node node-violet" x="70" y="190" width="190" height="96" rx="22"/>
+              <text x="165" y="226" text-anchor="middle" class="title">Session Start</text>
+              <text x="165" y="250" text-anchor="middle" class="sub">GitHub workflow</text>
+
+              <rect x="365" y="112" width="360" height="300" rx="28" fill="#f3e8ff" stroke="#c7a5ff"/>
+              <text x="545" y="150" text-anchor="middle" class="title">Step Functions default</text>
+              <rect class="node node-violet" x="405" y="195" width="140" height="58" rx="16"/><text x="475" y="230" text-anchor="middle" class="small-title">Glue Silver</text>
+              <rect class="node node-violet" x="585" y="195" width="100" height="58" rx="16"/><text x="635" y="230" text-anchor="middle" class="small-title">Crawler</text>
+              <rect class="node node-gold" x="405" y="300" width="140" height="58" rx="16"/><text x="475" y="335" text-anchor="middle" class="small-title">dbt Gold</text>
+              <rect class="node node-gold" x="585" y="300" width="100" height="58" rx="16"/><text x="635" y="335" text-anchor="middle" class="small-title">Tests</text>
+              <path d="M545 224 H585" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-4)"/>
+              <path d="M635 253 V300" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-4)"/>
+              <path d="M585 329 H545" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-4)"/>
+
+              <rect x="830" y="112" width="360" height="300" rx="28" fill="#eaf2ff" stroke="#9cc2ff"/>
+              <text x="1010" y="150" text-anchor="middle" class="title">MWAA Airflow validation</text>
+              <rect class="node node-blue" x="870" y="195" width="140" height="58" rx="16"/><text x="940" y="230" text-anchor="middle" class="small-title">DAG tasks</text>
+              <rect class="node node-blue" x="1050" y="195" width="100" height="58" rx="16"/><text x="1100" y="230" text-anchor="middle" class="small-title">Crawler</text>
+              <rect class="node node-gold" x="870" y="300" width="140" height="58" rx="16"/><text x="940" y="335" text-anchor="middle" class="small-title">dbt run</text>
+              <rect class="node node-gold" x="1050" y="300" width="100" height="58" rx="16"/><text x="1100" y="335" text-anchor="middle" class="small-title">dbt test</text>
+              <path d="M1010 224 H1050" fill="none" stroke="#2563eb" stroke-width="2.3" marker-end="url(#story-arrow-4)"/>
+              <path d="M1100 253 V300" fill="none" stroke="#2563eb" stroke-width="2.3" marker-end="url(#story-arrow-4)"/>
+              <path d="M1050 329 H1010" fill="none" stroke="#2563eb" stroke-width="2.3" marker-end="url(#story-arrow-4)"/>
+
+              <path d="M260 238 H365" fill="none" stroke="#6d28d9" stroke-width="3" marker-end="url(#story-arrow-4)"/>
+              <path d="M260 238 C510 470 760 470 1010 412" fill="none" stroke="#2563eb" stroke-width="2.6" stroke-dasharray="9 8"/>
+              <text x="545" y="445" text-anchor="middle" class="sub">Fast path for every demo session</text>
+              <text x="1010" y="445" text-anchor="middle" class="sub">Final path parity check</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="story-card" id="story-agent">
+          <div class="story-head">
+            <div class="story-number">5</div>
+            <div>
+              <h3>Analytics Agent and Claude Platform on AWS</h3>
+              <p>Show how a business question becomes governed SQL, insight, chart, PDF, and audit evidence.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-agent">Full screen</button><a class="story-action" href="#story-orchestration">Prev</a><a class="story-action" href="#story-security">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 520" role="img" aria-label="Analytics Agent with Claude Platform on AWS">
+              <defs>
+                <marker id="story-arrow-5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker>
+              </defs>
+              <rect width="1320" height="520" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Agent: a governed question answering loop</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The ECS task uses AWS-native Claude access, so the agent does not need a separate Claude credential for this path.</text>
+
+              <rect class="node node-teal" x="70" y="190" width="170" height="96" rx="22"/>
+              <text x="155" y="226" text-anchor="middle" class="title">Stakeholder</text>
+              <text x="155" y="250" text-anchor="middle" class="sub">plain question</text>
+
+              <rect class="node node-violet" x="330" y="150" width="210" height="176" rx="26"/>
+              <text x="435" y="190" text-anchor="middle" class="title">Analytics Agent</text>
+              <text x="435" y="218" text-anchor="middle" class="sub">schema prompt</text>
+              <text x="435" y="240" text-anchor="middle" class="sub">SQL guardrails</text>
+              <text x="435" y="262" text-anchor="middle" class="sub">verdict check</text>
+              <text x="435" y="284" text-anchor="middle" class="sub">PDF and chart</text>
+
+              <rect class="node node-violet" x="625" y="110" width="210" height="82" rx="22"/>
+              <text x="730" y="143" text-anchor="middle" class="title">Claude on AWS</text>
+              <text x="730" y="166" text-anchor="middle" class="sub">workspace via IAM</text>
+              <rect class="node node-gold" x="625" y="250" width="210" height="82" rx="22"/>
+              <text x="730" y="283" text-anchor="middle" class="title">Athena</text>
+              <text x="730" y="306" text-anchor="middle" class="sub">SELECT from Gold</text>
+
+              <rect class="node node-gold" x="920" y="250" width="170" height="82" rx="22"/>
+              <text x="1005" y="283" text-anchor="middle" class="title">Gold marts</text>
+              <text x="1005" y="306" text-anchor="middle" class="sub">business tables</text>
+              <rect class="node node-rose" x="920" y="110" width="170" height="82" rx="22"/>
+              <text x="1005" y="143" text-anchor="middle" class="title">Audit log</text>
+              <text x="1005" y="166" text-anchor="middle" class="sub">request evidence</text>
+
+              <rect class="node node-teal" x="1150" y="175" width="120" height="120" rx="24"/>
+              <text x="1210" y="212" text-anchor="middle" class="title">Answer</text>
+              <text x="1210" y="238" text-anchor="middle" class="sub">insight</text>
+              <text x="1210" y="258" text-anchor="middle" class="sub">chart, PDF</text>
+
+              <path d="M240 238 H330" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#story-arrow-5)"/>
+              <path d="M540 200 C580 170 594 152 625 151" fill="none" stroke="#6d28d9" stroke-width="2.8" marker-end="url(#story-arrow-5)"/>
+              <path d="M540 277 C580 291 594 292 625 291" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-5)"/>
+              <path d="M835 291 H920" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-5)"/>
+              <path d="M540 170 C700 60 850 66 920 126" fill="none" stroke="#b42318" stroke-width="2.5" stroke-dasharray="8 7"/>
+              <path d="M1090 235 H1150" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#story-arrow-5)"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="story-card" id="story-security">
+          <div class="story-head">
+            <div class="story-number">6</div>
+            <div>
+              <h3>Security, public logs, and demo lifecycle</h3>
+              <p>Close the demo by showing least privilege, private data access, clean logs, and teardown.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-security">Full screen</button><a class="story-action" href="#story-agent">Prev</a><a class="story-action" href="#walkthrough">Top</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 520" role="img" aria-label="Security and demo lifecycle">
+              <defs>
+                <marker id="story-arrow-6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#b42318"/></marker>
+              </defs>
+              <rect width="1320" height="520" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Security: least privilege plus low-noise public automation</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The platform avoids long lived credentials, limits service roles, keeps data private, and tears down runtime resources after the session.</text>
+
+              <rect class="node node-rose" x="80" y="155" width="190" height="90" rx="22"/>
+              <text x="175" y="190" text-anchor="middle" class="title">GitHub logs</text>
+              <text x="175" y="214" text-anchor="middle" class="sub">no IDs, ARNs, URLs</text>
+              <rect class="node node-rose" x="80" y="305" width="190" height="90" rx="22"/>
+              <text x="175" y="340" text-anchor="middle" class="title">OIDC auth</text>
+              <text x="175" y="364" text-anchor="middle" class="sub">short lived session</text>
+
+              <rect x="390" y="112" width="260" height="306" rx="28" fill="#fff0ef" stroke="#f2aaa5"/>
+              <text x="520" y="150" text-anchor="middle" class="title">Service role boundaries</text>
+              <rect class="node" x="430" y="190" width="180" height="54" rx="16"/><text x="520" y="223" text-anchor="middle" class="small-title">Glue reads Bronze</text>
+              <rect class="node" x="430" y="260" width="180" height="54" rx="16"/><text x="520" y="293" text-anchor="middle" class="small-title">dbt writes Gold</text>
+              <rect class="node" x="430" y="330" width="180" height="54" rx="16"/><text x="520" y="363" text-anchor="middle" class="small-title">Agent reads Gold</text>
+
+              <rect x="760" y="112" width="220" height="306" rx="28" fill="#e7f6f3" stroke="#86d7cd"/>
+              <text x="870" y="150" text-anchor="middle" class="title">Private data plane</text>
+              <rect class="node node-teal" x="800" y="205" width="140" height="62" rx="17"/><text x="870" y="242" text-anchor="middle" class="small-title">private subnets</text>
+              <rect class="node node-teal" x="800" y="300" width="140" height="62" rx="17"/><text x="870" y="337" text-anchor="middle" class="small-title">encrypted S3</text>
+
+              <rect class="node node-dark" x="1090" y="190" width="150" height="96" rx="24"/>
+              <text x="1165" y="224" text-anchor="middle" class="title white-text">Destroy</text>
+              <text x="1165" y="248" text-anchor="middle" class="sub white-text">end of session</text>
+
+              <path d="M270 200 H390" fill="none" stroke="#b42318" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
+              <path d="M270 350 C330 338 350 300 390 288" fill="none" stroke="#b42318" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
+              <path d="M650 265 H760" fill="none" stroke="#b42318" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
+              <path d="M980 238 H1090" fill="none" stroke="#b42318" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
+              <text x="1165" y="335" text-anchor="middle" class="sub">The demo ends cleanly: no runtime stack left running.</text>
+            </svg>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="concepts" class="grid" aria-label="Repository concepts">
       <article class="concept">
         <h3>Repository mental model</h3>
@@ -434,5 +868,18 @@
 
     <p class="footer">Visual README for platform-analytics-web. The markdown README remains the exact command and operations reference.</p>
   </main>
+  <script>
+    document.querySelectorAll("[data-fullscreen]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = document.getElementById(button.dataset.fullscreen);
+        if (!target) return;
+        if (target.requestFullscreen) {
+          target.requestFullscreen();
+        } else if (target.webkitRequestFullscreen) {
+          target.webkitRequestFullscreen();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
