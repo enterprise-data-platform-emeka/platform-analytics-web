@@ -937,16 +937,16 @@
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-agent">Full screen</button><a class="story-action" href="#story-access" data-jump="story-access">Prev</a><a class="story-action" href="#story-iam" data-jump="story-iam">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1500 1180" role="img" aria-label="Analytics Agent request loop">
+            <svg viewBox="0 0 1500 1350" role="img" aria-label="Analytics Agent request loop">
               <defs>
                 <marker id="story-arrow-7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker>
                 <marker id="story-arrow-7-violet" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker>
                 <marker id="story-arrow-7-gold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker>
                 <marker id="story-arrow-7-rose" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#b42318"/></marker>
               </defs>
-              <rect width="1500" height="1180" rx="30" fill="#fbfdff"/>
+              <rect width="1500" height="1350" rx="30" fill="#fbfdff"/>
               <text x="44" y="52" class="title" style="font-size:24px">Agent request loop: full sequence from browser question to audited answer</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">This frame includes the browser path, four Claude calls, SQL guardrails, one correction loop, Athena execution, audit writes, and the returned answer.</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">This frame includes the browser path, four Claude calls, SQL guardrails, two correction loops (guardrail fail + verdict mismatch), Athena execution, audit writes, and the returned answer.</text>
 
               <rect class="node node-teal" x="38" y="116" width="132" height="46" rx="10"/><text x="104" y="145" text-anchor="middle" class="tiny">Stakeholder</text>
               <rect class="node node-teal" x="215" y="116" width="135" height="46" rx="10"/><text x="282" y="145" text-anchor="middle" class="tiny">AWS Load Balancer</text>
@@ -959,13 +959,13 @@
               <rect x="390" y="177" width="440" height="36" rx="6" fill="#fff7bf" stroke="#e6ca4f"/>
               <text x="610" y="200" text-anchor="middle" class="tiny">Streamlit and FastAPI run inside the same ECS task, so this hop is local to the container.</text>
 
-              <line x1="104" y1="162" x2="104" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="282" y1="162" x2="282" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="472" y1="162" x2="472" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="737" y1="162" x2="737" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1067" y1="162" x2="1067" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1287" y1="162" x2="1287" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1440" y1="162" x2="1440" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="104" y1="162" x2="104" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="282" y1="162" x2="282" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="472" y1="162" x2="472" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="737" y1="162" x2="737" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="1067" y1="162" x2="1067" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="1287" y1="162" x2="1287" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="1440" y1="162" x2="1440" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
 
               <circle cx="104" cy="248" r="9" fill="#344054"/><text x="104" y="252" text-anchor="middle" class="tiny white-text">1</text>
               <path d="M104 248 H282" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="194" y="236" text-anchor="middle" class="tiny">opens app in browser</text>
@@ -987,41 +987,63 @@
               <circle cx="737" cy="564" r="9" fill="#344054"/><text x="737" y="568" text-anchor="middle" class="tiny white-text">9</text>
               <path d="M737 564 C704 564 704 594 737 594" fill="none" stroke="#b42318" stroke-width="1.7" marker-end="url(#story-arrow-7-rose)"/><text x="668" y="586" text-anchor="middle" class="tiny">validate SQL guardrails</text>
 
-              <circle cx="737" cy="626" r="9" fill="#344054"/><text x="737" y="630" text-anchor="middle" class="tiny white-text">10</text>
-              <path d="M737 626 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="614" text-anchor="middle" class="tiny">Call 2: infer SQL intent, SQL only</text>
-              <circle cx="1067" cy="658" r="9" fill="#344054"/><text x="1067" y="662" text-anchor="middle" class="tiny white-text">11</text>
-              <path d="M1067 658 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="647" text-anchor="middle" class="tiny">inferred SQL intent</text>
-              <circle cx="737" cy="690" r="9" fill="#344054"/><text x="737" y="694" text-anchor="middle" class="tiny white-text">12</text>
-              <path d="M737 690 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="678" text-anchor="middle" class="tiny">Call 3: compare original question vs inferred intent</text>
-              <circle cx="1067" cy="722" r="9" fill="#344054"/><text x="1067" y="726" text-anchor="middle" class="tiny white-text">13</text>
-              <path d="M1067 722 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="711" text-anchor="middle" class="tiny">yes/no verdict plus discrepancy detail</text>
+              <!-- Guardrail fail retry box -->
+              <rect x="580" y="608" width="560" height="148" rx="14" fill="none" stroke="#b42318" stroke-dasharray="5 4"/>
+              <text x="860" y="626" text-anchor="middle" class="tiny">Guardrail fail: up to 3 regeneration attempts. If still invalid, return 422.</text>
 
-              <rect x="650" y="748" width="500" height="142" rx="14" fill="none" stroke="#8b5cf6" stroke-dasharray="5 4"/>
-              <text x="900" y="768" text-anchor="middle" class="tiny">Retry loop, only when the verdict says the SQL missed the question</text>
-              <circle cx="737" cy="798" r="9" fill="#344054"/><text x="737" y="802" text-anchor="middle" class="tiny white-text">14</text>
-              <path d="M737 798 H1067" fill="none" stroke="#6d28d9" stroke-width="1.6" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="787" text-anchor="middle" class="tiny">regenerate SQL with correction detail</text>
-              <circle cx="1067" cy="828" r="9" fill="#344054"/><text x="1067" y="832" text-anchor="middle" class="tiny white-text">15</text>
-              <path d="M1067 828 H737" fill="none" stroke="#344054" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="817" text-anchor="middle" class="tiny">corrected SQL query</text>
-              <circle cx="737" cy="858" r="9" fill="#344054"/><text x="737" y="862" text-anchor="middle" class="tiny white-text">16</text>
-              <path d="M737 858 C704 858 704 884 737 884" fill="none" stroke="#b42318" stroke-width="1.5" marker-end="url(#story-arrow-7-rose)"/><text x="665" y="880" text-anchor="middle" class="tiny">validate corrected SQL</text>
-              <text x="940" y="880" text-anchor="middle" class="tiny">17-18: re-infer corrected SQL intent for audit</text>
+              <!-- arrow: FastAPI → Claude: retry Call 1 with validation error -->
+              <circle cx="737" cy="652" r="9" fill="#344054"/>
+              <text x="737" y="656" text-anchor="middle" class="tiny white-text">9a</text>
+              <path d="M737 652 H1067" fill="none" stroke="#6d28d9" stroke-width="1.6" marker-end="url(#story-arrow-7-violet)"/>
+              <text x="902" y="641" text-anchor="middle" class="tiny">retry Call 1: SQL + validation error feedback</text>
 
-              <circle cx="737" cy="928" r="9" fill="#344054"/><text x="737" y="932" text-anchor="middle" class="tiny white-text">19</text>
-              <path d="M737 928 H1287" fill="none" stroke="#ca8a04" stroke-width="1.8" marker-end="url(#story-arrow-7-gold)"/><text x="1012" y="916" text-anchor="middle" class="tiny">run query against Gold tables</text>
-              <circle cx="1287" cy="960" r="9" fill="#344054"/><text x="1287" y="964" text-anchor="middle" class="tiny white-text">20</text>
-              <path d="M1287 960 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="1012" y="949" text-anchor="middle" class="tiny">results: rows and columns</text>
+              <!-- arrow: Claude → FastAPI: regenerated SQL -->
+              <circle cx="1067" cy="682" r="9" fill="#344054"/>
+              <text x="1067" y="686" text-anchor="middle" class="tiny white-text">9b</text>
+              <path d="M1067 682 H737" fill="none" stroke="#344054" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/>
+              <text x="902" y="671" text-anchor="middle" class="tiny">regenerated SQL</text>
 
-              <circle cx="737" cy="992" r="9" fill="#344054"/><text x="737" y="996" text-anchor="middle" class="tiny white-text">21</text>
-              <path d="M737 992 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="980" text-anchor="middle" class="tiny">Call 4: generate insight and chart title</text>
-              <circle cx="1067" cy="1024" r="9" fill="#344054"/><text x="1067" y="1028" text-anchor="middle" class="tiny white-text">22</text>
-              <path d="M1067 1024 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="1013" text-anchor="middle" class="tiny">2-3 sentence insight and chart title</text>
-              <circle cx="737" cy="1056" r="9" fill="#344054"/><text x="737" y="1060" text-anchor="middle" class="tiny white-text">23</text>
-              <path d="M737 1056 H1440" fill="none" stroke="#b42318" stroke-width="1.8" marker-end="url(#story-arrow-7-rose)"/><text x="1090" y="1045" text-anchor="middle" class="tiny">write audit log and engineer log</text>
+              <!-- self-loop: validate again -->
+              <circle cx="737" cy="714" r="9" fill="#344054"/>
+              <text x="737" y="718" text-anchor="middle" class="tiny white-text">9c</text>
+              <path d="M737 714 C704 714 704 744 737 744" fill="none" stroke="#b42318" stroke-width="1.5" marker-end="url(#story-arrow-7-rose)"/>
+              <text x="663" y="736" text-anchor="middle" class="tiny">validate again</text>
 
-              <circle cx="737" cy="1096" r="9" fill="#344054"/><text x="737" y="1100" text-anchor="middle" class="tiny white-text">24</text>
-              <path d="M737 1096 H472" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="610" y="1085" text-anchor="middle" class="tiny">returns insight, chart, cost, and verdict</text>
-              <circle cx="472" cy="1138" r="9" fill="#344054"/><text x="472" y="1142" text-anchor="middle" class="tiny white-text">25</text>
-              <path d="M472 1138 H104" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="290" y="1127" text-anchor="middle" class="tiny">renders answer, chart, and cost in browser</text>
+              <circle cx="737" cy="796" r="9" fill="#344054"/><text x="737" y="800" text-anchor="middle" class="tiny white-text">10</text>
+              <path d="M737 796 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="784" text-anchor="middle" class="tiny">Call 2: infer SQL intent, SQL only</text>
+              <circle cx="1067" cy="828" r="9" fill="#344054"/><text x="1067" y="832" text-anchor="middle" class="tiny white-text">11</text>
+              <path d="M1067 828 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="817" text-anchor="middle" class="tiny">inferred SQL intent</text>
+              <circle cx="737" cy="860" r="9" fill="#344054"/><text x="737" y="864" text-anchor="middle" class="tiny white-text">12</text>
+              <path d="M737 860 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="848" text-anchor="middle" class="tiny">Call 3: compare original question vs inferred intent</text>
+              <circle cx="1067" cy="892" r="9" fill="#344054"/><text x="1067" y="896" text-anchor="middle" class="tiny white-text">13</text>
+              <path d="M1067 892 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="881" text-anchor="middle" class="tiny">yes/no verdict plus discrepancy detail</text>
+
+              <rect x="650" y="918" width="500" height="142" rx="14" fill="none" stroke="#8b5cf6" stroke-dasharray="5 4"/>
+              <text x="900" y="938" text-anchor="middle" class="tiny">Retry loop, only when the verdict says the SQL missed the question</text>
+              <circle cx="737" cy="968" r="9" fill="#344054"/><text x="737" y="972" text-anchor="middle" class="tiny white-text">14</text>
+              <path d="M737 968 H1067" fill="none" stroke="#6d28d9" stroke-width="1.6" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="957" text-anchor="middle" class="tiny">regenerate SQL with correction detail</text>
+              <circle cx="1067" cy="998" r="9" fill="#344054"/><text x="1067" y="1002" text-anchor="middle" class="tiny white-text">15</text>
+              <path d="M1067 998 H737" fill="none" stroke="#344054" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="987" text-anchor="middle" class="tiny">corrected SQL query</text>
+              <circle cx="737" cy="1028" r="9" fill="#344054"/><text x="737" y="1032" text-anchor="middle" class="tiny white-text">16</text>
+              <path d="M737 1028 C704 1028 704 1054 737 1054" fill="none" stroke="#b42318" stroke-width="1.5" marker-end="url(#story-arrow-7-rose)"/><text x="665" y="1050" text-anchor="middle" class="tiny">validate corrected SQL</text>
+              <text x="940" y="1050" text-anchor="middle" class="tiny">17-18: re-infer corrected SQL intent for audit</text>
+
+              <circle cx="737" cy="1098" r="9" fill="#344054"/><text x="737" y="1102" text-anchor="middle" class="tiny white-text">19</text>
+              <path d="M737 1098 H1287" fill="none" stroke="#ca8a04" stroke-width="1.8" marker-end="url(#story-arrow-7-gold)"/><text x="1012" y="1086" text-anchor="middle" class="tiny">run query against Gold tables</text>
+              <circle cx="1287" cy="1130" r="9" fill="#344054"/><text x="1287" y="1134" text-anchor="middle" class="tiny white-text">20</text>
+              <path d="M1287 1130 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="1012" y="1119" text-anchor="middle" class="tiny">results: rows and columns</text>
+
+              <circle cx="737" cy="1162" r="9" fill="#344054"/><text x="737" y="1166" text-anchor="middle" class="tiny white-text">21</text>
+              <path d="M737 1162 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="1150" text-anchor="middle" class="tiny">Call 4: generate insight and chart title</text>
+              <circle cx="1067" cy="1194" r="9" fill="#344054"/><text x="1067" y="1198" text-anchor="middle" class="tiny white-text">22</text>
+              <path d="M1067 1194 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="1183" text-anchor="middle" class="tiny">2-3 sentence insight and chart title</text>
+              <circle cx="737" cy="1226" r="9" fill="#344054"/><text x="737" y="1230" text-anchor="middle" class="tiny white-text">23</text>
+              <path d="M737 1226 H1440" fill="none" stroke="#b42318" stroke-width="1.8" marker-end="url(#story-arrow-7-rose)"/><text x="1090" y="1215" text-anchor="middle" class="tiny">write audit log and engineer log</text>
+
+              <circle cx="737" cy="1266" r="9" fill="#344054"/><text x="737" y="1270" text-anchor="middle" class="tiny white-text">24</text>
+              <path d="M737 1266 H472" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="610" y="1255" text-anchor="middle" class="tiny">returns insight, chart, cost, and verdict</text>
+              <circle cx="472" cy="1308" r="9" fill="#344054"/><text x="472" y="1312" text-anchor="middle" class="tiny white-text">25</text>
+              <path d="M472 1308 H104" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="290" y="1297" text-anchor="middle" class="tiny">renders answer, chart, and cost in browser</text>
             </svg>
           </div>
         </article>
