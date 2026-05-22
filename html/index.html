@@ -177,6 +177,13 @@
       animation: dash 800ms linear infinite;
       filter: drop-shadow(0 0 9px rgba(37,99,235,.68));
     }
+    #story-agent svg:hover path[marker-end],
+    #story-agent svg:hover path[stroke-dasharray],
+    #story-agent svg path[marker-end]:hover,
+    #story-agent svg path[stroke-dasharray]:hover {
+      stroke-width: 2.1;
+      filter: drop-shadow(0 0 3px rgba(37,99,235,.28));
+    }
     .story-card.focus-mode {
       position: fixed;
       inset: 0;
@@ -930,14 +937,14 @@
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-agent">Full screen</button><a class="story-action" href="#story-access" data-jump="story-access">Prev</a><a class="story-action" href="#story-iam" data-jump="story-iam">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1500 1120" role="img" aria-label="Analytics Agent request loop">
+            <svg viewBox="0 0 1500 1180" role="img" aria-label="Analytics Agent request loop">
               <defs>
                 <marker id="story-arrow-7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker>
                 <marker id="story-arrow-7-violet" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker>
                 <marker id="story-arrow-7-gold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker>
                 <marker id="story-arrow-7-rose" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#b42318"/></marker>
               </defs>
-              <rect width="1500" height="1120" rx="30" fill="#fbfdff"/>
+              <rect width="1500" height="1180" rx="30" fill="#fbfdff"/>
               <text x="44" y="52" class="title" style="font-size:24px">Agent request loop: full sequence from browser question to audited answer</text>
               <text x="44" y="80" class="sub" style="font-size:14px">This frame includes the browser path, four Claude calls, SQL guardrails, one correction loop, Athena execution, audit writes, and the returned answer.</text>
 
@@ -952,13 +959,13 @@
               <rect x="390" y="177" width="440" height="36" rx="6" fill="#fff7bf" stroke="#e6ca4f"/>
               <text x="610" y="200" text-anchor="middle" class="tiny">Streamlit and FastAPI run inside the same ECS task, so this hop is local to the container.</text>
 
-              <line x1="104" y1="162" x2="104" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="282" y1="162" x2="282" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="472" y1="162" x2="472" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="737" y1="162" x2="737" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1067" y1="162" x2="1067" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1287" y1="162" x2="1287" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1440" y1="162" x2="1440" y2="1045" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="104" y1="162" x2="104" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="282" y1="162" x2="282" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="472" y1="162" x2="472" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="737" y1="162" x2="737" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="1067" y1="162" x2="1067" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="1287" y1="162" x2="1287" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
+              <line x1="1440" y1="162" x2="1440" y2="1145" stroke="#8b5cf6" stroke-width="1.2"/>
 
               <circle cx="104" cy="248" r="9" fill="#344054"/><text x="104" y="252" text-anchor="middle" class="tiny white-text">1</text>
               <path d="M104 248 H282" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="194" y="236" text-anchor="middle" class="tiny">opens app in browser</text>
@@ -1011,10 +1018,10 @@
               <circle cx="737" cy="1056" r="9" fill="#344054"/><text x="737" y="1060" text-anchor="middle" class="tiny white-text">23</text>
               <path d="M737 1056 H1440" fill="none" stroke="#b42318" stroke-width="1.8" marker-end="url(#story-arrow-7-rose)"/><text x="1090" y="1045" text-anchor="middle" class="tiny">write audit log and engineer log</text>
 
-              <circle cx="737" cy="394" r="9" fill="#344054"/><text x="737" y="398" text-anchor="middle" class="tiny white-text">24</text>
-              <path d="M737 394 H472" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="610" y="383" text-anchor="middle" class="tiny">returns insight, chart, cost, verdict</text>
-              <circle cx="472" cy="360" r="9" fill="#344054"/><text x="472" y="364" text-anchor="middle" class="tiny white-text">25</text>
-              <path d="M472 360 H104" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="290" y="349" text-anchor="middle" class="tiny">renders answer, chart, and cost in browser</text>
+              <circle cx="737" cy="1096" r="9" fill="#344054"/><text x="737" y="1100" text-anchor="middle" class="tiny white-text">24</text>
+              <path d="M737 1096 H472" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="610" y="1085" text-anchor="middle" class="tiny">returns insight, chart, cost, and verdict</text>
+              <circle cx="472" cy="1138" r="9" fill="#344054"/><text x="472" y="1142" text-anchor="middle" class="tiny white-text">25</text>
+              <path d="M472 1138 H104" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="290" y="1127" text-anchor="middle" class="tiny">renders answer, chart, and cost in browser</text>
             </svg>
           </div>
         </article>
