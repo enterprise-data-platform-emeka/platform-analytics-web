@@ -129,5 +129,5 @@ jobs:
         run: |
           echo "Deployed analytics web dashboard to ECS"
           echo "Environment : ${ENV}"
-          echo "Service     : analytics web dashboard"
+          echo "Component   : analytics web dashboard"
           echo "Endpoint details are available from Terraform outputs or the AWS console."
