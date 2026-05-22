@@ -147,6 +147,9 @@
     .story-head p { margin-top: .18rem; font-size: .94rem; }
     .story-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
     .story-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       min-height: 36px;
       padding: .56rem .72rem;
       border: 1px solid #bdcbe0;
@@ -159,6 +162,37 @@
       cursor: pointer;
     }
     .story-action:hover { color: var(--blue); border-color: #9cc2ff; }
+    .story-card svg path[marker-end],
+    .story-card svg path[stroke-dasharray] {
+      pointer-events: stroke;
+      transition: stroke .16s ease, stroke-width .16s ease, filter .16s ease;
+    }
+    .story-card svg path[marker-end]:hover,
+    .story-card svg path[stroke-dasharray]:hover,
+    .story-card svg:hover path[marker-end],
+    .story-card svg:hover path[stroke-dasharray] {
+      stroke: var(--blue);
+      stroke-width: 4.2;
+      stroke-dasharray: 13 8;
+      animation: dash 800ms linear infinite;
+      filter: drop-shadow(0 0 9px rgba(37,99,235,.68));
+    }
+    .story-card.focus-mode {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      align-content: center;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      background: #f8fbff;
+      overflow: auto;
+    }
+    .story-card.focus-mode .story-head { padding: 1rem 1.5rem .25rem; }
+    .story-card.focus-mode .svg-frame { padding: 1rem 1.5rem; }
+    .story-card.focus-mode svg { max-height: calc(100vh - 120px); min-width: 0; }
+    body.focus-lock { overflow: hidden; }
     .story-card:fullscreen {
       display: grid;
       align-content: center;
@@ -494,12 +528,12 @@
           <p>Each frame explains one part of the platform, so the demo can move step by step without crowding everything into one diagram.</p>
         </div>
         <div class="story-actions" aria-label="Walkthrough shortcuts">
-          <a class="story-action" href="#story-foundation">1</a>
-          <a class="story-action" href="#story-ingestion">2</a>
-          <a class="story-action" href="#story-lakehouse">3</a>
-          <a class="story-action" href="#story-orchestration">4</a>
-          <a class="story-action" href="#story-agent">5</a>
-          <a class="story-action" href="#story-security">6</a>
+          <a class="story-action" href="#story-foundation" data-jump="story-foundation">1</a>
+          <a class="story-action" href="#story-ingestion" data-jump="story-ingestion">2</a>
+          <a class="story-action" href="#story-lakehouse" data-jump="story-lakehouse">3</a>
+          <a class="story-action" href="#story-orchestration" data-jump="story-orchestration">4</a>
+          <a class="story-action" href="#story-agent" data-jump="story-agent">5</a>
+          <a class="story-action" href="#story-security" data-jump="story-security">6</a>
         </div>
       </div>
       <div class="legend-row" aria-label="Diagram color legend">
@@ -520,7 +554,7 @@
               <h3>Cloud foundation and environment control</h3>
               <p>Start the story with Terraform creating repeatable dev, staging, and prod foundations.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-foundation">Full screen</button><a class="story-action" href="#story-ingestion">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-foundation">Full screen</button><a class="story-action" href="#story-ingestion" data-jump="story-ingestion">Next</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 520" role="img" aria-label="Cloud foundation and environment control">
@@ -578,7 +612,7 @@
               <h3>Source simulation and change data capture</h3>
               <p>Explain how realistic source changes become immutable Bronze data in the lake.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-ingestion">Full screen</button><a class="story-action" href="#story-foundation">Prev</a><a class="story-action" href="#story-lakehouse">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-ingestion">Full screen</button><a class="story-action" href="#story-foundation" data-jump="story-foundation">Prev</a><a class="story-action" href="#story-lakehouse" data-jump="story-lakehouse">Next</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 520" role="img" aria-label="Source simulation and change data capture">
@@ -631,7 +665,7 @@
               <h3>Bronze, Silver, and Gold lakehouse journey</h3>
               <p>Show the data quality journey from raw changes to business-ready marts.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-lakehouse">Full screen</button><a class="story-action" href="#story-ingestion">Prev</a><a class="story-action" href="#story-orchestration">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-lakehouse">Full screen</button><a class="story-action" href="#story-ingestion" data-jump="story-ingestion">Prev</a><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Next</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 520" role="img" aria-label="Bronze Silver Gold data lakehouse">
@@ -682,7 +716,7 @@
               <h3>Pipeline orchestration paths</h3>
               <p>Explain why Step Functions is the fast daily path and MWAA validates the Airflow path.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-orchestration">Full screen</button><a class="story-action" href="#story-lakehouse">Prev</a><a class="story-action" href="#story-agent">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-orchestration">Full screen</button><a class="story-action" href="#story-lakehouse" data-jump="story-lakehouse">Prev</a><a class="story-action" href="#story-agent" data-jump="story-agent">Next</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 520" role="img" aria-label="Pipeline orchestration with Step Functions and MWAA">
@@ -732,7 +766,7 @@
               <h3>Analytics Agent and Claude Platform on AWS</h3>
               <p>Show how a business question becomes governed SQL, insight, chart, PDF, and audit evidence.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-agent">Full screen</button><a class="story-action" href="#story-orchestration">Prev</a><a class="story-action" href="#story-security">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-agent">Full screen</button><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Prev</a><a class="story-action" href="#story-security" data-jump="story-security">Next</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 520" role="img" aria-label="Analytics Agent with Claude Platform on AWS">
@@ -790,7 +824,7 @@
               <h3>Security, public logs, and demo lifecycle</h3>
               <p>Close the demo by showing least privilege, private data access, clean logs, and teardown.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-security">Full screen</button><a class="story-action" href="#story-agent">Prev</a><a class="story-action" href="#walkthrough">Top</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-security">Full screen</button><a class="story-action" href="#story-agent" data-jump="story-agent">Prev</a><a class="story-action" href="#walkthrough" data-jump="walkthrough">Top</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 520" role="img" aria-label="Security and demo lifecycle">
@@ -869,16 +903,68 @@
     <p class="footer">Visual README for platform-analytics-web. The markdown README remains the exact command and operations reference.</p>
   </main>
   <script>
-    document.querySelectorAll("[data-fullscreen]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = document.getElementById(button.dataset.fullscreen);
-        if (!target) return;
-        if (target.requestFullscreen) {
-          target.requestFullscreen();
-        } else if (target.webkitRequestFullscreen) {
-          target.webkitRequestFullscreen();
-        }
+    function closeFocusedStory() {
+      document.querySelectorAll(".story-card.focus-mode").forEach((card) => {
+        card.classList.remove("focus-mode");
       });
+      document.body.classList.remove("focus-lock");
+      const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement;
+      if (fullscreenElement) {
+        const exitFullscreen =
+          document.exitFullscreen ||
+          document.webkitExitFullscreen ||
+          document.msExitFullscreen;
+        if (exitFullscreen) exitFullscreen.call(document).catch?.(() => {});
+      }
+    }
+
+    function openStoryFullscreen(target) {
+      closeFocusedStory();
+      if (!target) return;
+
+      const requestNativeFullscreen =
+        target.requestFullscreen ||
+        target.webkitRequestFullscreen ||
+        target.msRequestFullscreen;
+
+      if (requestNativeFullscreen) {
+        requestNativeFullscreen.call(target).catch(() => {
+          target.classList.add("focus-mode");
+          document.body.classList.add("focus-lock");
+        });
+      } else {
+        target.classList.add("focus-mode");
+        document.body.classList.add("focus-lock");
+      }
+    }
+
+    document.addEventListener("click", (event) => {
+      const fullscreenButton = event.target.closest("[data-fullscreen]");
+      if (fullscreenButton) {
+        event.preventDefault();
+        const target = document.getElementById(fullscreenButton.dataset.fullscreen);
+        openStoryFullscreen(target);
+        return;
+      }
+
+      const jumpLink = event.target.closest("[data-jump]");
+      if (jumpLink) {
+        event.preventDefault();
+        closeFocusedStory();
+        const target = document.getElementById(jumpLink.dataset.jump);
+        if (!target) return;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", `#${jumpLink.dataset.jump}`);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeFocusedStory();
+      }
     });
   </script>
 </body>
