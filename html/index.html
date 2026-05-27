@@ -363,27 +363,27 @@
   <main class="wrap">
     <section class="hero">
       <div class="card hero-main">
-        <div class="eyebrow">Custom HTML analytics frontend</div>
-        <h1>A stakeholder web surface on the existing agent backend.</h1>
+        <div class="eyebrow">Enterprise data platform walkthrough</div>
+        <h1>From source changes to governed analytics answers.</h1>
         <p>
-          This repo adds a lightweight HTML/CSS/JavaScript dashboard that asks questions through the
-          already-working FastAPI analytics agent. It does not replace Streamlit; it gives the platform
-          a separately deployable, highly customizable browser interface.
+          This page explains the full public demo: controlled deployment, OLTP changes, CDC into the lake,
+          Bronze to Silver to Gold modeling, orchestration, stakeholder access, and the Analytics Agent
+          request loop. The HTML dashboard is one entry point into that wider platform.
         </p>
         <div class="tags">
-          <span class="tag">Static HTML/CSS/JS</span>
-          <span class="tag">Node proxy</span>
-          <span class="tag">FastAPI contract</span>
-          <span class="tag">KPI cards</span>
-          <span class="tag">CSV export</span>
-          <span class="tag">PDF report</span>
+          <span class="tag">Terraform session</span>
+          <span class="tag">CDC pipeline</span>
+          <span class="tag">Bronze Silver Gold</span>
+          <span class="tag">dbt marts</span>
+          <span class="tag">Claude on AWS</span>
+          <span class="tag">Stakeholder apps</span>
         </div>
       </div>
       <aside class="card quick-stats">
-        <div class="metric"><span>Backend changes</span><strong>0</strong></div>
-        <div class="metric"><span>Runtime port</span><strong>3000</strong></div>
-        <div class="metric"><span>Local port</span><strong>5173</strong></div>
-        <div class="metric"><span>API prefix</span><strong>/api</strong></div>
+        <div class="metric"><span>Walkthrough frames</span><strong>10</strong></div>
+        <div class="metric"><span>Source tables</span><strong>6</strong></div>
+        <div class="metric"><span>Gold marts</span><strong>7</strong></div>
+        <div class="metric"><span>Agent API</span><strong>/api</strong></div>
       </aside>
     </section>
 
@@ -639,13 +639,19 @@
             <svg viewBox="0 0 1320 560" role="img" aria-label="Session start and controlled deployment">
               <defs><marker id="story-arrow-1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker></defs>
               <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Session: apply, run, validate, destroy</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The public workflow shows neutral progress while cloud resource identifiers stay out of logs.</text>
+              <text x="44" y="52" class="title" style="font-size:24px">Session workflow: repos, cloud resources, data pipeline, apps, teardown</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">GitHub Actions coordinates the public demo while cloud resource identifiers stay out of logs.</text>
 
-              <rect class="node node-dark" x="55" y="225" width="165" height="90" rx="22"/>
-              <use href="#icon-shield" class="arch-icon white-icon" x="123" y="240" width="30" height="30"/>
-              <text x="138" y="284" text-anchor="middle" class="title white-text">GitHub Actions</text>
-              <text x="138" y="305" text-anchor="middle" class="sub white-text">OIDC session</text>
+              <rect x="55" y="118" width="165" height="128" rx="24" fill="#f8fbff" stroke="#d8e2ef"/>
+              <use href="#icon-catalog" class="arch-icon icon-blue" x="122" y="132" width="28" height="28"/>
+              <text x="138" y="178" text-anchor="middle" class="title">Source repos</text>
+              <text x="138" y="203" text-anchor="middle" class="tiny">infra, simulator</text>
+              <text x="138" y="224" text-anchor="middle" class="tiny">glue, dbt, apps</text>
+
+              <rect class="node node-dark" x="55" y="310" width="165" height="90" rx="22"/>
+              <use href="#icon-shield" class="arch-icon white-icon" x="123" y="325" width="30" height="30"/>
+              <text x="138" y="369" text-anchor="middle" class="title white-text">GitHub Actions</text>
+              <text x="138" y="390" text-anchor="middle" class="sub white-text">OIDC session</text>
 
               <rect class="node node-violet" x="285" y="80" width="195" height="74" rx="20"/>
               <use href="#icon-orchestrator" class="arch-icon icon-violet" x="368" y="88" width="28" height="28"/>
@@ -677,23 +683,25 @@
               <text x="978" y="346" text-anchor="middle" class="small-title">6. Destroy</text>
               <text x="978" y="366" text-anchor="middle" class="tiny">runtime removed after session</text>
 
-              <rect x="1120" y="120" width="150" height="215" rx="24" fill="#f8fbff" stroke="#d8e2ef"/>
-              <text x="1195" y="154" text-anchor="middle" class="title">Repos</text>
-              <text x="1195" y="184" text-anchor="middle" class="tiny">infra live</text>
-              <text x="1195" y="207" text-anchor="middle" class="tiny">simulator</text>
-              <text x="1195" y="230" text-anchor="middle" class="tiny">glue jobs</text>
-              <text x="1195" y="253" text-anchor="middle" class="tiny">dbt</text>
-              <text x="1195" y="276" text-anchor="middle" class="tiny">agent and web</text>
+              <rect x="1110" y="120" width="160" height="210" rx="24" fill="#f8fbff" stroke="#d8e2ef"/>
+              <use href="#icon-browser" class="arch-icon icon-teal" x="1176" y="136" width="28" height="28"/>
+              <text x="1190" y="182" text-anchor="middle" class="title">Demo access</text>
+              <text x="1190" y="212" text-anchor="middle" class="tiny">Streamlit UI</text>
+              <text x="1190" y="235" text-anchor="middle" class="tiny">HTML web app</text>
+              <text x="1190" y="258" text-anchor="middle" class="tiny">Slack gateway</text>
 
-              <path d="M220 270 H285" fill="none" stroke="#344054" stroke-width="2.4" marker-end="url(#story-arrow-1)"/>
+              <path d="M138 246 V310" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M220 355 H250 V117 H285" fill="none" stroke="#344054" stroke-width="2.2" marker-end="url(#story-arrow-1)"/>
+              <path d="M250 227 H285" fill="none" stroke="#344054" stroke-width="2.2" marker-end="url(#story-arrow-1)"/>
+              <path d="M250 337 H285" fill="none" stroke="#344054" stroke-width="2.2" marker-end="url(#story-arrow-1)"/>
               <path d="M480 117 H525 V227 H575" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
               <path d="M480 227 H575" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
               <path d="M480 337 H525 V227 H575" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
               <path d="M780 227 C835 202 850 147 875 147" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
               <path d="M780 227 C835 265 850 337 875 337" fill="none" stroke="#b42318" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
               <text x="842" y="288" text-anchor="middle" class="tiny">end of session</text>
-              <path d="M1080 147 H1120" fill="none" stroke="#344054" stroke-width="2" marker-end="url(#story-arrow-1)"/>
-              <text x="665" y="470" text-anchor="middle" class="sub">The important idea: every run is controlled and repeatable, so demo resources do not become forgotten long-running infrastructure.</text>
+              <path d="M1080 147 H1110" fill="none" stroke="#344054" stroke-width="2" marker-end="url(#story-arrow-1)"/>
+              <text x="665" y="470" text-anchor="middle" class="sub">The important idea: source code drives a repeatable session, and runtime resources are removed when the demo ends.</text>
             </svg>
           </div>
         </article>
