@@ -369,9 +369,9 @@ dd {
 }
 
 .insight {
-  border: 1px solid #b8dbc1;
-  border-left: 4px solid var(--green);
-  background: var(--green-soft);
+  border: 1px solid #bfcef7;
+  border-left: 4px solid var(--blue);
+  background: var(--blue-soft);
   border-radius: 10px;
   padding: 1rem 1.05rem;
   color: var(--ink);
