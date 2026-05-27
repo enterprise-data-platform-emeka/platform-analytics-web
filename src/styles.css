@@ -559,7 +559,7 @@ pre {
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0.9rem;
-  background: var(--surface);
+  background: var(--surface-soft);
 }
 
 .detail-box span {
@@ -573,6 +573,45 @@ pre {
   margin-top: 0.25rem;
   color: var(--navy);
   word-break: break-word;
+}
+
+.detail-box.match {
+  border-color: #9fd5ad;
+  background: var(--green-soft);
+}
+
+.detail-box.match strong {
+  color: var(--green);
+}
+
+.detail-box.mismatch {
+  border-color: #fecaca;
+  background: var(--red-soft);
+}
+
+.detail-box.mismatch strong {
+  color: var(--red);
+}
+
+.detail-assumptions {
+  margin-top: 0.85rem;
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+}
+
+.assumption-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.assumption-list li {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
 
 .turn-actions {

@@ -276,27 +276,28 @@ function escapeHtml(value) {
 }
 
 function renderDetails(data) {
+  const isMatch = !data.verdict || data.verdict === "No";
   const items = [
-    ["Request ID", data.request_id],
-    ["Execution ID", data.execution_id],
-    ["Cost", formatCurrency(data.cost_usd)],
-    ["Bytes scanned", Number(data.bytes_scanned || 0).toLocaleString()],
-    ["Chart", data.chart_type || "none"],
-    ["Intent mismatch", data.verdict || "No"],
-    ["Inferred question", data.inferred_question || "None"],
-    ["Discrepancy detail", data.discrepancy_detail || "None"],
+    ["Request ID", data.request_id, ""],
+    ["Execution ID", data.execution_id, ""],
+    ["Cost", formatCurrency(data.cost_usd), ""],
+    ["Bytes scanned", Number(data.bytes_scanned || 0).toLocaleString(), ""],
+    ["Chart", data.chart_type || "none", ""],
+    ["Intent match", isMatch ? "Matched" : "Mismatch", isMatch ? "match" : "mismatch"],
+    ["Inferred question", data.inferred_question || "None", ""],
+    ["Discrepancy detail", data.discrepancy_detail || "None", ""],
   ];
 
   const flags = [...(data.assumptions || []), ...(data.validation_flags || [])];
   return `
     <div class="detail-grid">
       ${items
-        .map(([label, value]) => `<div class="detail-box"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`)
+        .map(([label, value, cls]) => `<div class="detail-box${cls ? ` ${cls}` : ""}"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`)
         .join("")}
     </div>
     ${
       flags.length
-        ? `<h3>Assumptions and validation flags</h3><ul>${flags.map((f) => `<li>${escapeHtml(f)}</li>`).join("")}</ul>`
+        ? `<div class="detail-assumptions"><div class="panel-kicker">Assumptions &amp; flags</div><ul class="assumption-list">${flags.map((f) => `<li>${escapeHtml(f)}</li>`).join("")}</ul></div>`
         : ""
     }
   `;
