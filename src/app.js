@@ -189,7 +189,7 @@ function updateStats(last = null) {
   els.downloadLogBtn.disabled = !state.lastLog;
 
   if (last) {
-    els.lastChart.textContent = last.chart_type || "None";
+    els.lastChart.textContent = last.chart_type || "—";
     els.lastRows.textContent = text(last.row_count || 0);
     els.lastVerdict.textContent = last.verdict === "Yes" ? "Mismatch" : "Matched";
   }
@@ -506,8 +506,11 @@ els.newSessionBtn.addEventListener("click", () => {
   state.turns = [];
   state.totalCost = 0;
   state.lastLog = "";
-  els.timeline.innerHTML = '<div class="empty-state"><h2>No questions yet</h2><p>Ask a business question below to generate an insight, KPI summary, chart, and evidence table.</p></div>';
+  els.timeline.innerHTML = '<div class="empty-state"><h2>No questions yet</h2><p>Ask a business question below to generate an insight, KPI summary, chart, and evidence table.</p><div class="prompt-chips"><button class="chip" type="button">Top 5 countries by revenue last quarter</button><button class="chip" type="button">Monthly order trend this year</button><button class="chip" type="button">Revenue by product category</button></div></div>';
   els.timeline.classList.add("empty");
+  els.lastChart.textContent = "—";
+  els.lastRows.textContent = "—";
+  els.lastVerdict.textContent = "—";
   updateStats();
   updateHistory();
 });
@@ -519,6 +522,13 @@ els.downloadLogBtn.addEventListener("click", () => {
 });
 
 els.healthBtn.addEventListener("click", checkHealth);
+
+els.timeline.addEventListener("click", (event) => {
+  const chip = event.target.closest(".chip");
+  if (!chip) return;
+  els.input.value = chip.textContent.trim();
+  els.input.focus();
+});
 
 checkHealth();
 setInterval(checkHealth, 30000);
