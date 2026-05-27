@@ -2,7 +2,7 @@
   --page: #f8fafc;
   --surface: #ffffff;
   --surface-soft: #f1f5f9;
-  --surface-tint: #f8faf5;
+  --surface-tint: #f0f4ff;
   --ink: #0f172a;
   --muted: #475569;
   --subtle: #64748b;
@@ -77,12 +77,12 @@ button:hover:not(:disabled) {
   display: grid;
   place-items: center;
   border-radius: 10px;
-  background: linear-gradient(145deg, #69763a, var(--olive));
+  background: linear-gradient(145deg, #1e3a6e, var(--navy));
   color: #fff;
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.04em;
-  box-shadow: 0 8px 18px rgba(75, 83, 32, 0.22);
+  box-shadow: 0 8px 18px rgba(15, 35, 63, 0.28);
 }
 
 .brand strong {
@@ -250,13 +250,13 @@ dd {
   padding: 1.45rem;
   background:
     linear-gradient(135deg, rgba(234, 241, 255, 0.72), transparent 54%),
-    linear-gradient(250deg, rgba(237, 243, 228, 0.9), transparent 48%),
+    linear-gradient(250deg, rgba(219, 234, 254, 0.55), transparent 48%),
     var(--surface);
 }
 
 .hero h1 {
   margin: 0.35rem 0 0.55rem;
-  font-size: clamp(2rem, 3.2vw, 3.15rem);
+  font-size: clamp(1.5rem, 2.2vw, 2.1rem);
   line-height: 1;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -402,14 +402,14 @@ dd {
   flex-direction: column;
   justify-content: space-between;
   border: 1px solid var(--line);
-  border-top: 3px solid var(--olive);
+  border-top: 3px solid var(--blue);
   border-radius: 10px;
   padding: 0.95rem;
   background: var(--surface-tint);
 }
 
 .kpi-card span {
-  color: var(--olive);
+  color: var(--blue);
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -666,6 +666,31 @@ pre {
   .hero {
     grid-template-columns: 1fr;
   }
+}
+
+.prompt-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.chip {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  background: var(--surface);
+  color: var(--navy);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+  color: var(--blue);
 }
 
 @media (max-width: 760px) {
