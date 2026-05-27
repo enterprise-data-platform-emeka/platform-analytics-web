@@ -172,10 +172,10 @@
     .story-card svg:hover path[marker-end],
     .story-card svg:hover path[stroke-dasharray] {
       stroke: var(--blue);
-      stroke-width: 4.2;
+      stroke-width: 2.6;
       stroke-dasharray: 13 8;
       animation: dash 800ms linear infinite;
-      filter: drop-shadow(0 0 9px rgba(37,99,235,.68));
+      filter: drop-shadow(0 0 5px rgba(37,99,235,.42));
     }
     #story-agent svg:hover path[marker-end],
     #story-agent svg:hover path[stroke-dasharray],
@@ -531,18 +531,20 @@
       <div class="diagram-head split">
         <div>
           <div class="eyebrow">Platform walkthrough</div>
-          <h2>Project diagrams for explaining the full platform from start to finish.</h2>
-          <p>Each frame follows the actual Terraform modules, data flow, orchestration steps, application paths, and service permissions used by the platform.</p>
+          <h2>End-to-end architecture diagrams for the public demo page.</h2>
+          <p>These frames follow the full data journey: controlled deployment, OLTP source modeling, I/U/D change capture, Bronze evidence, Silver reconciliation, star schema modeling, Gold marts, orchestration, stakeholder access, agent reasoning, and service permissions.</p>
         </div>
         <div class="story-actions" aria-label="Walkthrough shortcuts">
           <a class="story-action" href="#story-session" data-jump="story-session">1</a>
-          <a class="story-action" href="#story-ingestion" data-jump="story-ingestion">2</a>
-          <a class="story-action" href="#story-silver" data-jump="story-silver">3</a>
-          <a class="story-action" href="#story-gold" data-jump="story-gold">4</a>
-          <a class="story-action" href="#story-orchestration" data-jump="story-orchestration">5</a>
-          <a class="story-action" href="#story-access" data-jump="story-access">6</a>
-          <a class="story-action" href="#story-agent" data-jump="story-agent">7</a>
-          <a class="story-action" href="#story-iam" data-jump="story-iam">8</a>
+          <a class="story-action" href="#story-source-model" data-jump="story-source-model">2</a>
+          <a class="story-action" href="#story-ingestion" data-jump="story-ingestion">3</a>
+          <a class="story-action" href="#story-reconciliation" data-jump="story-reconciliation">4</a>
+          <a class="story-action" href="#story-star-schema" data-jump="story-star-schema">5</a>
+          <a class="story-action" href="#story-gold" data-jump="story-gold">6</a>
+          <a class="story-action" href="#story-orchestration" data-jump="story-orchestration">7</a>
+          <a class="story-action" href="#story-access" data-jump="story-access">8</a>
+          <a class="story-action" href="#story-agent" data-jump="story-agent">9</a>
+          <a class="story-action" href="#story-iam" data-jump="story-iam">10</a>
         </div>
       </div>
       <div class="legend-row" aria-label="Diagram color legend">
@@ -561,16 +563,16 @@
             <div class="story-number">1</div>
             <div>
               <h3>Session start and controlled deployment</h3>
-              <p>The session workflow applies infrastructure, prepares the source system, deploys data artifacts, runs the pipeline, deploys entry points, and tears down runtime resources at the end.</p>
+              <p>The session workflow applies infrastructure, prepares source data, deploys artifacts, runs the pipeline, exposes the apps, and tears down runtime resources after the demonstration.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-session">Full screen</button><a class="story-action" href="#story-ingestion" data-jump="story-ingestion">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-session">Full screen</button><a class="story-action" href="#story-source-model" data-jump="story-source-model">Next</a></div>
           </div>
           <div class="svg-frame">
             <svg viewBox="0 0 1320 560" role="img" aria-label="Session start and controlled deployment">
               <defs><marker id="story-arrow-1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker></defs>
               <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
               <text x="44" y="52" class="title" style="font-size:24px">Session: apply, run, validate, destroy</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The public workflow shows neutral progress while AWS resource identifiers stay out of logs.</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The public workflow shows neutral progress while cloud resource identifiers stay out of logs.</text>
 
               <rect class="node node-dark" x="55" y="225" width="165" height="90" rx="22"/>
               <text x="137" y="258" text-anchor="middle" class="title white-text">GitHub Actions</text>
@@ -608,449 +610,419 @@
               <text x="1195" y="253" text-anchor="middle" class="tiny">dbt</text>
               <text x="1195" y="276" text-anchor="middle" class="tiny">agent and web</text>
 
-              <path d="M220 270 H285" fill="none" stroke="#344054" stroke-width="2.8" marker-end="url(#story-arrow-1)"/>
-              <path d="M480 117 H525 V227 H575" fill="none" stroke="#344054" stroke-width="2.7" marker-end="url(#story-arrow-1)"/>
-              <path d="M480 227 H575" fill="none" stroke="#344054" stroke-width="2.7" marker-end="url(#story-arrow-1)"/>
-              <path d="M480 337 H525 V227 H575" fill="none" stroke="#344054" stroke-width="2.7" marker-end="url(#story-arrow-1)"/>
-              <path d="M780 227 H830 V147 H875" fill="none" stroke="#344054" stroke-width="2.7" marker-end="url(#story-arrow-1)"/>
-              <path d="M780 227 H830 V337 H875" fill="none" stroke="#b42318" stroke-width="2.7" marker-end="url(#story-arrow-1)"/>
-              <path d="M1080 147 H1120" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M220 270 H285" fill="none" stroke="#344054" stroke-width="2.4" marker-end="url(#story-arrow-1)"/>
+              <path d="M480 117 H525 V227 H575" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M480 227 H575" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M480 337 H525 V227 H575" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M780 227 H830 V147 H875" fill="none" stroke="#344054" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M780 227 H830 V337 H875" fill="none" stroke="#b42318" stroke-width="2.3" marker-end="url(#story-arrow-1)"/>
+              <path d="M1080 147 H1120" fill="none" stroke="#344054" stroke-width="2" marker-end="url(#story-arrow-1)"/>
               <text x="665" y="470" text-anchor="middle" class="sub">The important idea: every run is controlled and repeatable, so demo resources do not become forgotten long-running infrastructure.</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="story-card" id="story-source-model">
+          <div class="story-head">
+            <div class="story-number">2</div>
+            <div>
+              <h3>OLTP source model and business changes</h3>
+              <p>OLTP means the operational database that accepts day-to-day transactions. The simulator creates inserts, updates, and deletes across six PostgreSQL tables.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-source-model">Full screen</button><a class="story-action" href="#story-session" data-jump="story-session">Prev</a><a class="story-action" href="#story-ingestion" data-jump="story-ingestion">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 620" role="img" aria-label="OLTP source model and IUD events">
+              <defs><marker id="story-arrow-2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker></defs>
+              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Source model: six OLTP tables capture the business as it happens</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">I/U/D means Insert, Update, Delete. CDC means Change Data Capture, the process that records those changes without polling every table.</text>
+
+              <rect x="54" y="115" width="240" height="420" rx="28" fill="#eef7ff" stroke="#93c5fd"/>
+              <text x="174" y="150" text-anchor="middle" class="title">Simulator events</text>
+              <rect class="node node-teal" x="82" y="188" width="184" height="62" rx="18"/><text x="174" y="215" text-anchor="middle" class="small-title">I: insert</text><text x="174" y="236" text-anchor="middle" class="tiny">new customer, new order</text>
+              <rect class="node node-amber" x="82" y="278" width="184" height="62" rx="18"/><text x="174" y="305" text-anchor="middle" class="small-title">U: update</text><text x="174" y="326" text-anchor="middle" class="tiny">status, payment, shipment</text>
+              <rect class="node node-rose" x="82" y="368" width="184" height="62" rx="18"/><text x="174" y="395" text-anchor="middle" class="small-title">D: delete</text><text x="174" y="416" text-anchor="middle" class="tiny">cancellations or cleanup</text>
+
+              <rect x="380" y="115" width="880" height="420" rx="28" fill="#f8fbff" stroke="#d8e2ef"/>
+              <text x="820" y="150" text-anchor="middle" class="title">PostgreSQL OLTP schema</text>
+              <text x="820" y="176" text-anchor="middle" class="sub">Reference tables describe people and products. Transaction tables record orders and their lifecycle.</text>
+
+              <rect class="node node-blue" x="430" y="240" width="150" height="70" rx="18"/><text x="505" y="269" text-anchor="middle" class="small-title">customers</text><text x="505" y="291" text-anchor="middle" class="tiny">customer_id</text>
+              <rect class="node node-blue" x="430" y="365" width="150" height="70" rx="18"/><text x="505" y="394" text-anchor="middle" class="small-title">products</text><text x="505" y="416" text-anchor="middle" class="tiny">product_id</text>
+              <rect class="node node-amber" x="690" y="240" width="150" height="70" rx="18"/><text x="765" y="269" text-anchor="middle" class="small-title">orders</text><text x="765" y="291" text-anchor="middle" class="tiny">customer_id</text>
+              <rect class="node node-amber" x="950" y="240" width="150" height="70" rx="18"/><text x="1025" y="269" text-anchor="middle" class="small-title">order_items</text><text x="1025" y="291" text-anchor="middle" class="tiny">order_id, product_id</text>
+              <rect class="node node-amber" x="690" y="365" width="150" height="70" rx="18"/><text x="765" y="394" text-anchor="middle" class="small-title">payments</text><text x="765" y="416" text-anchor="middle" class="tiny">order_id</text>
+              <rect class="node node-amber" x="950" y="365" width="150" height="70" rx="18"/><text x="1025" y="394" text-anchor="middle" class="small-title">shipments</text><text x="1025" y="416" text-anchor="middle" class="tiny">order_id</text>
+
+              <path d="M266 219 H430" fill="none" stroke="#0f766e" stroke-width="2.4" marker-end="url(#story-arrow-2)"/><text x="346" y="205" text-anchor="middle" class="tiny">writes business rows</text>
+              <path d="M580 275 H690" fill="none" stroke="#0f766e" stroke-width="2.1" marker-end="url(#story-arrow-2)"/><text x="635" y="259" text-anchor="middle" class="tiny">places</text>
+              <path d="M840 275 H950" fill="none" stroke="#0f766e" stroke-width="2.1" marker-end="url(#story-arrow-2)"/><text x="895" y="259" text-anchor="middle" class="tiny">contains</text>
+              <path d="M580 400 C690 500 885 500 950 400" fill="none" stroke="#0f766e" stroke-width="2.1" marker-end="url(#story-arrow-2)"/><text x="765" y="496" text-anchor="middle" class="tiny">appears in</text>
+              <path d="M765 310 V365" fill="none" stroke="#0f766e" stroke-width="2.1" marker-end="url(#story-arrow-2)"/><text x="808" y="341" class="tiny">paid via</text>
+              <path d="M840 275 C910 305 930 360 950 400" fill="none" stroke="#0f766e" stroke-width="2.1" marker-end="url(#story-arrow-2)"/><text x="916" y="337" class="tiny">ships as</text>
+              <text x="660" y="575" text-anchor="middle" class="sub">This is the operational starting point: small, normalized tables optimized for transactions, not analytics.</text>
             </svg>
           </div>
         </article>
 
         <article class="story-card" id="story-ingestion">
           <div class="story-head">
-            <div class="story-number">2</div>
+            <div class="story-number">3</div>
             <div>
-              <h3>Source simulation and Bronze ingestion</h3>
-              <p>An ECS simulator writes sample business transactions into private PostgreSQL. DMS captures the initial load and later changes, then writes raw Parquet files to Bronze.</p>
+              <h3>CDC into Bronze: full load plus I/U/D files</h3>
+              <p>DMS reads the PostgreSQL write-ahead log as a replication client. Every insert, update, and delete becomes raw, append-only evidence in Bronze.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-ingestion">Full screen</button><a class="story-action" href="#story-session" data-jump="story-session">Prev</a><a class="story-action" href="#story-silver" data-jump="story-silver">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-ingestion">Full screen</button><a class="story-action" href="#story-source-model" data-jump="story-source-model">Prev</a><a class="story-action" href="#story-reconciliation" data-jump="story-reconciliation">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 560" role="img" aria-label="Source simulation and Bronze ingestion">
-              <defs><marker id="story-arrow-2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/></marker></defs>
-              <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Ingestion: source transactions land as Bronze files</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">Bronze keeps the raw evidence. Silver jobs later decide which records are valid and which records go to quarantine.</text>
+            <svg viewBox="0 0 1320 620" role="img" aria-label="CDC ingestion from PostgreSQL to Bronze">
+              <defs><marker id="story-arrow-3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/></marker></defs>
+              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Bronze ingestion: CDC preserves every source change</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Bronze is immutable: files are added, not rewritten. That makes it the audit trail for the platform.</text>
 
-              <rect x="70" y="150" width="760" height="260" rx="28" fill="#f8fbff" stroke="#d8e2ef"/>
-              <text x="450" y="186" text-anchor="middle" class="title">Private source plane</text>
+              <rect x="58" y="145" width="460" height="300" rx="28" fill="#eef7ff" stroke="#93c5fd"/>
+              <text x="288" y="181" text-anchor="middle" class="title">PostgreSQL source</text>
+              <rect class="node node-blue" x="100" y="240" width="160" height="82" rx="20"/><text x="180" y="271" text-anchor="middle" class="small-title">6 OLTP tables</text><text x="180" y="295" text-anchor="middle" class="tiny">customers to shipments</text>
+              <rect class="node node-blue" x="315" y="240" width="160" height="82" rx="20"/><text x="395" y="271" text-anchor="middle" class="small-title">WAL stream</text><text x="395" y="295" text-anchor="middle" class="tiny">ordered source changes</text>
+              <path d="M260 281 H315" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#story-arrow-3)"/>
+              <text x="288" y="260" text-anchor="middle" class="tiny">I/U/D</text>
 
-              <rect class="node node-blue" x="105" y="245" width="175" height="98" rx="22"/>
-              <text x="192" y="280" text-anchor="middle" class="title">ECS simulator</text>
-              <text x="192" y="305" text-anchor="middle" class="sub">creates sample</text>
-              <text x="192" y="327" text-anchor="middle" class="sub">transactions</text>
+              <rect x="585" y="145" width="250" height="300" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
+              <text x="710" y="181" text-anchor="middle" class="title">AWS DMS</text>
+              <rect class="node node-violet" x="625" y="230" width="170" height="72" rx="20"/><text x="710" y="258" text-anchor="middle" class="small-title">Full load</text><text x="710" y="281" text-anchor="middle" class="tiny">existing rows once</text>
+              <rect class="node node-violet" x="625" y="330" width="170" height="72" rx="20"/><text x="710" y="358" text-anchor="middle" class="small-title">CDC stream</text><text x="710" y="381" text-anchor="middle" class="tiny">new changes after load</text>
 
-              <rect class="node node-blue" x="365" y="245" width="175" height="98" rx="22"/>
-              <text x="452" y="280" text-anchor="middle" class="title">PostgreSQL RDS</text>
-              <text x="452" y="305" text-anchor="middle" class="sub">private database</text>
-              <text x="452" y="327" text-anchor="middle" class="sub">logical replication</text>
+              <rect x="900" y="125" width="360" height="350" rx="28" fill="#fff7e6" stroke="#f5bd4f"/>
+              <text x="1080" y="162" text-anchor="middle" class="title">S3 Bronze raw zone</text>
+              <rect class="node node-amber" x="940" y="210" width="280" height="64" rx="18"/><text x="1080" y="235" text-anchor="middle" class="small-title">LOAD file</text><text x="1080" y="255" text-anchor="middle" class="tiny">initial snapshot</text>
+              <rect class="node node-teal" x="940" y="295" width="84" height="62" rx="16"/><text x="982" y="321" text-anchor="middle" class="small-title">op I</text><text x="982" y="342" text-anchor="middle" class="tiny">insert</text>
+              <rect class="node node-blue" x="1038" y="295" width="84" height="62" rx="16"/><text x="1080" y="321" text-anchor="middle" class="small-title">op U</text><text x="1080" y="342" text-anchor="middle" class="tiny">update</text>
+              <rect class="node node-rose" x="1136" y="295" width="84" height="62" rx="16"/><text x="1178" y="321" text-anchor="middle" class="small-title">op D</text><text x="1178" y="342" text-anchor="middle" class="tiny">delete</text>
+              <text x="1080" y="405" text-anchor="middle" class="sub">Each record carries operation and DMS timestamp</text>
 
-              <rect class="node node-violet" x="625" y="245" width="175" height="98" rx="22"/>
-              <text x="712" y="280" text-anchor="middle" class="title">AWS DMS</text>
-              <text x="712" y="305" text-anchor="middle" class="sub">full load</text>
-              <text x="712" y="327" text-anchor="middle" class="sub">change capture</text>
-
-              <rect class="node node-amber" x="930" y="230" width="275" height="128" rx="26"/>
-              <text x="1067" y="267" text-anchor="middle" class="title">S3 Bronze bucket</text>
-              <text x="1067" y="294" text-anchor="middle" class="sub">raw/ path</text>
-              <text x="1067" y="318" text-anchor="middle" class="sub">Parquet, compressed, partitioned</text>
-              <text x="1067" y="342" text-anchor="middle" class="sub">operation plus DMS timestamp</text>
-
-              <path d="M280 294 H365" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#story-arrow-2)"/>
-              <path d="M540 294 H625" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#story-arrow-2)"/>
-              <path d="M800 294 H930" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#story-arrow-2)"/>
-              <text x="322" y="270" text-anchor="middle" class="tiny">writes rows</text>
-              <text x="582" y="270" text-anchor="middle" class="tiny">reads changes</text>
-              <text x="865" y="270" text-anchor="middle" class="tiny">writes files</text>
-              <text x="660" y="472" text-anchor="middle" class="sub">Permission boundary: DMS can write raw files to Bronze and use KMS encryption. It does not read Silver, Gold, or application data.</text>
+              <path d="M518 281 H585" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-3)"/><text x="552" y="259" text-anchor="middle" class="tiny">replication</text>
+              <path d="M835 266 H900" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-3)"/><text x="867" y="244" text-anchor="middle" class="tiny">snapshot files</text>
+              <path d="M835 366 H900" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-3)"/><text x="867" y="344" text-anchor="middle" class="tiny">change files</text>
+              <text x="660" y="565" text-anchor="middle" class="sub">Permission boundary: DMS can write to Bronze and use KMS encryption. It does not write Silver or Gold.</text>
             </svg>
           </div>
         </article>
 
-        <article class="story-card" id="story-silver">
+        <article class="story-card" id="story-reconciliation">
           <div class="story-head">
-            <div class="story-number">3</div>
+            <div class="story-number">4</div>
             <div>
-              <h3>Silver processing and data quality gates</h3>
-              <p>Glue reads Bronze, cleans and reconciles records, writes trusted Silver tables, sends rejected rows to quarantine, and publishes freshness plus row-count metrics.</p>
+              <h3>Silver CDC reconciliation and quality gates</h3>
+              <p>Bronze can contain many versions of the same business entity. Glue keeps the latest valid row, removes deletes from current-state Silver, and sends failures to quarantine.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-silver">Full screen</button><a class="story-action" href="#story-ingestion" data-jump="story-ingestion">Prev</a><a class="story-action" href="#story-gold" data-jump="story-gold">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-reconciliation">Full screen</button><a class="story-action" href="#story-ingestion" data-jump="story-ingestion">Prev</a><a class="story-action" href="#story-star-schema" data-jump="story-star-schema">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 560" role="img" aria-label="Silver processing and quality gates">
-              <defs><marker id="story-arrow-3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker></defs>
-              <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Silver: raw files become trusted facts and dimensions</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The six PySpark jobs are the first place where bad records are separated from good analytical data.</text>
+            <svg viewBox="0 0 1320 620" role="img" aria-label="Silver CDC reconciliation">
+              <defs><marker id="story-arrow-4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker></defs>
+              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Silver reconciliation: latest clean state from raw CDC history</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Nothing is silently dropped. Good rows go to Silver, failed rows go to quarantine with a reason.</text>
 
-              <rect class="node node-amber" x="60" y="240" width="160" height="92" rx="22"/>
-              <text x="140" y="274" text-anchor="middle" class="title">Bronze</text>
-              <text x="140" y="299" text-anchor="middle" class="sub">raw DMS files</text>
+              <rect class="node node-amber" x="50" y="190" width="195" height="220" rx="24"/>
+              <text x="147" y="226" text-anchor="middle" class="title">Bronze records</text>
+              <text x="147" y="264" text-anchor="middle" class="tiny">customer_id = 42</text>
+              <text x="147" y="294" text-anchor="middle" class="sub">I at 10:00</text>
+              <text x="147" y="324" text-anchor="middle" class="sub">U at 10:05</text>
+              <text x="147" y="354" text-anchor="middle" class="sub">U at 10:12</text>
+              <text x="147" y="384" text-anchor="middle" class="sub">D at 10:20 if deleted</text>
 
-              <rect x="300" y="132" width="390" height="320" rx="28" fill="#f1f5f9" stroke="#c7d2df"/>
-              <text x="495" y="170" text-anchor="middle" class="title">Glue PySpark jobs</text>
-              <rect class="node" x="330" y="210" width="150" height="50" rx="15"/><text x="405" y="241" text-anchor="middle" class="small-title">dim_customer</text>
-              <rect class="node" x="510" y="210" width="150" height="50" rx="15"/><text x="585" y="241" text-anchor="middle" class="small-title">dim_product</text>
-              <rect class="node" x="330" y="280" width="150" height="50" rx="15"/><text x="405" y="311" text-anchor="middle" class="small-title">fact_orders</text>
-              <rect class="node" x="510" y="280" width="150" height="50" rx="15"/><text x="585" y="311" text-anchor="middle" class="small-title">fact_items</text>
-              <rect class="node" x="330" y="350" width="150" height="50" rx="15"/><text x="405" y="381" text-anchor="middle" class="small-title">fact_payments</text>
-              <rect class="node" x="510" y="350" width="150" height="50" rx="15"/><text x="585" y="381" text-anchor="middle" class="small-title">fact_shipments</text>
+              <rect x="330" y="140" width="460" height="320" rx="28" fill="#f1f5f9" stroke="#c7d2df"/>
+              <text x="560" y="178" text-anchor="middle" class="title">Glue PySpark logic</text>
+              <rect class="node" x="380" y="220" width="360" height="50" rx="16"/><text x="560" y="251" text-anchor="middle" class="small-title">1. group by business key</text>
+              <rect class="node" x="380" y="288" width="360" height="50" rx="16"/><text x="560" y="319" text-anchor="middle" class="small-title">2. sort by DMS timestamp descending</text>
+              <rect class="node" x="380" y="356" width="360" height="50" rx="16"/><text x="560" y="387" text-anchor="middle" class="small-title">3. keep rank 1, filter op D, validate</text>
 
-              <rect class="node" x="795" y="175" width="200" height="94" rx="22"/>
-              <text x="895" y="210" text-anchor="middle" class="title">S3 Silver bucket</text>
-              <text x="895" y="235" text-anchor="middle" class="sub">clean star schema</text>
-              <text x="895" y="257" text-anchor="middle" class="sub">latest row per key</text>
+              <rect class="node" x="890" y="175" width="210" height="92" rx="22"/>
+              <text x="995" y="210" text-anchor="middle" class="title">S3 Silver</text>
+              <text x="995" y="235" text-anchor="middle" class="sub">one current row per key</text>
+              <rect class="node node-rose" x="890" y="345" width="210" height="92" rx="22"/>
+              <text x="995" y="380" text-anchor="middle" class="title">Quarantine</text>
+              <text x="995" y="405" text-anchor="middle" class="sub">failed row plus reason</text>
+              <rect class="node node-teal" x="1145" y="260" width="130" height="92" rx="22"/>
+              <text x="1210" y="294" text-anchor="middle" class="title">Metrics</text>
+              <text x="1210" y="319" text-anchor="middle" class="sub">freshness</text>
+              <text x="1210" y="341" text-anchor="middle" class="sub">row counts</text>
 
-              <rect class="node node-rose" x="795" y="340" width="200" height="82" rx="22"/>
-              <text x="895" y="373" text-anchor="middle" class="title">Quarantine bucket</text>
-              <text x="895" y="397" text-anchor="middle" class="sub">failed rows and reason</text>
+              <path d="M245 300 H330" fill="none" stroke="#344054" stroke-width="2.4" marker-end="url(#story-arrow-4)"/><text x="287" y="277" text-anchor="middle" class="tiny">read raw</text>
+              <path d="M790 244 H890" fill="none" stroke="#344054" stroke-width="2.4" marker-end="url(#story-arrow-4)"/><text x="840" y="221" text-anchor="middle" class="tiny">passes</text>
+              <path d="M790 384 H890" fill="none" stroke="#b42318" stroke-width="2.4" marker-end="url(#story-arrow-4)"/><text x="840" y="361" text-anchor="middle" class="tiny">fails</text>
+              <path d="M1100 221 C1140 235 1162 260 1145 306" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-4)"/>
+              <text x="660" y="565" text-anchor="middle" class="sub">Permission boundary: Glue can read Bronze, write Silver and quarantine, update Catalog, publish metrics, and use KMS.</text>
+            </svg>
+          </div>
+        </article>
 
-              <rect class="node node-teal" x="1080" y="225" width="180" height="102" rx="24"/>
-              <text x="1170" y="261" text-anchor="middle" class="title">CloudWatch</text>
-              <text x="1170" y="286" text-anchor="middle" class="sub">freshness metrics</text>
-              <text x="1170" y="308" text-anchor="middle" class="sub">Silver row counts</text>
+        <article class="story-card" id="story-star-schema">
+          <div class="story-head">
+            <div class="story-number">5</div>
+            <div>
+              <h3>Silver star schema modeling</h3>
+              <p>Silver converts operational tables into analytics-friendly dimensions and facts. Dimensions describe who and what. Facts record measurable business events.</p>
+            </div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-star-schema">Full screen</button><a class="story-action" href="#story-reconciliation" data-jump="story-reconciliation">Prev</a><a class="story-action" href="#story-gold" data-jump="story-gold">Next</a></div>
+          </div>
+          <div class="svg-frame">
+            <svg viewBox="0 0 1320 660" role="img" aria-label="Silver star schema model">
+              <defs><marker id="story-arrow-5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker></defs>
+              <rect width="1320" height="660" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Star schema: business-friendly model for Athena and dbt</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The model keeps the source relationships, but presents them as reusable analytical tables.</text>
 
-              <path d="M220 286 H300" fill="none" stroke="#344054" stroke-width="2.8" marker-end="url(#story-arrow-3)"/>
-              <path d="M690 222 H795" fill="none" stroke="#344054" stroke-width="2.8" marker-end="url(#story-arrow-3)"/>
-              <path d="M690 382 H795" fill="none" stroke="#b42318" stroke-width="2.8" marker-end="url(#story-arrow-3)"/>
-              <path d="M995 222 H1038 V276 H1080" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#story-arrow-3)"/>
-              <text x="260" y="264" text-anchor="middle" class="tiny">read raw files</text>
-              <text x="742" y="200" text-anchor="middle" class="tiny">write clean rows</text>
-              <text x="742" y="360" text-anchor="middle" class="tiny">write rejected rows</text>
-              <text x="660" y="493" text-anchor="middle" class="sub">Permission boundary: Glue reads Bronze, writes Silver, writes Quarantine for bad rows, updates the Glue Catalog, and writes CloudWatch metrics.</text>
+              <rect class="node" x="520" y="245" width="240" height="118" rx="28"/>
+              <text x="640" y="288" text-anchor="middle" class="title">fact_orders</text>
+              <text x="640" y="316" text-anchor="middle" class="sub">one row per order</text>
+              <text x="640" y="340" text-anchor="middle" class="tiny">partitioned by order year/month</text>
+
+              <rect class="node node-blue" x="120" y="150" width="220" height="96" rx="24"/>
+              <text x="230" y="188" text-anchor="middle" class="title">dim_customer</text>
+              <text x="230" y="214" text-anchor="middle" class="sub">who placed the order</text>
+              <rect class="node node-blue" x="120" y="405" width="220" height="96" rx="24"/>
+              <text x="230" y="443" text-anchor="middle" class="title">dim_product</text>
+              <text x="230" y="469" text-anchor="middle" class="sub">what was bought</text>
+
+              <rect class="node node-amber" x="900" y="145" width="220" height="96" rx="24"/>
+              <text x="1010" y="183" text-anchor="middle" class="title">fact_order_items</text>
+              <text x="1010" y="209" text-anchor="middle" class="sub">products per order</text>
+              <rect class="node node-amber" x="900" y="285" width="220" height="96" rx="24"/>
+              <text x="1010" y="323" text-anchor="middle" class="title">fact_payments</text>
+              <text x="1010" y="349" text-anchor="middle" class="sub">amount and status</text>
+              <rect class="node node-amber" x="900" y="425" width="220" height="96" rx="24"/>
+              <text x="1010" y="463" text-anchor="middle" class="title">fact_shipments</text>
+              <text x="1010" y="489" text-anchor="middle" class="sub">carrier and delivery</text>
+
+              <rect x="410" y="118" width="460" height="430" rx="34" fill="none" stroke="#d8e2ef" stroke-width="2"/>
+              <text x="640" y="145" text-anchor="middle" class="title">Silver model boundary</text>
+              <text x="640" y="576" text-anchor="middle" class="sub">2 dimensions plus 4 fact tables, registered in Glue Catalog and stored as Parquet in S3.</text>
+
+              <path d="M340 198 C430 200 460 254 520 286" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-5)"/><text x="415" y="215" text-anchor="middle" class="tiny">customer_id</text>
+              <path d="M760 286 C820 250 850 194 900 193" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-5)"/><text x="825" y="220" text-anchor="middle" class="tiny">order_id</text>
+              <path d="M340 453 C540 520 780 520 900 193" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-5)"/><text x="605" y="522" text-anchor="middle" class="tiny">product_id through order items</text>
+              <path d="M760 304 H900" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-5)"/><text x="830" y="286" text-anchor="middle" class="tiny">order_id</text>
+              <path d="M760 322 C820 358 850 472 900 473" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-5)"/><text x="833" y="428" text-anchor="middle" class="tiny">order_id</text>
             </svg>
           </div>
         </article>
 
         <article class="story-card" id="story-gold">
           <div class="story-head">
-            <div class="story-number">4</div>
+            <div class="story-number">6</div>
             <div>
               <h3>Gold modeling with dbt and Athena</h3>
-              <p>The run_dbt Glue job downloads the dbt project, checks Silver freshness, builds Gold marts in Athena, validates row counts, runs tests, and uploads dbt documentation artifacts.</p>
+              <p>dbt builds business mart tables from Silver, validates the row counts, runs tests, and writes documentation artifacts the agent later uses for better answers.</p>
             </div>
-            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-gold">Full screen</button><a class="story-action" href="#story-silver" data-jump="story-silver">Prev</a><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Next</a></div>
+            <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-gold">Full screen</button><a class="story-action" href="#story-star-schema" data-jump="story-star-schema">Prev</a><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 560" role="img" aria-label="Gold modeling with dbt and Athena">
-              <defs><marker id="story-arrow-4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker></defs>
-              <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Gold: Silver data becomes business-ready marts</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The Step Functions path runs dbt through a Glue Python Shell job, not through the agent.</text>
+            <svg viewBox="0 0 1320 600" role="img" aria-label="Gold modeling with dbt and Athena">
+              <defs><marker id="story-arrow-6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker></defs>
+              <rect width="1320" height="600" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Gold: dbt turns Silver facts into business marts</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Gold is where questions become fast and consistent because the common business calculations are already modeled.</text>
 
-              <rect class="node node-amber" x="60" y="170" width="185" height="86" rx="22"/>
-              <text x="152" y="204" text-anchor="middle" class="title">Bronze metadata</text>
-              <text x="152" y="228" text-anchor="middle" class="sub">dbt project copy</text>
+              <rect class="node" x="70" y="260" width="180" height="88" rx="22"/><text x="160" y="295" text-anchor="middle" class="title">S3 Silver</text><text x="160" y="321" text-anchor="middle" class="sub">star schema tables</text>
+              <rect class="node node-amber" x="70" y="385" width="180" height="88" rx="22"/><text x="160" y="420" text-anchor="middle" class="title">dbt project</text><text x="160" y="446" text-anchor="middle" class="sub">models and docs</text>
 
-              <rect class="node" x="60" y="325" width="185" height="86" rx="22"/>
-              <text x="152" y="359" text-anchor="middle" class="title">S3 Silver bucket</text>
-              <text x="152" y="383" text-anchor="middle" class="sub">source tables</text>
+              <rect x="375" y="145" width="420" height="340" rx="28" fill="#fff9e8" stroke="#f5bd4f"/>
+              <text x="585" y="184" text-anchor="middle" class="title">run_dbt Glue Python Shell</text>
+              <rect class="node node-gold" x="420" y="230" width="145" height="58" rx="16"/><text x="492" y="265" text-anchor="middle" class="small-title">dbt deps</text>
+              <rect class="node node-gold" x="610" y="230" width="145" height="58" rx="16"/><text x="682" y="265" text-anchor="middle" class="small-title">freshness gate</text>
+              <rect class="node node-gold" x="420" y="320" width="145" height="58" rx="16"/><text x="492" y="355" text-anchor="middle" class="small-title">dbt run</text>
+              <rect class="node node-gold" x="610" y="320" width="145" height="58" rx="16"/><text x="682" y="355" text-anchor="middle" class="small-title">row-count check</text>
+              <rect class="node node-gold" x="420" y="410" width="145" height="58" rx="16"/><text x="492" y="445" text-anchor="middle" class="small-title">dbt test</text>
+              <rect class="node node-gold" x="610" y="410" width="145" height="58" rx="16"/><text x="682" y="445" text-anchor="middle" class="small-title">docs artifacts</text>
 
-              <rect x="350" y="115" width="390" height="345" rx="28" fill="#fffbea" stroke="#f0c85a"/>
-              <text x="545" y="152" text-anchor="middle" class="title">run_dbt Glue Python Shell</text>
-              <rect class="node node-gold" x="385" y="190" width="135" height="50" rx="15"/><text x="452" y="221" text-anchor="middle" class="small-title">dbt deps</text>
-              <rect class="node node-gold" x="555" y="190" width="150" height="50" rx="15"/><text x="630" y="221" text-anchor="middle" class="small-title">freshness gate</text>
-              <rect class="node node-gold" x="385" y="275" width="135" height="50" rx="15"/><text x="452" y="306" text-anchor="middle" class="small-title">dbt run</text>
-              <rect class="node node-gold" x="555" y="275" width="150" height="50" rx="15"/><text x="630" y="306" text-anchor="middle" class="small-title">row-count check</text>
-              <rect class="node node-gold" x="385" y="360" width="135" height="50" rx="15"/><text x="452" y="391" text-anchor="middle" class="small-title">dbt test</text>
-              <rect class="node node-gold" x="555" y="360" width="150" height="50" rx="15"/><text x="630" y="391" text-anchor="middle" class="small-title">upload docs</text>
-
-              <rect class="node node-gold" x="835" y="172" width="220" height="86" rx="22"/>
-              <text x="945" y="206" text-anchor="middle" class="title">S3 Gold bucket</text>
-              <text x="945" y="230" text-anchor="middle" class="sub">7 business mart tables</text>
-
-              <rect class="node node-amber" x="835" y="325" width="220" height="86" rx="22"/>
-              <text x="945" y="359" text-anchor="middle" class="title">dbt metadata</text>
-              <text x="945" y="383" text-anchor="middle" class="sub">manifest and catalog</text>
-
-              <rect class="node node-teal" x="1110" y="245" width="155" height="86" rx="22"/>
-              <text x="1187" y="279" text-anchor="middle" class="title">Agent startup</text>
-              <text x="1187" y="303" text-anchor="middle" class="sub">reads dbt docs</text>
-
-              <path d="M245 213 H350" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-4)"/>
-              <path d="M245 368 H350" fill="none" stroke="#344054" stroke-width="2.8" marker-end="url(#story-arrow-4)"/>
-              <path d="M740 215 H835" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-4)"/>
-              <path d="M740 368 H835" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-4)"/>
-              <path d="M1055 368 H1080 V288 H1110" fill="none" stroke="#0f766e" stroke-width="2.6" marker-end="url(#story-arrow-4)"/>
-              <text x="297" y="194" text-anchor="middle" class="tiny">download project</text>
-              <text x="297" y="349" text-anchor="middle" class="tiny">read sources</text>
-              <text x="787" y="196" text-anchor="middle" class="tiny">write marts</text>
-              <text x="787" y="349" text-anchor="middle" class="tiny">write docs</text>
-              <text x="660" y="500" text-anchor="middle" class="sub">Permission boundary: dbt, running inside Glue, reads Silver source tables and writes only the Gold marts plus dbt metadata artifacts.</text>
+              <rect class="node node-gold" x="920" y="210" width="250" height="96" rx="24"/><text x="1045" y="248" text-anchor="middle" class="title">S3 Gold</text><text x="1045" y="275" text-anchor="middle" class="sub">business mart tables</text>
+              <rect class="node node-amber" x="920" y="370" width="250" height="96" rx="24"/><text x="1045" y="408" text-anchor="middle" class="title">dbt metadata</text><text x="1045" y="435" text-anchor="middle" class="sub">manifest and catalog</text>
+              <path d="M250 304 H375" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
+              <path d="M250 429 H375" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
+              <path d="M795 258 H920" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
+              <path d="M795 418 H920" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
+              <text x="660" y="545" text-anchor="middle" class="sub">Permission boundary: the dbt job reads Silver and dbt project files, then writes Gold tables and dbt metadata.</text>
             </svg>
           </div>
         </article>
 
         <article class="story-card" id="story-orchestration">
           <div class="story-head">
-            <div class="story-number">5</div>
+            <div class="story-number">7</div>
             <div>
-              <h3>Pipeline orchestration paths</h3>
-              <p>Step Functions is the default path for short sessions. MWAA runs the Airflow version of the same pipeline when I want parity validation.</p>
+              <h3>Orchestration paths</h3>
+              <p>Step Functions is the default fast session path. MWAA proves the same pipeline can run as an Airflow DAG when the Airflow route needs to be demonstrated.</p>
             </div>
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-orchestration">Full screen</button><a class="story-action" href="#story-gold" data-jump="story-gold">Prev</a><a class="story-action" href="#story-access" data-jump="story-access">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 620" role="img" aria-label="Step Functions and MWAA orchestration paths">
-              <defs><marker id="story-arrow-5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker></defs>
-              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: two clear lanes for the same pipeline</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The lanes are drawn separately so the default path and the Airflow validation path are not confused.</text>
-
-              <rect class="node node-violet" x="55" y="125" width="145" height="74" rx="20"/>
-              <text x="127" y="154" text-anchor="middle" class="small-title">Session Start</text>
-              <text x="127" y="176" text-anchor="middle" class="tiny">GitHub workflow</text>
-
-              <rect x="250" y="105" width="1015" height="125" rx="26" fill="#f3e8ff" stroke="#c7a5ff"/>
-              <text x="320" y="135" class="title">Default: Step Functions</text>
-              <rect class="node node-violet" x="300" y="160" width="120" height="46" rx="14"/><text x="360" y="189" text-anchor="middle" class="tiny">6 Silver jobs</text>
-              <rect class="node node-violet" x="455" y="160" width="120" height="46" rx="14"/><text x="515" y="189" text-anchor="middle" class="tiny">wait metrics</text>
-              <rect class="node node-rose" x="610" y="160" width="135" height="46" rx="14"/><text x="677" y="189" text-anchor="middle" class="tiny">row-count Lambda</text>
-              <rect class="node node-blue" x="780" y="160" width="120" height="46" rx="14"/><text x="840" y="189" text-anchor="middle" class="tiny">Silver crawler</text>
-              <rect class="node node-gold" x="935" y="160" width="120" height="46" rx="14"/><text x="995" y="189" text-anchor="middle" class="tiny">run_dbt job</text>
-              <rect class="node node-teal" x="1090" y="160" width="120" height="46" rx="14"/><text x="1150" y="189" text-anchor="middle" class="tiny">complete</text>
-              <path d="M200 162 H250" fill="none" stroke="#6d28d9" stroke-width="2.6" marker-end="url(#story-arrow-5)"/>
-              <path d="M420 183 H455" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M575 183 H610" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M745 183 H780" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M900 183 H935" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M1055 183 H1090" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-
-              <rect class="node node-blue" x="55" y="365" width="145" height="74" rx="20"/>
-              <text x="127" y="394" text-anchor="middle" class="small-title">Manual DAG run</text>
-              <text x="127" y="416" text-anchor="middle" class="tiny">MWAA UI</text>
-
-              <rect x="250" y="345" width="1015" height="125" rx="26" fill="#eaf2ff" stroke="#9cc2ff"/>
-              <text x="320" y="375" class="title">Validation: MWAA Airflow</text>
-              <rect class="node node-blue" x="300" y="400" width="130" height="46" rx="14"/><text x="365" y="429" text-anchor="middle" class="tiny">6 Glue tasks</text>
-              <rect class="node node-blue" x="465" y="400" width="120" height="46" rx="14"/><text x="525" y="429" text-anchor="middle" class="tiny">Silver crawler</text>
-              <rect class="node node-gold" x="620" y="400" width="120" height="46" rx="14"/><text x="680" y="429" text-anchor="middle" class="tiny">dbt run</text>
-              <rect class="node node-gold" x="775" y="400" width="120" height="46" rx="14"/><text x="835" y="429" text-anchor="middle" class="tiny">dbt test</text>
-              <rect class="node node-amber" x="930" y="400" width="145" height="46" rx="14"/><text x="1002" y="429" text-anchor="middle" class="tiny">upload artifacts</text>
-              <rect class="node node-teal" x="1110" y="400" width="105" height="46" rx="14"/><text x="1162" y="429" text-anchor="middle" class="tiny">complete</text>
-              <path d="M200 402 H250" fill="none" stroke="#2563eb" stroke-width="2.6" marker-end="url(#story-arrow-5)"/>
-              <path d="M430 423 H465" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M585 423 H620" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M740 423 H775" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M895 423 H930" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <path d="M1075 423 H1110" fill="none" stroke="#2563eb" stroke-width="2.4" marker-end="url(#story-arrow-5)"/>
-              <text x="660" y="540" text-anchor="middle" class="sub">Step Functions is the day-to-day session route. MWAA validates that the Airflow DAG can perform the same platform journey.</text>
+            <svg viewBox="0 0 1320 560" role="img" aria-label="Pipeline orchestration paths">
+              <defs><marker id="story-arrow-7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker></defs>
+              <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: default fast path and Airflow parity path</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Both paths run the same idea: Silver first, Catalog refresh, validation, then Gold.</text>
+              <rect class="node node-violet" x="70" y="245" width="185" height="86" rx="22"/><text x="162" y="280" text-anchor="middle" class="title">Session Start</text><text x="162" y="306" text-anchor="middle" class="sub">workflow</text>
+              <rect x="360" y="125" width="390" height="310" rx="30" fill="#f5edff" stroke="#c4a1ff"/>
+              <text x="555" y="163" text-anchor="middle" class="title">Step Functions default</text>
+              <rect class="node node-violet" x="400" y="215" width="155" height="58" rx="16"/><text x="477" y="250" text-anchor="middle" class="small-title">6 Silver jobs</text>
+              <rect class="node node-blue" x="600" y="215" width="120" height="58" rx="16"/><text x="660" y="250" text-anchor="middle" class="small-title">Crawler</text>
+              <rect class="node node-rose" x="400" y="320" width="155" height="58" rx="16"/><text x="477" y="355" text-anchor="middle" class="small-title">Lambda check</text>
+              <rect class="node node-gold" x="600" y="320" width="120" height="58" rx="16"/><text x="660" y="355" text-anchor="middle" class="small-title">run_dbt</text>
+              <rect x="860" y="125" width="390" height="310" rx="30" fill="#eef7ff" stroke="#93c5fd"/>
+              <text x="1055" y="163" text-anchor="middle" class="title">MWAA Airflow validation</text>
+              <rect class="node node-blue" x="900" y="215" width="155" height="58" rx="16"/><text x="977" y="250" text-anchor="middle" class="small-title">6 DAG tasks</text>
+              <rect class="node node-blue" x="1100" y="215" width="120" height="58" rx="16"/><text x="1160" y="250" text-anchor="middle" class="small-title">Crawler</text>
+              <rect class="node node-gold" x="900" y="320" width="155" height="58" rx="16"/><text x="977" y="355" text-anchor="middle" class="small-title">dbt run</text>
+              <rect class="node node-gold" x="1100" y="320" width="120" height="58" rx="16"/><text x="1160" y="355" text-anchor="middle" class="small-title">dbt test</text>
+              <path d="M255 288 H360" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M555 244 H600" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M660 273 V320" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M600 349 H555" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M1055 244 H1100" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M1160 273 C1160 304 1100 314 1055 349" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M1055 349 H1100" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
+              <path d="M255 318 C470 500 950 500 1055 435" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-dasharray="8 8" marker-end="url(#story-arrow-7)"/>
+              <text x="535" y="475" text-anchor="middle" class="sub">Default session path: faster and cheaper.</text>
+              <text x="1035" y="475" text-anchor="middle" class="sub">Validation path: proves Airflow parity.</text>
             </svg>
           </div>
         </article>
 
         <article class="story-card" id="story-access">
           <div class="story-head">
-            <div class="story-number">6</div>
+            <div class="story-number">8</div>
             <div>
               <h3>Stakeholder access and runtime layout</h3>
-              <p>Browser users can open Streamlit or the HTML web app through the load balancer. Slack users go through the Slack gateway, which calls the same Analytics Agent API.</p>
+              <p>Browser users can open Streamlit or the HTML web app through the load balancer. Slack users go through the Slack gateway. Only the agent reads analytical data.</p>
             </div>
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-access">Full screen</button><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Prev</a><a class="story-action" href="#story-agent" data-jump="story-agent">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 640" role="img" aria-label="Stakeholder access and runtime layout">
-              <defs><marker id="story-arrow-6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker></defs>
-              <rect width="1320" height="640" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Access: three entry paths, one agent backend</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">Streamlit, the HTML web app, and Slack all end at the same Analytics Agent API. Only the agent reaches the data layer.</text>
+            <svg viewBox="0 0 1320 620" role="img" aria-label="Stakeholder access and runtime layout">
+              <defs><marker id="story-arrow-8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker></defs>
+              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Access: three entry points, one governed analytics backend</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The web and Slack services forward questions. They do not query S3 lake data themselves.</text>
 
-              <text x="65" y="132" class="small-title">Path A: Streamlit browser app</text>
-              <rect class="node node-teal" x="65" y="150" width="150" height="72" rx="20"/>
-              <text x="140" y="179" text-anchor="middle" class="small-title">Browser user</text>
-              <text x="140" y="201" text-anchor="middle" class="tiny">opens port 8501</text>
-              <rect class="node node-teal" x="275" y="150" width="145" height="72" rx="20"/>
-              <text x="347" y="179" text-anchor="middle" class="small-title">ALB</text>
-              <text x="347" y="201" text-anchor="middle" class="tiny">routes request</text>
-              <rect class="node node-violet" x="485" y="150" width="190" height="72" rx="20"/>
-              <text x="580" y="179" text-anchor="middle" class="small-title">Streamlit UI</text>
-              <text x="580" y="201" text-anchor="middle" class="tiny">inside agent task</text>
-              <rect class="node node-violet" x="740" y="150" width="190" height="72" rx="20"/>
-              <text x="835" y="179" text-anchor="middle" class="small-title">FastAPI backend</text>
-              <text x="835" y="201" text-anchor="middle" class="tiny">localhost call</text>
+              <rect class="node node-teal" x="60" y="175" width="165" height="80" rx="22"/><text x="142" y="207" text-anchor="middle" class="title">Browser user</text><text x="142" y="232" text-anchor="middle" class="sub">opens app</text>
+              <rect class="node node-teal" x="60" y="390" width="165" height="80" rx="22"/><text x="142" y="422" text-anchor="middle" class="title">Slack user</text><text x="142" y="447" text-anchor="middle" class="sub">asks in Slack</text>
+              <rect class="node node-teal" x="310" y="235" width="185" height="95" rx="24"/><text x="402" y="271" text-anchor="middle" class="title">ALB</text><text x="402" y="297" text-anchor="middle" class="sub">browser ports</text>
+              <rect class="node node-blue" x="610" y="145" width="235" height="100" rx="24"/><text x="727" y="181" text-anchor="middle" class="title">Analytics Web</text><text x="727" y="207" text-anchor="middle" class="sub">separate ECS service</text><text x="727" y="229" text-anchor="middle" class="sub">proxies /api</text>
+              <rect x="610" y="310" width="290" height="160" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
+              <text x="755" y="346" text-anchor="middle" class="title">Analytics Agent ECS task</text>
+              <rect class="node node-violet" x="650" y="385" width="105" height="56" rx="16"/><text x="702" y="419" text-anchor="middle" class="small-title">FastAPI</text>
+              <rect class="node node-violet" x="775" y="385" width="105" height="56" rx="16"/><text x="827" y="419" text-anchor="middle" class="small-title">Streamlit</text>
+              <text x="755" y="458" text-anchor="middle" class="tiny">same ECS task, local backend call</text>
+              <rect class="node node-teal" x="1030" y="375" width="220" height="95" rx="24"/><text x="1140" y="411" text-anchor="middle" class="title">Slack gateway</text><text x="1140" y="437" text-anchor="middle" class="sub">calls agent endpoint</text>
+              <rect class="node node-gold" x="1030" y="160" width="220" height="95" rx="24"/><text x="1140" y="196" text-anchor="middle" class="title">Gold access</text><text x="1140" y="222" text-anchor="middle" class="sub">owned by agent role</text>
 
-              <text x="65" y="292" class="small-title">Path B: HTML web app</text>
-              <rect class="node node-teal" x="65" y="310" width="150" height="72" rx="20"/>
-              <text x="140" y="339" text-anchor="middle" class="small-title">Browser user</text>
-              <text x="140" y="361" text-anchor="middle" class="tiny">opens port 3000</text>
-              <rect class="node node-teal" x="275" y="310" width="145" height="72" rx="20"/>
-              <text x="347" y="339" text-anchor="middle" class="small-title">ALB</text>
-              <text x="347" y="361" text-anchor="middle" class="tiny">routes request</text>
-              <rect class="node node-blue" x="485" y="310" width="190" height="72" rx="20"/>
-              <text x="580" y="339" text-anchor="middle" class="small-title">Analytics Web</text>
-              <text x="580" y="361" text-anchor="middle" class="tiny">proxies /api</text>
-              <rect class="node node-violet" x="740" y="310" width="190" height="72" rx="20"/>
-              <text x="835" y="339" text-anchor="middle" class="small-title">FastAPI backend</text>
-              <text x="835" y="361" text-anchor="middle" class="tiny">same agent API</text>
-
-              <text x="65" y="452" class="small-title">Path C: Slack question</text>
-              <rect class="node node-teal" x="65" y="470" width="150" height="72" rx="20"/>
-              <text x="140" y="499" text-anchor="middle" class="small-title">Slack user</text>
-              <text x="140" y="521" text-anchor="middle" class="tiny">asks question</text>
-              <rect class="node node-teal" x="275" y="470" width="145" height="72" rx="20"/>
-              <text x="347" y="499" text-anchor="middle" class="small-title">Slack app</text>
-              <text x="347" y="521" text-anchor="middle" class="tiny">message event</text>
-              <rect class="node node-teal" x="485" y="470" width="190" height="72" rx="20"/>
-              <text x="580" y="499" text-anchor="middle" class="small-title">MCP gateway</text>
-              <text x="580" y="521" text-anchor="middle" class="tiny">calls agent</text>
-              <rect class="node node-violet" x="740" y="470" width="190" height="72" rx="20"/>
-              <text x="835" y="499" text-anchor="middle" class="small-title">FastAPI backend</text>
-              <text x="835" y="521" text-anchor="middle" class="tiny">same agent API</text>
-
-              <rect x="985" y="210" width="245" height="235" rx="28" fill="#fffbea" stroke="#f0c85a"/>
-              <text x="1107" y="248" text-anchor="middle" class="title">Data access</text>
-              <rect class="node node-gold" x="1015" y="285" width="185" height="58" rx="16"/>
-              <text x="1107" y="321" text-anchor="middle" class="small-title">Athena workgroup</text>
-              <rect class="node node-gold" x="1015" y="365" width="185" height="58" rx="16"/>
-              <text x="1107" y="401" text-anchor="middle" class="small-title">Gold marts</text>
-
-              <path d="M215 186 H275" fill="none" stroke="#0f766e" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M420 186 H485" fill="none" stroke="#0f766e" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M675 186 H740" fill="none" stroke="#6d28d9" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-
-              <path d="M215 346 H275" fill="none" stroke="#0f766e" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M420 346 H485" fill="none" stroke="#2563eb" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M675 346 H740" fill="none" stroke="#2563eb" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-
-              <path d="M215 506 H275" fill="none" stroke="#0f766e" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M420 506 H485" fill="none" stroke="#0f766e" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M675 506 H740" fill="none" stroke="#0f766e" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-
-              <path d="M930 346 H985" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <path d="M1107 343 V365" fill="none" stroke="#ca8a04" stroke-width="2.8" marker-end="url(#story-arrow-6)"/>
-              <text x="660" y="595" text-anchor="middle" class="sub">Permission boundary: Streamlit, Analytics Web, and Slack gateway are entry points. The Analytics Agent is the only service in this diagram that queries Gold data.</text>
+              <path d="M225 215 H310" fill="none" stroke="#0f766e" stroke-width="2.4" marker-end="url(#story-arrow-8)"/>
+              <path d="M495 260 C550 210 570 195 610 195" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="555" y="218" text-anchor="middle" class="tiny">HTML app</text>
+              <path d="M495 300 C560 385 575 413 650 413" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="558" y="376" text-anchor="middle" class="tiny">Streamlit</text>
+              <path d="M727 245 C725 285 705 340 702 385" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="682" y="314" text-anchor="middle" class="tiny">/api proxy</text>
+              <path d="M755 385 C870 325 970 250 1030 207" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="910" y="292" text-anchor="middle" class="tiny">agent queries Gold</text>
+              <path d="M225 430 H300 V535 H1140 V470" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="620" y="520" text-anchor="middle" class="tiny">Slack gateway path</text>
+              <path d="M1030 422 C960 500 835 520 755 470" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="902" y="504" text-anchor="middle" class="tiny">calls agent API</text>
+              <text x="660" y="565" text-anchor="middle" class="sub">Permission boundary: web and Slack services do not read S3 lake buckets. They forward requests to the agent.</text>
             </svg>
           </div>
         </article>
 
         <article class="story-card" id="story-agent">
           <div class="story-head">
-            <div class="story-number">7</div>
+            <div class="story-number">9</div>
             <div>
               <h3>Analytics Agent request loop</h3>
-              <p>The agent loads the Gold schema, asks Claude on AWS for SQL and insight, validates the SQL, queries Athena, writes audit evidence, and returns a chart-ready answer.</p>
+              <p>This full sequence shows the browser path, four Claude calls, SQL guardrails, one correction loop, Athena execution, audit writes, and the returned answer.</p>
             </div>
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-agent">Full screen</button><a class="story-action" href="#story-access" data-jump="story-access">Prev</a><a class="story-action" href="#story-iam" data-jump="story-iam">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1500 1350" role="img" aria-label="Analytics Agent request loop">
+            <svg viewBox="0 0 1600 1180" role="img" aria-label="Analytics Agent full request loop">
               <defs>
-                <marker id="story-arrow-7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker>
-                <marker id="story-arrow-7-violet" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker>
-                <marker id="story-arrow-7-gold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker>
-                <marker id="story-arrow-7-rose" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#b42318"/></marker>
+                <marker id="story-arrow-9" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#344054"/></marker>
+                <marker id="story-arrow-9-violet" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker>
+                <marker id="story-arrow-9-gold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker>
+                <marker id="story-arrow-9-rose" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#b42318"/></marker>
               </defs>
-              <rect width="1500" height="1350" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Agent request loop: full sequence from browser question to audited answer</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">This frame includes the browser path, four Claude calls, SQL guardrails, two correction loops (guardrail fail + verdict mismatch), Athena execution, audit writes, and the returned answer.</text>
+              <rect width="1500" height="1180" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Agent request loop: browser question to audited answer</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Streamlit and FastAPI run in the same ECS task, so the UI-to-backend hop is local inside the container.</text>
 
-              <rect class="node node-teal" x="38" y="116" width="132" height="46" rx="10"/><text x="104" y="145" text-anchor="middle" class="tiny">Stakeholder</text>
-              <rect class="node node-teal" x="215" y="116" width="135" height="46" rx="10"/><text x="282" y="145" text-anchor="middle" class="tiny">AWS Load Balancer</text>
-              <rect class="node node-violet" x="405" y="116" width="135" height="46" rx="10"/><text x="472" y="145" text-anchor="middle" class="tiny">Streamlit UI</text>
-              <rect class="node node-violet" x="660" y="116" width="155" height="46" rx="10"/><text x="737" y="145" text-anchor="middle" class="tiny">FastAPI backend</text>
-              <rect class="node node-violet" x="990" y="116" width="155" height="46" rx="10"/><text x="1067" y="145" text-anchor="middle" class="tiny">Claude on AWS</text>
-              <rect class="node node-gold" x="1215" y="116" width="145" height="46" rx="10"/><text x="1287" y="145" text-anchor="middle" class="tiny">Amazon Athena</text>
-              <rect class="node node-amber" x="1400" y="116" width="80" height="46" rx="10"/><text x="1440" y="145" text-anchor="middle" class="tiny">S3 logs</text>
+              <g class="lifeline"><rect class="node node-teal" x="60" y="120" width="130" height="46" rx="10"/><text x="125" y="149" text-anchor="middle" class="tiny">Stakeholder</text><path d="M125 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><rect class="node node-teal" x="250" y="120" width="150" height="46" rx="10"/><text x="325" y="149" text-anchor="middle" class="tiny">AWS Load Balancer</text><path d="M325 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><rect class="node node-violet" x="465" y="120" width="145" height="46" rx="10"/><text x="537" y="149" text-anchor="middle" class="tiny">Streamlit UI</text><path d="M537 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><rect class="node node-violet" x="735" y="120" width="165" height="46" rx="10"/><text x="817" y="149" text-anchor="middle" class="tiny">FastAPI backend</text><path d="M817 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><rect class="node node-violet" x="1080" y="120" width="160" height="46" rx="10"/><text x="1160" y="149" text-anchor="middle" class="tiny">Claude on AWS</text><path d="M1160 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><rect class="node node-gold" x="1320" y="120" width="150" height="46" rx="10"/><text x="1395" y="149" text-anchor="middle" class="tiny">Amazon Athena</text><path d="M1395 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><rect class="node node-amber" x="1490" y="120" width="80" height="46" rx="10"/><text x="1530" y="149" text-anchor="middle" class="tiny">S3 logs</text><path d="M1530 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
 
-              <rect x="390" y="177" width="440" height="36" rx="6" fill="#fff7bf" stroke="#e6ca4f"/>
-              <text x="610" y="200" text-anchor="middle" class="tiny">Streamlit and FastAPI run inside the same ECS task, so this hop is local to the container.</text>
+              <rect class="node node-gold" x="450" y="185" width="420" height="36" rx="8"/><text x="660" y="208" text-anchor="middle" class="tiny">Streamlit and FastAPI are inside the same ECS task</text>
 
-              <line x1="104" y1="162" x2="104" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="282" y1="162" x2="282" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="472" y1="162" x2="472" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="737" y1="162" x2="737" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1067" y1="162" x2="1067" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1287" y1="162" x2="1287" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
-              <line x1="1440" y1="162" x2="1440" y2="1315" stroke="#8b5cf6" stroke-width="1.2"/>
+              <circle cx="125" cy="265" r="9" fill="#344054"/><text x="125" y="269" text-anchor="middle" class="tiny white-text">1</text>
+              <path d="M125 265 H325" fill="none" stroke="#344054" stroke-width="1.45" marker-end="url(#story-arrow-9)"/><text x="225" y="250" text-anchor="middle" class="tiny">opens app in browser</text>
+              <circle cx="325" cy="315" r="9" fill="#344054"/><text x="325" y="319" text-anchor="middle" class="tiny white-text">2</text>
+              <path d="M325 315 H537" fill="none" stroke="#344054" stroke-width="1.45" marker-end="url(#story-arrow-9)"/><text x="431" y="300" text-anchor="middle" class="tiny">forwards request to UI</text>
+              <circle cx="537" cy="365" r="9" fill="#344054"/><text x="537" y="369" text-anchor="middle" class="tiny white-text">3</text>
+              <path d="M537 365 H125" fill="none" stroke="#344054" stroke-width="1.25" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="330" y="350" text-anchor="middle" class="tiny">browser shows text box and Submit button</text>
+              <circle cx="125" cy="415" r="9" fill="#344054"/><text x="125" y="419" text-anchor="middle" class="tiny white-text">4</text>
+              <path d="M125 415 H325" fill="none" stroke="#344054" stroke-width="1.45" marker-end="url(#story-arrow-9)"/><text x="225" y="400" text-anchor="middle" class="tiny">types question and clicks Submit</text>
+              <circle cx="325" cy="465" r="9" fill="#344054"/><text x="325" y="469" text-anchor="middle" class="tiny white-text">5</text>
+              <path d="M325 465 H537" fill="none" stroke="#344054" stroke-width="1.45" marker-end="url(#story-arrow-9)"/><text x="431" y="450" text-anchor="middle" class="tiny">forwards the question</text>
+              <circle cx="537" cy="515" r="9" fill="#344054"/><text x="537" y="519" text-anchor="middle" class="tiny white-text">6</text>
+              <path d="M537 515 H817" fill="none" stroke="#344054" stroke-width="1.45" marker-end="url(#story-arrow-9)"/><text x="675" y="500" text-anchor="middle" class="tiny">sends question internally, no network hop</text>
 
-              <circle cx="104" cy="248" r="9" fill="#344054"/><text x="104" y="252" text-anchor="middle" class="tiny white-text">1</text>
-              <path d="M104 248 H282" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="194" y="236" text-anchor="middle" class="tiny">opens app in browser</text>
-              <circle cx="282" cy="288" r="9" fill="#344054"/><text x="282" y="292" text-anchor="middle" class="tiny white-text">2</text>
-              <path d="M282 288 H472" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="377" y="276" text-anchor="middle" class="tiny">forwards request to UI</text>
-              <circle cx="472" cy="328" r="9" fill="#344054"/><text x="472" y="332" text-anchor="middle" class="tiny white-text">3</text>
-              <path d="M472 328 H104" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="300" y="316" text-anchor="middle" class="tiny">browser shows text box and Submit button</text>
-              <circle cx="104" cy="368" r="9" fill="#344054"/><text x="104" y="372" text-anchor="middle" class="tiny white-text">4</text>
-              <path d="M104 368 H282" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="194" y="356" text-anchor="middle" class="tiny">types question and clicks Submit</text>
-              <circle cx="282" cy="408" r="9" fill="#344054"/><text x="282" y="412" text-anchor="middle" class="tiny white-text">5</text>
-              <path d="M282 408 H472" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="377" y="396" text-anchor="middle" class="tiny">forwards the question</text>
-              <circle cx="472" cy="448" r="9" fill="#344054"/><text x="472" y="452" text-anchor="middle" class="tiny white-text">6</text>
-              <path d="M472 448 H737" fill="none" stroke="#344054" stroke-width="1.8" marker-end="url(#story-arrow-7)"/><text x="605" y="436" text-anchor="middle" class="tiny">sends question internally, no network hop</text>
+              <circle cx="817" cy="575" r="9" fill="#344054"/><text x="817" y="579" text-anchor="middle" class="tiny white-text">7</text>
+              <path d="M817 575 H1160" fill="none" stroke="#6d28d9" stroke-width="1.55" marker-end="url(#story-arrow-9-violet)"/><text x="990" y="560" text-anchor="middle" class="tiny">Call 1: generate SQL</text>
+              <circle cx="1160" cy="615" r="9" fill="#344054"/><text x="1160" y="619" text-anchor="middle" class="tiny white-text">8</text>
+              <path d="M1160 615 H817" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="990" y="600" text-anchor="middle" class="tiny">SQL query</text>
+              <circle cx="817" cy="655" r="9" fill="#344054"/><text x="817" y="659" text-anchor="middle" class="tiny white-text">9</text>
+              <path d="M817 655 C785 655 785 680 817 680" fill="none" stroke="#b42318" stroke-width="1.35" marker-end="url(#story-arrow-9-rose)"/><text x="760" y="679" text-anchor="middle" class="tiny">validate SQL guardrails</text>
+              <circle cx="817" cy="725" r="9" fill="#344054"/><text x="817" y="729" text-anchor="middle" class="tiny white-text">10</text>
+              <path d="M817 725 H1160" fill="none" stroke="#6d28d9" stroke-width="1.55" marker-end="url(#story-arrow-9-violet)"/><text x="990" y="710" text-anchor="middle" class="tiny">Call 2: infer SQL intent, SQL only</text>
+              <circle cx="1160" cy="765" r="9" fill="#344054"/><text x="1160" y="769" text-anchor="middle" class="tiny white-text">11</text>
+              <path d="M1160 765 H817" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="990" y="750" text-anchor="middle" class="tiny">inferred SQL intent</text>
+              <circle cx="817" cy="805" r="9" fill="#344054"/><text x="817" y="809" text-anchor="middle" class="tiny white-text">12</text>
+              <path d="M817 805 H1160" fill="none" stroke="#6d28d9" stroke-width="1.55" marker-end="url(#story-arrow-9-violet)"/><text x="990" y="790" text-anchor="middle" class="tiny">Call 3: compare original question vs inferred intent</text>
+              <circle cx="1160" cy="845" r="9" fill="#344054"/><text x="1160" y="849" text-anchor="middle" class="tiny white-text">13</text>
+              <path d="M1160 845 H817" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="990" y="830" text-anchor="middle" class="tiny">yes/no verdict plus discrepancy detail</text>
 
-              <circle cx="737" cy="500" r="9" fill="#344054"/><text x="737" y="504" text-anchor="middle" class="tiny white-text">7</text>
-              <path d="M737 500 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="488" text-anchor="middle" class="tiny">Call 1: generate SQL</text>
-              <circle cx="1067" cy="532" r="9" fill="#344054"/><text x="1067" y="536" text-anchor="middle" class="tiny white-text">8</text>
-              <path d="M1067 532 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="521" text-anchor="middle" class="tiny">SQL query</text>
-              <circle cx="737" cy="564" r="9" fill="#344054"/><text x="737" y="568" text-anchor="middle" class="tiny white-text">9</text>
-              <path d="M737 564 C704 564 704 594 737 594" fill="none" stroke="#b42318" stroke-width="1.7" marker-end="url(#story-arrow-7-rose)"/><text x="668" y="586" text-anchor="middle" class="tiny">validate SQL guardrails</text>
+              <rect x="715" y="875" width="520" height="142" rx="14" fill="none" stroke="#8b5cf6" stroke-dasharray="5 5"/>
+              <text x="975" y="895" text-anchor="middle" class="tiny">Retry loop, only when the verdict says the SQL missed the question</text>
+              <circle cx="817" cy="925" r="9" fill="#344054"/><text x="817" y="929" text-anchor="middle" class="tiny white-text">14</text>
+              <path d="M817 925 H1160" fill="none" stroke="#6d28d9" stroke-width="1.45" marker-end="url(#story-arrow-9-violet)"/><text x="990" y="912" text-anchor="middle" class="tiny">regenerate SQL with correction detail</text>
+              <circle cx="1160" cy="958" r="9" fill="#344054"/><text x="1160" y="962" text-anchor="middle" class="tiny white-text">15</text>
+              <path d="M1160 958 H817" fill="none" stroke="#344054" stroke-width="1.15" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="990" y="946" text-anchor="middle" class="tiny">corrected SQL query</text>
+              <circle cx="817" cy="990" r="9" fill="#344054"/><text x="817" y="994" text-anchor="middle" class="tiny white-text">16</text>
+              <path d="M817 990 C785 990 785 1015 817 1015" fill="none" stroke="#b42318" stroke-width="1.3" marker-end="url(#story-arrow-9-rose)"/><text x="748" y="1010" text-anchor="middle" class="tiny">validate corrected SQL</text>
+              <text x="1015" y="1010" text-anchor="middle" class="tiny">17-18: re-infer corrected SQL intent for audit</text>
 
-              <!-- Guardrail fail retry box -->
-              <rect x="580" y="608" width="560" height="148" rx="14" fill="none" stroke="#b42318" stroke-dasharray="5 4"/>
-              <text x="860" y="626" text-anchor="middle" class="tiny">Guardrail fail: up to 3 regeneration attempts. If still invalid, return 422.</text>
+              <circle cx="817" cy="1048" r="9" fill="#344054"/><text x="817" y="1052" text-anchor="middle" class="tiny white-text">19</text>
+              <path d="M817 1048 H1395" fill="none" stroke="#ca8a04" stroke-width="1.55" marker-end="url(#story-arrow-9-gold)"/><text x="1105" y="1034" text-anchor="middle" class="tiny">run query against Gold tables</text>
+              <circle cx="1395" cy="1080" r="9" fill="#344054"/><text x="1395" y="1084" text-anchor="middle" class="tiny white-text">20</text>
+              <path d="M1395 1080 H817" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="1105" y="1066" text-anchor="middle" class="tiny">results: rows and columns</text>
+              <circle cx="817" cy="1112" r="9" fill="#344054"/><text x="817" y="1116" text-anchor="middle" class="tiny white-text">21</text>
+              <path d="M817 1112 H1160" fill="none" stroke="#6d28d9" stroke-width="1.55" marker-end="url(#story-arrow-9-violet)"/><text x="990" y="1098" text-anchor="middle" class="tiny">Call 4: generate insight and chart title</text>
+              <circle cx="1160" cy="1144" r="9" fill="#344054"/><text x="1160" y="1148" text-anchor="middle" class="tiny white-text">22</text>
+              <path d="M1160 1144 H817" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="990" y="1130" text-anchor="middle" class="tiny">2-3 sentence insight and chart title</text>
+              <circle cx="817" cy="1168" r="9" fill="#344054"/><text x="817" y="1172" text-anchor="middle" class="tiny white-text">23</text>
+              <path d="M817 1168 H1530" fill="none" stroke="#b42318" stroke-width="1.45" marker-end="url(#story-arrow-9-rose)"/><text x="1175" y="1156" text-anchor="middle" class="tiny">write audit log and engineer log</text>
 
-              <!-- arrow: FastAPI → Claude: retry Call 1 with validation error -->
-              <circle cx="737" cy="652" r="9" fill="#344054"/>
-              <text x="737" y="656" text-anchor="middle" class="tiny white-text">9a</text>
-              <path d="M737 652 H1067" fill="none" stroke="#6d28d9" stroke-width="1.6" marker-end="url(#story-arrow-7-violet)"/>
-              <text x="902" y="641" text-anchor="middle" class="tiny">retry Call 1: SQL + validation error feedback</text>
-
-              <!-- arrow: Claude → FastAPI: regenerated SQL -->
-              <circle cx="1067" cy="682" r="9" fill="#344054"/>
-              <text x="1067" y="686" text-anchor="middle" class="tiny white-text">9b</text>
-              <path d="M1067 682 H737" fill="none" stroke="#344054" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/>
-              <text x="902" y="671" text-anchor="middle" class="tiny">regenerated SQL</text>
-
-              <!-- self-loop: validate again -->
-              <circle cx="737" cy="714" r="9" fill="#344054"/>
-              <text x="737" y="718" text-anchor="middle" class="tiny white-text">9c</text>
-              <path d="M737 714 C704 714 704 744 737 744" fill="none" stroke="#b42318" stroke-width="1.5" marker-end="url(#story-arrow-7-rose)"/>
-              <text x="663" y="736" text-anchor="middle" class="tiny">validate again</text>
-
-              <circle cx="737" cy="796" r="9" fill="#344054"/><text x="737" y="800" text-anchor="middle" class="tiny white-text">10</text>
-              <path d="M737 796 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="784" text-anchor="middle" class="tiny">Call 2: infer SQL intent, SQL only</text>
-              <circle cx="1067" cy="828" r="9" fill="#344054"/><text x="1067" y="832" text-anchor="middle" class="tiny white-text">11</text>
-              <path d="M1067 828 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="817" text-anchor="middle" class="tiny">inferred SQL intent</text>
-              <circle cx="737" cy="860" r="9" fill="#344054"/><text x="737" y="864" text-anchor="middle" class="tiny white-text">12</text>
-              <path d="M737 860 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="848" text-anchor="middle" class="tiny">Call 3: compare original question vs inferred intent</text>
-              <circle cx="1067" cy="892" r="9" fill="#344054"/><text x="1067" y="896" text-anchor="middle" class="tiny white-text">13</text>
-              <path d="M1067 892 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="881" text-anchor="middle" class="tiny">yes/no verdict plus discrepancy detail</text>
-
-              <rect x="650" y="918" width="500" height="142" rx="14" fill="none" stroke="#8b5cf6" stroke-dasharray="5 4"/>
-              <text x="900" y="938" text-anchor="middle" class="tiny">Retry loop, only when the verdict says the SQL missed the question</text>
-              <circle cx="737" cy="968" r="9" fill="#344054"/><text x="737" y="972" text-anchor="middle" class="tiny white-text">14</text>
-              <path d="M737 968 H1067" fill="none" stroke="#6d28d9" stroke-width="1.6" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="957" text-anchor="middle" class="tiny">regenerate SQL with correction detail</text>
-              <circle cx="1067" cy="998" r="9" fill="#344054"/><text x="1067" y="1002" text-anchor="middle" class="tiny white-text">15</text>
-              <path d="M1067 998 H737" fill="none" stroke="#344054" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="987" text-anchor="middle" class="tiny">corrected SQL query</text>
-              <circle cx="737" cy="1028" r="9" fill="#344054"/><text x="737" y="1032" text-anchor="middle" class="tiny white-text">16</text>
-              <path d="M737 1028 C704 1028 704 1054 737 1054" fill="none" stroke="#b42318" stroke-width="1.5" marker-end="url(#story-arrow-7-rose)"/><text x="665" y="1050" text-anchor="middle" class="tiny">validate corrected SQL</text>
-              <text x="940" y="1050" text-anchor="middle" class="tiny">17-18: re-infer corrected SQL intent for audit</text>
-
-              <circle cx="737" cy="1098" r="9" fill="#344054"/><text x="737" y="1102" text-anchor="middle" class="tiny white-text">19</text>
-              <path d="M737 1098 H1287" fill="none" stroke="#ca8a04" stroke-width="1.8" marker-end="url(#story-arrow-7-gold)"/><text x="1012" y="1086" text-anchor="middle" class="tiny">run query against Gold tables</text>
-              <circle cx="1287" cy="1130" r="9" fill="#344054"/><text x="1287" y="1134" text-anchor="middle" class="tiny white-text">20</text>
-              <path d="M1287 1130 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="1012" y="1119" text-anchor="middle" class="tiny">results: rows and columns</text>
-
-              <circle cx="737" cy="1162" r="9" fill="#344054"/><text x="737" y="1166" text-anchor="middle" class="tiny white-text">21</text>
-              <path d="M737 1162 H1067" fill="none" stroke="#6d28d9" stroke-width="1.8" marker-end="url(#story-arrow-7-violet)"/><text x="902" y="1150" text-anchor="middle" class="tiny">Call 4: generate insight and chart title</text>
-              <circle cx="1067" cy="1194" r="9" fill="#344054"/><text x="1067" y="1198" text-anchor="middle" class="tiny white-text">22</text>
-              <path d="M1067 1194 H737" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="902" y="1183" text-anchor="middle" class="tiny">2-3 sentence insight and chart title</text>
-              <circle cx="737" cy="1226" r="9" fill="#344054"/><text x="737" y="1230" text-anchor="middle" class="tiny white-text">23</text>
-              <path d="M737 1226 H1440" fill="none" stroke="#b42318" stroke-width="1.8" marker-end="url(#story-arrow-7-rose)"/><text x="1090" y="1215" text-anchor="middle" class="tiny">write audit log and engineer log</text>
-
-              <circle cx="737" cy="1266" r="9" fill="#344054"/><text x="737" y="1270" text-anchor="middle" class="tiny white-text">24</text>
-              <path d="M737 1266 H472" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="610" y="1255" text-anchor="middle" class="tiny">returns insight, chart, cost, and verdict</text>
-              <circle cx="472" cy="1308" r="9" fill="#344054"/><text x="472" y="1312" text-anchor="middle" class="tiny white-text">25</text>
-              <path d="M472 1308 H104" fill="none" stroke="#344054" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#story-arrow-7)"/><text x="290" y="1297" text-anchor="middle" class="tiny">renders answer, chart, and cost in browser</text>
+              <circle cx="537" cy="1088" r="9" fill="#344054"/><text x="537" y="1092" text-anchor="middle" class="tiny white-text">24</text>
+              <path d="M817 1088 H537" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="675" y="1074" text-anchor="middle" class="tiny">returns insight, chart, cost, verdict</text>
+              <circle cx="125" cy="1134" r="9" fill="#344054"/><text x="125" y="1138" text-anchor="middle" class="tiny white-text">25</text>
+              <path d="M537 1134 H125" fill="none" stroke="#344054" stroke-width="1.2" stroke-dasharray="5 5" marker-end="url(#story-arrow-9)"/><text x="330" y="1120" text-anchor="middle" class="tiny">renders answer, chart, and cost in browser</text>
             </svg>
           </div>
         </article>
 
         <article class="story-card" id="story-iam">
           <div class="story-head">
-            <div class="story-number">8</div>
+            <div class="story-number">10</div>
             <div>
               <h3>Least privilege by service</h3>
               <p>Each box says what that service is allowed to read, write, or start. Anything not listed is intentionally outside that service boundary.</p>
@@ -1058,78 +1030,24 @@
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-iam">Full screen</button><a class="story-action" href="#story-agent" data-jump="story-agent">Prev</a><a class="story-action" href="#walkthrough" data-jump="walkthrough">Top</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 760" role="img" aria-label="Least privilege by service">
-              <rect width="1320" height="760" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">IAM: every service gets only the access needed for its job</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">Authentication identifies the caller. Authorization is the permission list shown below.</text>
-
-              <rect class="node node-blue" x="45" y="125" width="285" height="112" rx="22"/>
-              <text x="187" y="158" text-anchor="middle" class="title">Source simulator ECS</text>
-              <text x="187" y="186" text-anchor="middle" class="sub">Can read the database credential from SSM</text>
-              <text x="187" y="210" text-anchor="middle" class="sub">Can connect to source RDS on PostgreSQL port</text>
-
-              <rect class="node node-amber" x="365" y="125" width="285" height="112" rx="22"/>
-              <text x="507" y="158" text-anchor="middle" class="title">DMS</text>
-              <text x="507" y="186" text-anchor="middle" class="sub">Can read from the source database endpoint</text>
-              <text x="507" y="210" text-anchor="middle" class="sub">Can write raw files only to Bronze</text>
-
-              <rect class="node" x="685" y="125" width="285" height="112" rx="22"/>
-              <text x="827" y="158" text-anchor="middle" class="title">Glue Silver jobs</text>
-              <text x="827" y="186" text-anchor="middle" class="sub">Can read from Bronze</text>
-              <text x="827" y="210" text-anchor="middle" class="sub">Can write to Silver and Quarantine</text>
-
-              <rect class="node node-gold" x="1005" y="125" width="285" height="112" rx="22"/>
-              <text x="1147" y="158" text-anchor="middle" class="title">run_dbt Glue job</text>
-              <text x="1147" y="186" text-anchor="middle" class="sub">Can read Silver and dbt project files</text>
-              <text x="1147" y="210" text-anchor="middle" class="sub">Can write Gold and dbt metadata</text>
-
-              <rect class="node node-violet" x="45" y="295" width="285" height="112" rx="22"/>
-              <text x="187" y="328" text-anchor="middle" class="title">Step Functions</text>
-              <text x="187" y="356" text-anchor="middle" class="sub">Can start and check Glue jobs</text>
-              <text x="187" y="380" text-anchor="middle" class="sub">Can start crawler and row-count Lambda</text>
-
-              <rect class="node node-violet" x="365" y="295" width="285" height="112" rx="22"/>
-              <text x="507" y="328" text-anchor="middle" class="title">MWAA Airflow</text>
-              <text x="507" y="356" text-anchor="middle" class="sub">Can read DAG and dbt project artifacts</text>
-              <text x="507" y="380" text-anchor="middle" class="sub">Can start Glue jobs, crawler, and Athena</text>
-
-              <rect class="node node-gold" x="685" y="295" width="285" height="112" rx="22"/>
-              <text x="827" y="328" text-anchor="middle" class="title">Athena workgroup</text>
-              <text x="827" y="356" text-anchor="middle" class="sub">Can read tables through Glue Catalog</text>
-              <text x="827" y="380" text-anchor="middle" class="sub">Can write query results to results bucket</text>
-
-              <rect class="node node-gold" x="1005" y="295" width="285" height="112" rx="22"/>
-              <text x="1147" y="328" text-anchor="middle" class="title">Analytics Agent</text>
-              <text x="1147" y="356" text-anchor="middle" class="sub">Can read Gold and Silver tables</text>
-              <text x="1147" y="380" text-anchor="middle" class="sub">Can write audit logs and chart files</text>
-
-              <rect class="node node-teal" x="45" y="465" width="285" height="112" rx="22"/>
-              <text x="187" y="498" text-anchor="middle" class="title">Claude Platform on AWS</text>
-              <text x="187" y="526" text-anchor="middle" class="sub">Agent can call only the configured workspace</text>
-              <text x="187" y="550" text-anchor="middle" class="sub">Used for SQL, intent check, and insight</text>
-
-              <rect class="node node-teal" x="365" y="465" width="285" height="112" rx="22"/>
-              <text x="507" y="498" text-anchor="middle" class="title">Analytics Web</text>
-              <text x="507" y="526" text-anchor="middle" class="sub">No permission to read lake buckets</text>
-              <text x="507" y="550" text-anchor="middle" class="sub">Can proxy browser calls to the agent</text>
-
-              <rect class="node node-teal" x="685" y="465" width="285" height="112" rx="22"/>
-              <text x="827" y="498" text-anchor="middle" class="title">Slack gateway</text>
-              <text x="827" y="526" text-anchor="middle" class="sub">No permission to read lake buckets</text>
-              <text x="827" y="550" text-anchor="middle" class="sub">Can call the Analytics Agent API</text>
-
-              <rect class="node node-rose" x="1005" y="465" width="285" height="112" rx="22"/>
-              <text x="1147" y="498" text-anchor="middle" class="title">Redshift serving</text>
-              <text x="1147" y="526" text-anchor="middle" class="sub">Can read Silver and Gold from S3</text>
-              <text x="1147" y="550" text-anchor="middle" class="sub">Can read table definitions from Catalog</text>
-
-              <rect class="node node-rose" x="220" y="635" width="285" height="76" rx="22"/>
-              <text x="362" y="665" text-anchor="middle" class="title">Public logs</text>
-              <text x="362" y="689" text-anchor="middle" class="sub">Show summaries, not identifiers or URLs</text>
-
-              <rect class="node node-dark" x="815" y="635" width="285" height="76" rx="22"/>
-              <text x="957" y="665" text-anchor="middle" class="title white-text">Destroy</text>
-              <text x="957" y="689" text-anchor="middle" class="sub white-text">Runtime services removed after session</text>
+            <svg viewBox="0 0 1320 820" role="img" aria-label="Least privilege by service">
+              <rect width="1320" height="820" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">IAM: permissions are separated by service responsibility</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Authentication identifies the caller. Authorization is the list of allowed actions shown in each box.</text>
+              <rect class="node node-blue" x="45" y="125" width="285" height="112" rx="22"/><text x="187" y="158" text-anchor="middle" class="title">Source simulator ECS</text><text x="187" y="186" text-anchor="middle" class="sub">Can read database connection config</text><text x="187" y="210" text-anchor="middle" class="sub">Can connect only to source RDS</text>
+              <rect class="node node-amber" x="365" y="125" width="285" height="112" rx="22"/><text x="507" y="158" text-anchor="middle" class="title">DMS</text><text x="507" y="186" text-anchor="middle" class="sub">Can read the source database stream</text><text x="507" y="210" text-anchor="middle" class="sub">Can write raw CDC files only to Bronze</text>
+              <rect class="node" x="685" y="125" width="285" height="112" rx="22"/><text x="827" y="158" text-anchor="middle" class="title">Glue Silver jobs</text><text x="827" y="186" text-anchor="middle" class="sub">Can read Bronze raw files</text><text x="827" y="210" text-anchor="middle" class="sub">Can write Silver and Quarantine</text>
+              <rect class="node node-gold" x="1005" y="125" width="285" height="112" rx="22"/><text x="1147" y="158" text-anchor="middle" class="title">run_dbt Glue job</text><text x="1147" y="186" text-anchor="middle" class="sub">Can read Silver and dbt project files</text><text x="1147" y="210" text-anchor="middle" class="sub">Can write Gold tables and dbt metadata</text>
+              <rect class="node node-violet" x="45" y="295" width="285" height="112" rx="22"/><text x="187" y="328" text-anchor="middle" class="title">Step Functions</text><text x="187" y="356" text-anchor="middle" class="sub">Can start Glue jobs and crawler</text><text x="187" y="380" text-anchor="middle" class="sub">Can invoke row-count Lambda</text>
+              <rect class="node node-violet" x="365" y="295" width="285" height="112" rx="22"/><text x="507" y="328" text-anchor="middle" class="title">MWAA Airflow</text><text x="507" y="356" text-anchor="middle" class="sub">Can read DAG and dbt artifacts</text><text x="507" y="380" text-anchor="middle" class="sub">Can start Glue, crawler, and Athena</text>
+              <rect class="node node-gold" x="685" y="295" width="285" height="112" rx="22"/><text x="827" y="328" text-anchor="middle" class="title">Athena workgroup</text><text x="827" y="356" text-anchor="middle" class="sub">Can read Catalog table definitions</text><text x="827" y="380" text-anchor="middle" class="sub">Can write query results to results path</text>
+              <rect class="node node-gold" x="1005" y="295" width="285" height="112" rx="22"/><text x="1147" y="328" text-anchor="middle" class="title">Analytics Agent</text><text x="1147" y="356" text-anchor="middle" class="sub">Can query Gold through Athena</text><text x="1147" y="380" text-anchor="middle" class="sub">Can write audit evidence and charts</text>
+              <rect class="node node-teal" x="45" y="465" width="285" height="112" rx="22"/><text x="187" y="498" text-anchor="middle" class="title">Claude Platform on AWS</text><text x="187" y="526" text-anchor="middle" class="sub">Agent can call configured workspace</text><text x="187" y="550" text-anchor="middle" class="sub">Used for SQL, intent check, insight</text>
+              <rect class="node node-teal" x="365" y="465" width="285" height="112" rx="22"/><text x="507" y="498" text-anchor="middle" class="title">Analytics Web</text><text x="507" y="526" text-anchor="middle" class="sub">No permission to read lake buckets</text><text x="507" y="550" text-anchor="middle" class="sub">Can proxy browser calls to the agent</text>
+              <rect class="node node-teal" x="685" y="465" width="285" height="112" rx="22"/><text x="827" y="498" text-anchor="middle" class="title">Slack gateway</text><text x="827" y="526" text-anchor="middle" class="sub">No permission to read lake buckets</text><text x="827" y="550" text-anchor="middle" class="sub">Can call the Analytics Agent API</text>
+              <rect class="node node-rose" x="1005" y="465" width="285" height="112" rx="22"/><text x="1147" y="498" text-anchor="middle" class="title">Redshift serving</text><text x="1147" y="526" text-anchor="middle" class="sub">Can read Silver and Gold from S3</text><text x="1147" y="550" text-anchor="middle" class="sub">Can read table definitions from Catalog</text>
+              <rect class="node node-rose" x="220" y="650" width="285" height="76" rx="22"/><text x="362" y="680" text-anchor="middle" class="title">Public logs</text><text x="362" y="704" text-anchor="middle" class="sub">Show summaries, not identifiers or URLs</text>
+              <rect class="node node-dark" x="815" y="650" width="285" height="76" rx="22"/><text x="957" y="680" text-anchor="middle" class="title white-text">Destroy</text><text x="957" y="704" text-anchor="middle" class="sub white-text">Runtime services removed after session</text>
             </svg>
           </div>
         </article>
