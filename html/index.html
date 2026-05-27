@@ -868,38 +868,35 @@
             <svg viewBox="0 0 1320 620" role="img" aria-label="Pipeline orchestration paths">
               <defs><marker id="story-arrow-7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker></defs>
               <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: same pipeline stages, two runners</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The work is the same. The difference is the runner: Step Functions for fast sessions, MWAA when showing Airflow parity.</text>
-              <rect class="node node-violet" x="55" y="255" width="155" height="78" rx="22"/><text x="132" y="286" text-anchor="middle" class="title">Session Start</text><text x="132" y="310" text-anchor="middle" class="sub">trigger</text>
+              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: one pipeline, two runners</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The ordered work is the same. Step Functions is compact for short sessions; MWAA shows the same stages as an Airflow DAG.</text>
 
-              <rect x="285" y="125" width="455" height="360" rx="30" fill="#f5edff" stroke="#c4a1ff"/>
-              <text x="512" y="164" text-anchor="middle" class="title">Step Functions default runner</text>
-              <text x="512" y="190" text-anchor="middle" class="sub">starts AWS jobs directly</text>
-              <rect class="node node-violet" x="325" y="235" width="150" height="54" rx="16"/><text x="400" y="268" text-anchor="middle" class="small-title">6 Silver jobs</text>
-              <rect class="node node-blue" x="535" y="235" width="150" height="54" rx="16"/><text x="610" y="268" text-anchor="middle" class="small-title">Catalog crawler</text>
-              <rect class="node node-rose" x="325" y="335" width="150" height="54" rx="16"/><text x="400" y="368" text-anchor="middle" class="small-title">row-count check</text>
-              <rect class="node node-gold" x="535" y="335" width="150" height="54" rx="16"/><text x="610" y="368" text-anchor="middle" class="small-title">run_dbt job</text>
-              <text x="610" y="417" text-anchor="middle" class="tiny">inside run_dbt: freshness, dbt run, dbt test, docs</text>
+              <rect class="node node-violet" x="55" y="265" width="150" height="76" rx="22"/><text x="130" y="296" text-anchor="middle" class="title">Session Start</text><text x="130" y="320" text-anchor="middle" class="sub">GitHub workflow</text>
+              <rect x="260" y="118" width="1010" height="360" rx="30" fill="#f8fbff" stroke="#d5e0ef"/>
+              <text x="765" y="158" text-anchor="middle" class="title">Same logical pipeline stages</text>
+              <text x="765" y="184" text-anchor="middle" class="sub">Both runners clean Bronze, refresh the Catalog, build Gold, validate rows, run tests, and publish metadata.</text>
 
-              <rect x="815" y="125" width="455" height="360" rx="30" fill="#eef7ff" stroke="#93c5fd"/>
-              <text x="1042" y="164" text-anchor="middle" class="title">MWAA Airflow runner</text>
-              <text x="1042" y="190" text-anchor="middle" class="sub">same stages expressed as DAG tasks</text>
-              <rect class="node node-blue" x="855" y="235" width="150" height="54" rx="16"/><text x="930" y="268" text-anchor="middle" class="small-title">6 Silver tasks</text>
-              <rect class="node node-blue" x="1065" y="235" width="150" height="54" rx="16"/><text x="1140" y="268" text-anchor="middle" class="small-title">Catalog crawler</text>
-              <rect class="node node-gold" x="855" y="335" width="150" height="54" rx="16"/><text x="930" y="368" text-anchor="middle" class="small-title">dbt run</text>
-              <rect class="node node-gold" x="1065" y="335" width="150" height="54" rx="16"/><text x="1140" y="368" text-anchor="middle" class="small-title">dbt test</text>
-              <text x="1042" y="417" text-anchor="middle" class="tiny">Airflow task names differ, but the data result should match</text>
+              <rect class="node node-violet" x="300" y="250" width="120" height="72" rx="16"/><text x="360" y="277" text-anchor="middle" class="small-title">6 Silver jobs</text><text x="360" y="298" text-anchor="middle" class="tiny">clean Bronze</text>
+              <rect class="node node-rose" x="455" y="250" width="135" height="72" rx="16"/><text x="522" y="277" text-anchor="middle" class="small-title">row-count check</text><text x="522" y="298" text-anchor="middle" class="tiny">fail empty tables</text>
+              <rect class="node node-blue" x="625" y="250" width="135" height="72" rx="16"/><text x="692" y="277" text-anchor="middle" class="small-title">Catalog crawler</text><text x="692" y="298" text-anchor="middle" class="tiny">refresh schemas</text>
+              <rect class="node node-gold" x="795" y="250" width="135" height="72" rx="16"/><text x="862" y="277" text-anchor="middle" class="small-title">freshness gate</text><text x="862" y="298" text-anchor="middle" class="tiny">dbt source test</text>
+              <rect class="node node-gold" x="965" y="250" width="120" height="72" rx="16"/><text x="1025" y="277" text-anchor="middle" class="small-title">dbt run</text><text x="1025" y="298" text-anchor="middle" class="tiny">build Gold</text>
+              <rect class="node node-rose" x="1120" y="250" width="120" height="72" rx="16"/><text x="1180" y="277" text-anchor="middle" class="small-title">Gold checks</text><text x="1180" y="298" text-anchor="middle" class="tiny">counts, tests, docs</text>
 
-              <path d="M210 294 H285" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-7)"/>
-              <path d="M475 262 H535" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
-              <path d="M610 289 V335" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
-              <path d="M535 362 H475" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
-              <path d="M1005 262 H1065" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
-              <path d="M1140 289 V335" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
-              <path d="M1005 362 H1065" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
-              <path d="M210 326 C430 555 1010 555 1042 485" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#story-arrow-7)"/>
-              <text x="512" y="535" text-anchor="middle" class="sub">Default path: faster for short demo sessions.</text>
-              <text x="1042" y="535" text-anchor="middle" class="sub">Parity path: proves the same pipeline can run in Airflow.</text>
+              <path d="M205 303 H300" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-7)"/>
+              <path d="M420 286 H455" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M590 286 H625" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M760 286 H795" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M930 286 H965" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M1085 286 H1120" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+
+              <rect class="node node-violet" x="315" y="390" width="360" height="60" rx="17"/><text x="495" y="414" text-anchor="middle" class="small-title">Step Functions default runner</text><text x="495" y="434" text-anchor="middle" class="tiny">starts Glue, Lambda, Crawler, and run_dbt directly</text>
+              <rect class="node node-blue" x="855" y="390" width="360" height="60" rx="17"/><text x="1035" y="414" text-anchor="middle" class="small-title">MWAA Airflow runner</text><text x="1035" y="434" text-anchor="middle" class="tiny">runs the same stages as Airflow task dependencies</text>
+              <path d="M360 322 V390" fill="none" stroke="#6d28d9" stroke-width="1.8" stroke-dasharray="7 7"/>
+              <path d="M1180 322 V390" fill="none" stroke="#6d28d9" stroke-width="1.8" stroke-dasharray="7 7"/>
+
+              <rect class="node node-blue" x="330" y="505" width="280" height="62" rx="18"/><text x="470" y="530" text-anchor="middle" class="small-title">Catalog crawler</text><text x="470" y="550" text-anchor="middle" class="tiny">updates Glue Catalog so Athena/dbt can see Silver tables</text>
+              <rect class="node node-rose" x="710" y="505" width="310" height="62" rx="18"/><text x="865" y="530" text-anchor="middle" class="small-title">row-count check</text><text x="865" y="550" text-anchor="middle" class="tiny">fails the run if tables are empty, missing, or lose too many rows</text>
             </svg>
           </div>
         </article>
@@ -923,28 +920,28 @@
               <text x="44" y="52" class="title" style="font-size:24px">Access: three entry points, one governed analytics backend</text>
               <text x="44" y="80" class="sub" style="font-size:14px">The entry-point services are deliberately thin. They pass questions to the agent instead of reading lake data.</text>
 
-              <rect class="node node-teal" x="55" y="165" width="150" height="76" rx="22"/><text x="130" y="196" text-anchor="middle" class="title">Browser user</text><text x="130" y="220" text-anchor="middle" class="sub">opens app</text>
-              <rect class="node node-teal" x="55" y="410" width="150" height="76" rx="22"/><text x="130" y="441" text-anchor="middle" class="title">Slack user</text><text x="130" y="465" text-anchor="middle" class="sub">asks in Slack</text>
-              <rect class="node node-teal" x="260" y="250" width="150" height="86" rx="22"/><text x="335" y="284" text-anchor="middle" class="title">ALB</text><text x="335" y="309" text-anchor="middle" class="sub">browser entry</text>
+              <rect class="node node-teal" x="60" y="170" width="150" height="76" rx="22"/><text x="135" y="201" text-anchor="middle" class="title">Browser user</text><text x="135" y="225" text-anchor="middle" class="sub">opens app</text>
+              <rect class="node node-teal" x="60" y="420" width="150" height="76" rx="22"/><text x="135" y="451" text-anchor="middle" class="title">Slack user</text><text x="135" y="475" text-anchor="middle" class="sub">asks in Slack</text>
+              <rect class="node node-teal" x="285" y="255" width="150" height="86" rx="22"/><text x="360" y="289" text-anchor="middle" class="title">ALB</text><text x="360" y="314" text-anchor="middle" class="sub">browser entry</text>
 
-              <rect class="node node-blue" x="515" y="145" width="210" height="86" rx="22"/><text x="620" y="177" text-anchor="middle" class="title">Analytics Web</text><text x="620" y="202" text-anchor="middle" class="sub">HTML app, proxies API</text>
-              <rect class="node node-violet" x="515" y="285" width="210" height="86" rx="22"/><text x="620" y="317" text-anchor="middle" class="title">Streamlit UI</text><text x="620" y="342" text-anchor="middle" class="sub">same task as FastAPI</text>
-              <rect class="node node-teal" x="515" y="425" width="210" height="86" rx="22"/><text x="620" y="457" text-anchor="middle" class="title">Slack gateway</text><text x="620" y="482" text-anchor="middle" class="sub">calls agent endpoint</text>
+              <rect class="node node-blue" x="560" y="145" width="210" height="86" rx="22"/><text x="665" y="177" text-anchor="middle" class="title">Analytics Web</text><text x="665" y="202" text-anchor="middle" class="sub">HTML app, proxies API</text>
+              <rect class="node node-violet" x="560" y="285" width="210" height="86" rx="22"/><text x="665" y="317" text-anchor="middle" class="title">Streamlit UI</text><text x="665" y="342" text-anchor="middle" class="sub">same task as FastAPI</text>
+              <rect class="node node-teal" x="560" y="425" width="210" height="86" rx="22"/><text x="665" y="457" text-anchor="middle" class="title">Slack gateway</text><text x="665" y="482" text-anchor="middle" class="sub">calls agent endpoint</text>
 
-              <rect x="840" y="240" width="235" height="170" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
-              <text x="957" y="277" text-anchor="middle" class="title">Analytics Agent</text>
-              <rect class="node node-violet" x="880" y="320" width="155" height="58" rx="16"/><text x="957" y="355" text-anchor="middle" class="small-title">FastAPI 8080</text>
-              <text x="957" y="394" text-anchor="middle" class="tiny">only service that queries Gold</text>
-              <rect class="node node-gold" x="1140" y="275" width="140" height="98" rx="22"/><text x="1210" y="313" text-anchor="middle" class="title">Gold marts</text><text x="1210" y="340" text-anchor="middle" class="sub">Athena query</text>
+              <rect x="895" y="245" width="230" height="170" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
+              <text x="1010" y="282" text-anchor="middle" class="title">Analytics Agent</text>
+              <rect class="node node-violet" x="930" y="325" width="160" height="58" rx="16"/><text x="1010" y="360" text-anchor="middle" class="small-title">FastAPI 8080</text>
+              <text x="1010" y="399" text-anchor="middle" class="tiny">only service that queries Gold</text>
+              <rect class="node node-gold" x="1165" y="280" width="130" height="98" rx="22"/><text x="1230" y="318" text-anchor="middle" class="title">Gold marts</text><text x="1230" y="345" text-anchor="middle" class="sub">Athena query</text>
 
-              <path d="M205 203 H260" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/>
-              <path d="M410 286 C455 220 475 188 515 188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="460" y="221" text-anchor="middle" class="tiny">HTML</text>
-              <path d="M410 300 H515" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="462" y="284" text-anchor="middle" class="tiny">Streamlit</text>
-              <path d="M205 448 H515" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/><text x="355" y="430" text-anchor="middle" class="tiny">Slack app event</text>
-              <path d="M725 188 C775 220 805 274 840 330" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="785" y="245" text-anchor="middle" class="tiny">proxied question</text>
-              <path d="M725 328 H840" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="782" y="310" text-anchor="middle" class="tiny">local call</text>
-              <path d="M725 468 C790 450 815 390 840 350" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="785" y="433" text-anchor="middle" class="tiny">agent API</text>
-              <path d="M1075 325 H1140" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-8-gold)"/><text x="1108" y="307" text-anchor="middle" class="tiny">read only</text>
+              <path d="M210 208 C250 208 245 298 285 298" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/>
+              <path d="M435 290 C495 235 505 188 560 188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="505" y="230" text-anchor="middle" class="tiny">HTML</text>
+              <path d="M435 312 C485 328 515 328 560 328" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="500" y="309" text-anchor="middle" class="tiny">Streamlit</text>
+              <path d="M210 458 H560" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/><text x="382" y="440" text-anchor="middle" class="tiny">Slack app event</text>
+              <path d="M770 188 C840 210 865 288 895 322" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="830" y="255" text-anchor="middle" class="tiny">proxied question</text>
+              <path d="M770 328 H895" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="832" y="310" text-anchor="middle" class="tiny">local call</text>
+              <path d="M770 468 C835 460 865 384 895 350" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="838" y="434" text-anchor="middle" class="tiny">agent API</text>
+              <path d="M1125 329 H1165" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-8-gold)"/><text x="1145" y="311" text-anchor="middle" class="tiny">read only</text>
               <text x="660" y="575" text-anchor="middle" class="sub">Permission boundary: web, Streamlit, and Slack collect questions. The Analytics Agent owns the governed Gold query.</text>
             </svg>
           </div>
