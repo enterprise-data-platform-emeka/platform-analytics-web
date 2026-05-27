@@ -168,17 +168,13 @@
       transition: stroke .16s ease, stroke-width .16s ease, filter .16s ease;
     }
     .story-card svg path[marker-end]:hover,
-    .story-card svg path[stroke-dasharray]:hover,
-    .story-card svg:hover path[marker-end],
-    .story-card svg:hover path[stroke-dasharray] {
+    .story-card svg path[stroke-dasharray]:hover {
       stroke: var(--blue);
       stroke-width: 2.6;
       stroke-dasharray: 13 8;
       animation: dash 800ms linear infinite;
       filter: drop-shadow(0 0 5px rgba(37,99,235,.42));
     }
-    #story-agent svg:hover path[marker-end],
-    #story-agent svg:hover path[stroke-dasharray],
     #story-agent svg path[marker-end]:hover,
     #story-agent svg path[stroke-dasharray]:hover {
       stroke-width: 2.1;
@@ -816,36 +812,45 @@
             <div class="story-number">6</div>
             <div>
               <h3>Gold modeling with dbt and Athena</h3>
-              <p>dbt builds business mart tables from Silver, validates the row counts, runs tests, and writes documentation artifacts the agent later uses for better answers.</p>
+              <p>Gold tables are curated answer tables for common business questions. dbt builds them from Silver, tests them, and publishes metadata the agent uses to explain answers.</p>
             </div>
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-gold">Full screen</button><a class="story-action" href="#story-star-schema" data-jump="story-star-schema">Prev</a><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 600" role="img" aria-label="Gold modeling with dbt and Athena">
+            <svg viewBox="0 0 1320 660" role="img" aria-label="Gold modeling with dbt and Athena">
               <defs><marker id="story-arrow-6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker></defs>
-              <rect width="1320" height="600" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Gold: dbt turns Silver facts into business marts</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">Gold is where questions become fast and consistent because the common business calculations are already modeled.</text>
+              <rect width="1320" height="660" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Gold: each mart is built to answer a business question</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">Silver is a reusable model. Gold is the answer layer: pre-modeled tables for revenue, customers, products, payments, and delivery.</text>
 
-              <rect class="node" x="70" y="260" width="180" height="88" rx="22"/><text x="160" y="295" text-anchor="middle" class="title">S3 Silver</text><text x="160" y="321" text-anchor="middle" class="sub">star schema tables</text>
-              <rect class="node node-amber" x="70" y="385" width="180" height="88" rx="22"/><text x="160" y="420" text-anchor="middle" class="title">dbt project</text><text x="160" y="446" text-anchor="middle" class="sub">models and docs</text>
+              <rect class="node" x="45" y="250" width="165" height="82" rx="22"/><text x="127" y="282" text-anchor="middle" class="title">S3 Silver</text><text x="127" y="307" text-anchor="middle" class="sub">star schema</text>
+              <rect class="node node-amber" x="45" y="365" width="165" height="82" rx="22"/><text x="127" y="397" text-anchor="middle" class="title">dbt project</text><text x="127" y="422" text-anchor="middle" class="sub">business logic</text>
 
-              <rect x="375" y="145" width="420" height="340" rx="28" fill="#fff9e8" stroke="#f5bd4f"/>
-              <text x="585" y="184" text-anchor="middle" class="title">run_dbt Glue Python Shell</text>
-              <rect class="node node-gold" x="420" y="230" width="145" height="58" rx="16"/><text x="492" y="265" text-anchor="middle" class="small-title">dbt deps</text>
-              <rect class="node node-gold" x="610" y="230" width="145" height="58" rx="16"/><text x="682" y="265" text-anchor="middle" class="small-title">freshness gate</text>
-              <rect class="node node-gold" x="420" y="320" width="145" height="58" rx="16"/><text x="492" y="355" text-anchor="middle" class="small-title">dbt run</text>
-              <rect class="node node-gold" x="610" y="320" width="145" height="58" rx="16"/><text x="682" y="355" text-anchor="middle" class="small-title">row-count check</text>
-              <rect class="node node-gold" x="420" y="410" width="145" height="58" rx="16"/><text x="492" y="445" text-anchor="middle" class="small-title">dbt test</text>
-              <rect class="node node-gold" x="610" y="410" width="145" height="58" rx="16"/><text x="682" y="445" text-anchor="middle" class="small-title">docs artifacts</text>
+              <rect x="290" y="130" width="315" height="392" rx="28" fill="#fff9e8" stroke="#f5bd4f"/>
+              <text x="447" y="166" text-anchor="middle" class="title">run_dbt job</text>
+              <rect class="node node-gold" x="325" y="205" width="110" height="50" rx="15"/><text x="380" y="236" text-anchor="middle" class="small-title">dbt deps</text>
+              <rect class="node node-gold" x="465" y="205" width="110" height="50" rx="15"/><text x="520" y="236" text-anchor="middle" class="small-title">freshness</text>
+              <rect class="node node-gold" x="325" y="285" width="110" height="50" rx="15"/><text x="380" y="316" text-anchor="middle" class="small-title">dbt run</text>
+              <rect class="node node-gold" x="465" y="285" width="110" height="50" rx="15"/><text x="520" y="316" text-anchor="middle" class="small-title">row count</text>
+              <rect class="node node-gold" x="325" y="365" width="110" height="50" rx="15"/><text x="380" y="396" text-anchor="middle" class="small-title">dbt test</text>
+              <rect class="node node-gold" x="465" y="365" width="110" height="50" rx="15"/><text x="520" y="396" text-anchor="middle" class="small-title">docs</text>
 
-              <rect class="node node-gold" x="920" y="210" width="250" height="96" rx="24"/><text x="1045" y="248" text-anchor="middle" class="title">S3 Gold</text><text x="1045" y="275" text-anchor="middle" class="sub">business mart tables</text>
-              <rect class="node node-amber" x="920" y="370" width="250" height="96" rx="24"/><text x="1045" y="408" text-anchor="middle" class="title">dbt metadata</text><text x="1045" y="435" text-anchor="middle" class="sub">manifest and catalog</text>
-              <path d="M250 304 H375" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
-              <path d="M250 429 H375" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
-              <path d="M795 258 H920" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
-              <path d="M795 418 H920" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-6)"/>
-              <text x="660" y="545" text-anchor="middle" class="sub">Permission boundary: the dbt job reads Silver and dbt project files, then writes Gold tables and dbt metadata.</text>
+              <rect x="705" y="115" width="555" height="430" rx="30" fill="#fff7e6" stroke="#f5bd4f"/>
+              <text x="982" y="151" text-anchor="middle" class="title">S3 Gold: business question answer tables</text>
+              <rect class="node node-gold" x="735" y="195" width="220" height="62" rx="17"/><text x="845" y="220" text-anchor="middle" class="small-title">monthly_revenue_trend</text><text x="845" y="240" text-anchor="middle" class="tiny">How is revenue trending?</text>
+              <rect class="node node-gold" x="985" y="195" width="220" height="62" rx="17"/><text x="1095" y="220" text-anchor="middle" class="small-title">revenue_by_country</text><text x="1095" y="240" text-anchor="middle" class="tiny">Which countries drive revenue?</text>
+              <rect class="node node-gold" x="735" y="280" width="220" height="62" rx="17"/><text x="845" y="305" text-anchor="middle" class="small-title">customer_segments</text><text x="845" y="325" text-anchor="middle" class="tiny">Who are our customer groups?</text>
+              <rect class="node node-gold" x="985" y="280" width="220" height="62" rx="17"/><text x="1095" y="305" text-anchor="middle" class="small-title">payment_method_performance</text><text x="1095" y="325" text-anchor="middle" class="tiny">How do payment types perform?</text>
+              <rect class="node node-gold" x="735" y="365" width="220" height="62" rx="17"/><text x="845" y="390" text-anchor="middle" class="small-title">top_selling_products</text><text x="845" y="410" text-anchor="middle" class="tiny">What products sell most?</text>
+              <rect class="node node-gold" x="985" y="365" width="220" height="62" rx="17"/><text x="1095" y="390" text-anchor="middle" class="small-title">category_performance</text><text x="1095" y="410" text-anchor="middle" class="tiny">Which categories perform best?</text>
+              <rect class="node node-gold" x="860" y="450" width="220" height="62" rx="17"/><text x="970" y="475" text-anchor="middle" class="small-title">carrier_delivery_performance</text><text x="970" y="495" text-anchor="middle" class="tiny">How well do carriers deliver?</text>
+
+              <rect class="node node-amber" x="290" y="555" width="315" height="62" rx="18"/><text x="447" y="580" text-anchor="middle" class="small-title">dbt metadata for the agent</text><text x="447" y="600" text-anchor="middle" class="tiny">manifest, catalog, table descriptions</text>
+              <path d="M210 291 H290" fill="none" stroke="#ca8a04" stroke-width="2.3" marker-end="url(#story-arrow-6)"/>
+              <path d="M210 406 H290" fill="none" stroke="#ca8a04" stroke-width="2.3" marker-end="url(#story-arrow-6)"/>
+              <path d="M605 326 H705" fill="none" stroke="#ca8a04" stroke-width="2.3" marker-end="url(#story-arrow-6)"/>
+              <path d="M447 522 V555" fill="none" stroke="#ca8a04" stroke-width="2.1" marker-end="url(#story-arrow-6)"/>
+              <text x="660" y="640" text-anchor="middle" class="sub">Permission boundary: the dbt job reads Silver and dbt project files, then writes Gold answer tables and dbt metadata.</text>
             </svg>
           </div>
         </article>
@@ -855,39 +860,46 @@
             <div class="story-number">7</div>
             <div>
               <h3>Orchestration paths</h3>
-              <p>Step Functions is the default fast session path. MWAA proves the same pipeline can run as an Airflow DAG when the Airflow route needs to be demonstrated.</p>
+              <p>Both orchestrators run the same logical pipeline. Step Functions starts AWS jobs directly for quick sessions. MWAA expresses the same stages as Airflow tasks.</p>
             </div>
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-orchestration">Full screen</button><a class="story-action" href="#story-gold" data-jump="story-gold">Prev</a><a class="story-action" href="#story-access" data-jump="story-access">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 560" role="img" aria-label="Pipeline orchestration paths">
+            <svg viewBox="0 0 1320 620" role="img" aria-label="Pipeline orchestration paths">
               <defs><marker id="story-arrow-7" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#6d28d9"/></marker></defs>
-              <rect width="1320" height="560" rx="30" fill="#fbfdff"/>
-              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: default fast path and Airflow parity path</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">Both paths run the same idea: Silver first, Catalog refresh, validation, then Gold.</text>
-              <rect class="node node-violet" x="70" y="245" width="185" height="86" rx="22"/><text x="162" y="280" text-anchor="middle" class="title">Session Start</text><text x="162" y="306" text-anchor="middle" class="sub">workflow</text>
-              <rect x="360" y="125" width="390" height="310" rx="30" fill="#f5edff" stroke="#c4a1ff"/>
-              <text x="555" y="163" text-anchor="middle" class="title">Step Functions default</text>
-              <rect class="node node-violet" x="400" y="215" width="155" height="58" rx="16"/><text x="477" y="250" text-anchor="middle" class="small-title">6 Silver jobs</text>
-              <rect class="node node-blue" x="600" y="215" width="120" height="58" rx="16"/><text x="660" y="250" text-anchor="middle" class="small-title">Crawler</text>
-              <rect class="node node-rose" x="400" y="320" width="155" height="58" rx="16"/><text x="477" y="355" text-anchor="middle" class="small-title">Lambda check</text>
-              <rect class="node node-gold" x="600" y="320" width="120" height="58" rx="16"/><text x="660" y="355" text-anchor="middle" class="small-title">run_dbt</text>
-              <rect x="860" y="125" width="390" height="310" rx="30" fill="#eef7ff" stroke="#93c5fd"/>
-              <text x="1055" y="163" text-anchor="middle" class="title">MWAA Airflow validation</text>
-              <rect class="node node-blue" x="900" y="215" width="155" height="58" rx="16"/><text x="977" y="250" text-anchor="middle" class="small-title">6 DAG tasks</text>
-              <rect class="node node-blue" x="1100" y="215" width="120" height="58" rx="16"/><text x="1160" y="250" text-anchor="middle" class="small-title">Crawler</text>
-              <rect class="node node-gold" x="900" y="320" width="155" height="58" rx="16"/><text x="977" y="355" text-anchor="middle" class="small-title">dbt run</text>
-              <rect class="node node-gold" x="1100" y="320" width="120" height="58" rx="16"/><text x="1160" y="355" text-anchor="middle" class="small-title">dbt test</text>
-              <path d="M255 288 H360" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M555 244 H600" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M660 273 V320" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M600 349 H555" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M1055 244 H1100" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M1160 273 C1160 304 1100 314 1055 349" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M1055 349 H1100" fill="none" stroke="#6d28d9" stroke-width="2.4" marker-end="url(#story-arrow-7)"/>
-              <path d="M255 318 C470 500 950 500 1055 435" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-dasharray="8 8" marker-end="url(#story-arrow-7)"/>
-              <text x="535" y="475" text-anchor="middle" class="sub">Default session path: faster and cheaper.</text>
-              <text x="1035" y="475" text-anchor="middle" class="sub">Validation path: proves Airflow parity.</text>
+              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
+              <text x="44" y="52" class="title" style="font-size:24px">Orchestration: same pipeline stages, two runners</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The work is the same. The difference is the runner: Step Functions for fast sessions, MWAA when showing Airflow parity.</text>
+              <rect class="node node-violet" x="55" y="255" width="155" height="78" rx="22"/><text x="132" y="286" text-anchor="middle" class="title">Session Start</text><text x="132" y="310" text-anchor="middle" class="sub">trigger</text>
+
+              <rect x="285" y="125" width="455" height="360" rx="30" fill="#f5edff" stroke="#c4a1ff"/>
+              <text x="512" y="164" text-anchor="middle" class="title">Step Functions default runner</text>
+              <text x="512" y="190" text-anchor="middle" class="sub">starts AWS jobs directly</text>
+              <rect class="node node-violet" x="325" y="235" width="150" height="54" rx="16"/><text x="400" y="268" text-anchor="middle" class="small-title">6 Silver jobs</text>
+              <rect class="node node-blue" x="535" y="235" width="150" height="54" rx="16"/><text x="610" y="268" text-anchor="middle" class="small-title">Catalog crawler</text>
+              <rect class="node node-rose" x="325" y="335" width="150" height="54" rx="16"/><text x="400" y="368" text-anchor="middle" class="small-title">row-count check</text>
+              <rect class="node node-gold" x="535" y="335" width="150" height="54" rx="16"/><text x="610" y="368" text-anchor="middle" class="small-title">run_dbt job</text>
+              <text x="610" y="417" text-anchor="middle" class="tiny">inside run_dbt: freshness, dbt run, dbt test, docs</text>
+
+              <rect x="815" y="125" width="455" height="360" rx="30" fill="#eef7ff" stroke="#93c5fd"/>
+              <text x="1042" y="164" text-anchor="middle" class="title">MWAA Airflow runner</text>
+              <text x="1042" y="190" text-anchor="middle" class="sub">same stages expressed as DAG tasks</text>
+              <rect class="node node-blue" x="855" y="235" width="150" height="54" rx="16"/><text x="930" y="268" text-anchor="middle" class="small-title">6 Silver tasks</text>
+              <rect class="node node-blue" x="1065" y="235" width="150" height="54" rx="16"/><text x="1140" y="268" text-anchor="middle" class="small-title">Catalog crawler</text>
+              <rect class="node node-gold" x="855" y="335" width="150" height="54" rx="16"/><text x="930" y="368" text-anchor="middle" class="small-title">dbt run</text>
+              <rect class="node node-gold" x="1065" y="335" width="150" height="54" rx="16"/><text x="1140" y="368" text-anchor="middle" class="small-title">dbt test</text>
+              <text x="1042" y="417" text-anchor="middle" class="tiny">Airflow task names differ, but the data result should match</text>
+
+              <path d="M210 294 H285" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-7)"/>
+              <path d="M475 262 H535" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M610 289 V335" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M535 362 H475" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M1005 262 H1065" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M1140 289 V335" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M1005 362 H1065" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
+              <path d="M210 326 C430 555 1010 555 1042 485" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#story-arrow-7)"/>
+              <text x="512" y="535" text-anchor="middle" class="sub">Default path: faster for short demo sessions.</text>
+              <text x="1042" y="535" text-anchor="middle" class="sub">Parity path: proves the same pipeline can run in Airflow.</text>
             </svg>
           </div>
         </article>
@@ -897,37 +909,43 @@
             <div class="story-number">8</div>
             <div>
               <h3>Stakeholder access and runtime layout</h3>
-              <p>Browser users can open Streamlit or the HTML web app through the load balancer. Slack users go through the Slack gateway. Only the agent reads analytical data.</p>
+              <p>There are three entry points, but one analytics owner. Web and Slack services collect questions, then the Analytics Agent performs the governed Gold query.</p>
             </div>
             <div class="story-actions"><button class="story-action" type="button" data-fullscreen="story-access">Full screen</button><a class="story-action" href="#story-orchestration" data-jump="story-orchestration">Prev</a><a class="story-action" href="#story-agent" data-jump="story-agent">Next</a></div>
           </div>
           <div class="svg-frame">
-            <svg viewBox="0 0 1320 620" role="img" aria-label="Stakeholder access and runtime layout">
-              <defs><marker id="story-arrow-8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker></defs>
-              <rect width="1320" height="620" rx="30" fill="#fbfdff"/>
+            <svg viewBox="0 0 1320 640" role="img" aria-label="Stakeholder access and runtime layout">
+              <defs>
+                <marker id="story-arrow-8" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0f766e"/></marker>
+                <marker id="story-arrow-8-gold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker>
+              </defs>
+              <rect width="1320" height="640" rx="30" fill="#fbfdff"/>
               <text x="44" y="52" class="title" style="font-size:24px">Access: three entry points, one governed analytics backend</text>
-              <text x="44" y="80" class="sub" style="font-size:14px">The web and Slack services forward questions. They do not query S3 lake data themselves.</text>
+              <text x="44" y="80" class="sub" style="font-size:14px">The entry-point services are deliberately thin. They pass questions to the agent instead of reading lake data.</text>
 
-              <rect class="node node-teal" x="60" y="175" width="165" height="80" rx="22"/><text x="142" y="207" text-anchor="middle" class="title">Browser user</text><text x="142" y="232" text-anchor="middle" class="sub">opens app</text>
-              <rect class="node node-teal" x="60" y="390" width="165" height="80" rx="22"/><text x="142" y="422" text-anchor="middle" class="title">Slack user</text><text x="142" y="447" text-anchor="middle" class="sub">asks in Slack</text>
-              <rect class="node node-teal" x="310" y="235" width="185" height="95" rx="24"/><text x="402" y="271" text-anchor="middle" class="title">ALB</text><text x="402" y="297" text-anchor="middle" class="sub">browser ports</text>
-              <rect class="node node-blue" x="610" y="145" width="235" height="100" rx="24"/><text x="727" y="181" text-anchor="middle" class="title">Analytics Web</text><text x="727" y="207" text-anchor="middle" class="sub">separate ECS service</text><text x="727" y="229" text-anchor="middle" class="sub">proxies /api</text>
-              <rect x="610" y="310" width="290" height="160" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
-              <text x="755" y="346" text-anchor="middle" class="title">Analytics Agent ECS task</text>
-              <rect class="node node-violet" x="650" y="385" width="105" height="56" rx="16"/><text x="702" y="419" text-anchor="middle" class="small-title">FastAPI</text>
-              <rect class="node node-violet" x="775" y="385" width="105" height="56" rx="16"/><text x="827" y="419" text-anchor="middle" class="small-title">Streamlit</text>
-              <text x="755" y="458" text-anchor="middle" class="tiny">same ECS task, local backend call</text>
-              <rect class="node node-teal" x="1030" y="375" width="220" height="95" rx="24"/><text x="1140" y="411" text-anchor="middle" class="title">Slack gateway</text><text x="1140" y="437" text-anchor="middle" class="sub">calls agent endpoint</text>
-              <rect class="node node-gold" x="1030" y="160" width="220" height="95" rx="24"/><text x="1140" y="196" text-anchor="middle" class="title">Gold access</text><text x="1140" y="222" text-anchor="middle" class="sub">owned by agent role</text>
+              <rect class="node node-teal" x="55" y="165" width="150" height="76" rx="22"/><text x="130" y="196" text-anchor="middle" class="title">Browser user</text><text x="130" y="220" text-anchor="middle" class="sub">opens app</text>
+              <rect class="node node-teal" x="55" y="410" width="150" height="76" rx="22"/><text x="130" y="441" text-anchor="middle" class="title">Slack user</text><text x="130" y="465" text-anchor="middle" class="sub">asks in Slack</text>
+              <rect class="node node-teal" x="260" y="250" width="150" height="86" rx="22"/><text x="335" y="284" text-anchor="middle" class="title">ALB</text><text x="335" y="309" text-anchor="middle" class="sub">browser entry</text>
 
-              <path d="M225 215 H310" fill="none" stroke="#0f766e" stroke-width="2.4" marker-end="url(#story-arrow-8)"/>
-              <path d="M495 260 C550 210 570 195 610 195" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="555" y="218" text-anchor="middle" class="tiny">HTML app</text>
-              <path d="M495 300 C560 385 575 413 650 413" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="558" y="376" text-anchor="middle" class="tiny">Streamlit</text>
-              <path d="M727 245 C725 285 705 340 702 385" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="682" y="314" text-anchor="middle" class="tiny">/api proxy</text>
-              <path d="M755 385 C870 325 970 250 1030 207" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="910" y="292" text-anchor="middle" class="tiny">agent queries Gold</text>
-              <path d="M225 430 H300 V535 H1140 V470" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="620" y="520" text-anchor="middle" class="tiny">Slack gateway path</text>
-              <path d="M1030 422 C960 500 835 520 755 470" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="902" y="504" text-anchor="middle" class="tiny">calls agent API</text>
-              <text x="660" y="565" text-anchor="middle" class="sub">Permission boundary: web and Slack services do not read S3 lake buckets. They forward requests to the agent.</text>
+              <rect class="node node-blue" x="515" y="145" width="210" height="86" rx="22"/><text x="620" y="177" text-anchor="middle" class="title">Analytics Web</text><text x="620" y="202" text-anchor="middle" class="sub">HTML app, proxies API</text>
+              <rect class="node node-violet" x="515" y="285" width="210" height="86" rx="22"/><text x="620" y="317" text-anchor="middle" class="title">Streamlit UI</text><text x="620" y="342" text-anchor="middle" class="sub">same task as FastAPI</text>
+              <rect class="node node-teal" x="515" y="425" width="210" height="86" rx="22"/><text x="620" y="457" text-anchor="middle" class="title">Slack gateway</text><text x="620" y="482" text-anchor="middle" class="sub">calls agent endpoint</text>
+
+              <rect x="840" y="240" width="235" height="170" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
+              <text x="957" y="277" text-anchor="middle" class="title">Analytics Agent</text>
+              <rect class="node node-violet" x="880" y="320" width="155" height="58" rx="16"/><text x="957" y="355" text-anchor="middle" class="small-title">FastAPI 8080</text>
+              <text x="957" y="394" text-anchor="middle" class="tiny">only service that queries Gold</text>
+              <rect class="node node-gold" x="1140" y="275" width="140" height="98" rx="22"/><text x="1210" y="313" text-anchor="middle" class="title">Gold marts</text><text x="1210" y="340" text-anchor="middle" class="sub">Athena query</text>
+
+              <path d="M205 203 H260" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/>
+              <path d="M410 286 C455 220 475 188 515 188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="460" y="221" text-anchor="middle" class="tiny">HTML</text>
+              <path d="M410 300 H515" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="462" y="284" text-anchor="middle" class="tiny">Streamlit</text>
+              <path d="M205 448 H515" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/><text x="355" y="430" text-anchor="middle" class="tiny">Slack app event</text>
+              <path d="M725 188 C775 220 805 274 840 330" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="785" y="245" text-anchor="middle" class="tiny">proxied question</text>
+              <path d="M725 328 H840" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="782" y="310" text-anchor="middle" class="tiny">local call</text>
+              <path d="M725 468 C790 450 815 390 840 350" fill="none" stroke="#0f766e" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="785" y="433" text-anchor="middle" class="tiny">agent API</text>
+              <path d="M1075 325 H1140" fill="none" stroke="#ca8a04" stroke-width="2.4" marker-end="url(#story-arrow-8-gold)"/><text x="1108" y="307" text-anchor="middle" class="tiny">read only</text>
+              <text x="660" y="575" text-anchor="middle" class="sub">Permission boundary: web, Streamlit, and Slack collect questions. The Analytics Agent owns the governed Gold query.</text>
             </svg>
           </div>
         </article>
@@ -949,7 +967,7 @@
                 <marker id="story-arrow-9-gold" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#ca8a04"/></marker>
                 <marker id="story-arrow-9-rose" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#b42318"/></marker>
               </defs>
-              <rect width="1500" height="1180" rx="30" fill="#fbfdff"/>
+              <rect width="1600" height="1180" rx="30" fill="#fbfdff"/>
               <text x="44" y="52" class="title" style="font-size:24px">Agent request loop: browser question to audited answer</text>
               <text x="44" y="80" class="sub" style="font-size:14px">Streamlit and FastAPI run in the same ECS task, so the UI-to-backend hop is local inside the container.</text>
 
