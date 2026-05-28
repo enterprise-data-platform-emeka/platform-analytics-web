@@ -172,7 +172,7 @@
       filter: drop-shadow(0 8px 14px rgba(37,99,235,.18));
       stroke-width: 2.6;
     }
-    svg a text { pointer-events: none; }
+    svg a text { pointer-events: auto; }
     .repo-cue { fill: var(--blue); font-weight: 950; font-size: 11px; }
     .story-card svg path[marker-end],
     .story-card svg path[stroke-dasharray] {
@@ -218,6 +218,38 @@
     }
     .story-card:fullscreen .svg-frame { padding: 1rem 1.5rem; }
     .story-card:fullscreen svg { max-height: calc(100vh - 120px); min-width: 0; }
+    .story-repos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .55rem;
+      padding: 0 1.35rem 1.15rem;
+    }
+    .story-repos span {
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .story-repos a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: .42rem .62rem;
+      border: 1px solid #bdcbe0;
+      border-radius: 999px;
+      background: #fff;
+      color: #344054;
+      font-size: .76rem;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(16,24,40,.05);
+    }
+    .story-repos a:hover {
+      color: var(--blue);
+      border-color: #9cc2ff;
+      background: #f8fbff;
+    }
     .legend-row { display: flex; flex-wrap: wrap; gap: .5rem; padding: .3rem 1.35rem 1.1rem; }
     .legend-chip {
       display: inline-flex;
@@ -399,7 +431,7 @@
       </aside>
     </section>
 
-    <section class="diagram-card" id="position">
+    <section class="diagram-card" id="position" data-repos="platform-analytics-agent,platform-analytics-web,platform-slack-mcp-gateway,platform-dbt-analytics">
       <div class="diagram-head">
         <div class="eyebrow">Frontend position</div>
         <h2>The HTML dashboard is a peer frontend, not a fork of the agent.</h2>
@@ -476,7 +508,7 @@
       </div>
     </section>
 
-    <section class="diagram-card" id="request">
+    <section class="diagram-card" id="request" data-repos="platform-analytics-web,platform-analytics-agent,platform-dbt-analytics">
       <div class="diagram-head">
         <div class="eyebrow">Request flow</div>
         <h2>The browser stays same-origin while the server proxies API calls.</h2>
@@ -523,7 +555,7 @@
       </div>
     </section>
 
-    <section class="diagram-card" id="contract">
+    <section class="diagram-card" id="contract" data-repos="platform-analytics-web,platform-analytics-agent">
       <div class="diagram-head">
         <div class="eyebrow">API contract</div>
         <h2>The frontend is designed around the existing agent endpoints.</h2>
@@ -575,7 +607,7 @@
       </div>
     </section>
 
-    <section class="diagram-card" id="deploy">
+    <section class="diagram-card" id="deploy" data-repos="platform-analytics-web,terraform-platform-infra-live">
       <div class="diagram-head">
         <div class="eyebrow">Deployment path</div>
         <h2>The deploy workflow builds a container and updates a separate ECS service.</h2>
@@ -658,7 +690,7 @@
       </div>
 
       <div class="walkthrough">
-        <article class="story-card" id="story-session">
+        <article class="story-card" id="story-session" data-repos="terraform-platform-infra-live,platform-session-orchestrator,platform-cdc-simulator,platform-glue-jobs,platform-dbt-analytics,platform-analytics-agent,platform-analytics-web,platform-slack-mcp-gateway">
           <div class="story-head">
             <div class="story-number">1</div>
             <div>
@@ -749,7 +781,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-source-model">
+        <article class="story-card" id="story-source-model" data-repos="platform-cdc-simulator,terraform-platform-infra-live">
           <div class="story-head">
             <div class="story-number">2</div>
             <div>
@@ -794,7 +826,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-ingestion">
+        <article class="story-card" id="story-ingestion" data-repos="terraform-platform-infra-live,platform-cdc-simulator">
           <div class="story-head">
             <div class="story-number">3</div>
             <div>
@@ -839,7 +871,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-reconciliation">
+        <article class="story-card" id="story-reconciliation" data-repos="platform-glue-jobs,terraform-platform-infra-live">
           <div class="story-head">
             <div class="story-number">4</div>
             <div>
@@ -893,7 +925,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-star-schema">
+        <article class="story-card" id="story-star-schema" data-repos="platform-glue-jobs">
           <div class="story-head">
             <div class="story-number">5</div>
             <div>
@@ -951,7 +983,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-gold">
+        <article class="story-card" id="story-gold" data-repos="platform-dbt-analytics,platform-glue-jobs">
           <div class="story-head">
             <div class="story-number">6</div>
             <div>
@@ -1001,7 +1033,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-orchestration">
+        <article class="story-card" id="story-orchestration" data-repos="platform-session-orchestrator,terraform-platform-infra-live,platform-glue-jobs,platform-dbt-analytics,platform-orchestration-mwaa-airflow">
           <div class="story-head">
             <div class="story-number">7</div>
             <div>
@@ -1048,7 +1080,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-access">
+        <article class="story-card" id="story-access" data-repos="terraform-platform-infra-live,platform-analytics-agent,platform-analytics-web,platform-slack-mcp-gateway,platform-dbt-analytics">
           <div class="story-head">
             <div class="story-number">8</div>
             <div>
@@ -1094,7 +1126,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-agent">
+        <article class="story-card" id="story-agent" data-repos="platform-analytics-agent,platform-analytics-web,platform-dbt-analytics">
           <div class="story-head">
             <div class="story-number">9</div>
             <div>
@@ -1182,7 +1214,7 @@
           </div>
         </article>
 
-        <article class="story-card" id="story-iam">
+        <article class="story-card" id="story-iam" data-repos="terraform-platform-infra-live,platform-cdc-simulator,platform-glue-jobs,platform-dbt-analytics,platform-orchestration-mwaa-airflow,platform-analytics-agent,platform-analytics-web,platform-slack-mcp-gateway">
           <div class="story-head">
             <div class="story-number">10</div>
             <div>
@@ -1252,6 +1284,58 @@
     <p class="footer">Visual README for platform-analytics-web. The markdown README remains the exact command and operations reference.</p>
   </main>
   <script>
+    const repoLabels = {
+      "terraform-platform-infra-live": "infra live",
+      "platform-session-orchestrator": "session orchestrator",
+      "platform-cdc-simulator": "cdc simulator",
+      "platform-glue-jobs": "glue jobs",
+      "platform-dbt-analytics": "dbt analytics",
+      "platform-orchestration-mwaa-airflow": "mwaa airflow",
+      "platform-analytics-agent": "analytics agent",
+      "platform-analytics-web": "analytics web",
+      "platform-slack-mcp-gateway": "slack gateway"
+    };
+
+    function addVisibleRepoLinks() {
+      document.querySelectorAll("[data-repos]").forEach((section) => {
+        if (section.querySelector(".story-repos")) return;
+
+        const repos = section.dataset.repos
+          .split(",")
+          .map((repo) => repo.trim())
+          .filter(Boolean);
+        if (!repos.length) return;
+
+        const row = document.createElement("div");
+        row.className = "story-repos";
+        row.setAttribute("aria-label", "Responsible repositories for this diagram");
+
+        const label = document.createElement("span");
+        label.textContent = "Responsible repos";
+        row.appendChild(label);
+
+        repos.forEach((repo) => {
+          const link = document.createElement("a");
+          link.href = `https://github.com/enterprise-data-platform-emeka/${repo}`;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = repoLabels[repo] || repo;
+          row.appendChild(link);
+        });
+
+        const note = section.querySelector(".diagram-note");
+        if (note) {
+          section.insertBefore(row, note);
+          return;
+        }
+
+        const frame = section.querySelector(".svg-frame");
+        if (frame) {
+          frame.insertAdjacentElement("afterend", row);
+        }
+      });
+    }
+
     function closeFocusedStory() {
       document.querySelectorAll(".story-card.focus-mode").forEach((card) => {
         card.classList.remove("focus-mode");
@@ -1315,6 +1399,8 @@
         closeFocusedStory();
       }
     });
+
+    addVisibleRepoLinks();
   </script>
 </body>
 </html>
