@@ -162,6 +162,18 @@
       cursor: pointer;
     }
     .story-action:hover { color: var(--blue); border-color: #9cc2ff; }
+    svg a { cursor: pointer; }
+    svg a .node,
+    svg a rect {
+      transition: filter .16s ease, stroke-width .16s ease;
+    }
+    svg a:hover .node,
+    svg a:hover rect {
+      filter: drop-shadow(0 8px 14px rgba(37,99,235,.18));
+      stroke-width: 2.6;
+    }
+    svg a text { pointer-events: none; }
+    .repo-cue { fill: var(--blue); font-weight: 950; font-size: 11px; }
     .story-card svg path[marker-end],
     .story-card svg path[stroke-dasharray] {
       pointer-events: stroke;
@@ -404,24 +416,32 @@
           <text x="44" y="50" class="title" style="font-size:24px">Three entry points, one analytics backend</text>
           <text x="44" y="78" class="sub" style="font-size:14px">The frontend can change independently because the backend API contract stays stable.</text>
 
-          <rect class="node node-blue" x="88" y="116" width="200" height="86" rx="22"/>
-          <use href="#icon-browser" class="arch-icon icon-blue" x="112" y="140" width="30" height="30"/>
-          <text x="200" y="150" text-anchor="middle" class="title">Streamlit UI</text>
-          <text x="200" y="174" text-anchor="middle" class="sub">existing dashboard</text>
-          <rect class="node node-dark" x="88" y="250" width="200" height="100" rx="24"/>
-          <use href="#icon-browser" class="arch-icon white-icon" x="112" y="282" width="30" height="30"/>
-          <text x="202" y="288" text-anchor="middle" class="title white-text">HTML dashboard</text>
-          <text x="202" y="312" text-anchor="middle" class="sub white-text">this repo</text>
-          <text x="202" y="332" text-anchor="middle" class="sub white-text">custom UX surface</text>
-          <rect class="node node-teal" x="88" y="398" width="200" height="86" rx="22"/>
-          <text x="188" y="432" text-anchor="middle" class="title">Slack MCP</text>
-          <text x="188" y="456" text-anchor="middle" class="sub">chat entry point</text>
+          <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-blue" x="88" y="116" width="200" height="86" rx="22"/>
+            <use href="#icon-browser" class="arch-icon icon-blue" x="112" y="140" width="30" height="30"/>
+            <text x="200" y="150" text-anchor="middle" class="title">Streamlit UI</text>
+            <text x="200" y="174" text-anchor="middle" class="sub">agent repo ↗</text>
+          </a>
+          <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-dark" x="88" y="250" width="200" height="100" rx="24"/>
+            <use href="#icon-browser" class="arch-icon white-icon" x="112" y="282" width="30" height="30"/>
+            <text x="202" y="288" text-anchor="middle" class="title white-text">HTML dashboard</text>
+            <text x="202" y="312" text-anchor="middle" class="sub white-text">web repo ↗</text>
+            <text x="202" y="332" text-anchor="middle" class="sub white-text">custom UX surface</text>
+          </a>
+          <a href="https://github.com/enterprise-data-platform-emeka/platform-slack-mcp-gateway" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-teal" x="88" y="398" width="200" height="86" rx="22"/>
+            <text x="188" y="432" text-anchor="middle" class="title">Slack MCP</text>
+            <text x="188" y="456" text-anchor="middle" class="sub">gateway repo ↗</text>
+          </a>
 
-          <rect class="node node-blue" x="480" y="230" width="230" height="116" rx="26"/>
-          <use href="#icon-compute" class="arch-icon icon-blue" x="505" y="260" width="32" height="32"/>
-          <text x="610" y="268" text-anchor="middle" class="title">FastAPI Agent</text>
-          <text x="595" y="292" text-anchor="middle" class="sub">SQL generation</text>
-          <text x="595" y="312" text-anchor="middle" class="sub">guardrails, charts, reports</text>
+          <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-blue" x="480" y="230" width="230" height="116" rx="26"/>
+            <use href="#icon-compute" class="arch-icon icon-blue" x="505" y="260" width="32" height="32"/>
+            <text x="610" y="268" text-anchor="middle" class="title">FastAPI Agent</text>
+            <text x="595" y="292" text-anchor="middle" class="sub">analytics-agent repo ↗</text>
+            <text x="595" y="312" text-anchor="middle" class="sub">guardrails, charts, reports</text>
+          </a>
 
           <rect class="node node-olive" x="880" y="116" width="180" height="80" rx="20"/>
           <use href="#icon-ai" class="arch-icon icon-slate" x="902" y="138" width="28" height="28"/>
@@ -572,13 +592,25 @@
           <text x="44" y="52" class="title" style="font-size:24px">Code-to-ECS deployment</text>
           <text x="44" y="80" class="sub" style="font-size:14px">The workflow authenticates with GitHub OIDC, pushes a Node image to ECR, then updates the analytics-web ECS service.</text>
 
-          <rect class="node node-blue" x="70" y="230" width="160" height="74" rx="18"/><use href="#icon-orchestrator" class="arch-icon icon-blue" x="88" y="249" width="26" height="26"/><text x="160" y="260" text-anchor="middle" class="title">Manual deploy</text><text x="160" y="282" text-anchor="middle" class="sub">dev/staging/prod</text>
-          <rect class="node" x="310" y="160" width="180" height="74" rx="18"/><use href="#icon-shield" class="arch-icon icon-slate" x="332" y="180" width="26" height="26"/><text x="412" y="190" text-anchor="middle" class="title">OIDC role</text><text x="412" y="212" text-anchor="middle" class="sub">short-lived auth</text>
-          <rect class="node node-amber" x="310" y="310" width="180" height="74" rx="18"/><use href="#icon-compute" class="arch-icon icon-amber" x="332" y="330" width="26" height="26"/><text x="412" y="340" text-anchor="middle" class="title">Docker build</text><text x="412" y="362" text-anchor="middle" class="sub">Node 20 Alpine</text>
+          <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-blue" x="70" y="230" width="160" height="74" rx="18"/><use href="#icon-orchestrator" class="arch-icon icon-blue" x="88" y="249" width="26" height="26"/><text x="160" y="260" text-anchor="middle" class="title">Manual deploy</text><text x="160" y="282" text-anchor="middle" class="sub">web repo ↗</text>
+          </a>
+          <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer">
+            <rect class="node" x="310" y="160" width="180" height="74" rx="18"/><use href="#icon-shield" class="arch-icon icon-slate" x="332" y="180" width="26" height="26"/><text x="412" y="190" text-anchor="middle" class="title">OIDC role</text><text x="412" y="212" text-anchor="middle" class="sub">infra repo ↗</text>
+          </a>
+          <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-amber" x="310" y="310" width="180" height="74" rx="18"/><use href="#icon-compute" class="arch-icon icon-amber" x="332" y="330" width="26" height="26"/><text x="412" y="340" text-anchor="middle" class="title">Docker build</text><text x="412" y="362" text-anchor="middle" class="sub">web repo ↗</text>
+          </a>
           <rect class="node node-teal" x="590" y="230" width="190" height="74" rx="18"/><use href="#icon-storage" class="arch-icon icon-teal" x="612" y="250" width="26" height="26"/><text x="700" y="260" text-anchor="middle" class="title">Amazon ECR</text><text x="700" y="282" text-anchor="middle" class="sub">sha + latest tags</text>
-          <rect class="node node-olive" x="880" y="160" width="200" height="74" rx="18"/><use href="#icon-catalog" class="arch-icon icon-slate" x="902" y="180" width="26" height="26"/><text x="995" y="190" text-anchor="middle" class="title">Task definition</text><text x="995" y="212" text-anchor="middle" class="sub">replace web image</text>
-          <rect class="node node-olive" x="880" y="310" width="200" height="74" rx="18"/><use href="#icon-compute" class="arch-icon icon-slate" x="902" y="330" width="26" height="26"/><text x="995" y="340" text-anchor="middle" class="title">ECS service</text><text x="995" y="362" text-anchor="middle" class="sub">analytics-web</text>
-          <rect class="node node-dark" x="1160" y="230" width="110" height="74" rx="18"/><use href="#icon-orchestrator" class="arch-icon white-icon" x="1173" y="250" width="26" height="26"/><text x="1228" y="260" text-anchor="middle" class="title white-text">ALB</text><text x="1228" y="282" text-anchor="middle" class="sub white-text">port 3000</text>
+          <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-olive" x="880" y="160" width="200" height="74" rx="18"/><use href="#icon-catalog" class="arch-icon icon-slate" x="902" y="180" width="26" height="26"/><text x="995" y="190" text-anchor="middle" class="title">Task definition</text><text x="995" y="212" text-anchor="middle" class="sub">infra repo ↗</text>
+          </a>
+          <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-olive" x="880" y="310" width="200" height="74" rx="18"/><use href="#icon-compute" class="arch-icon icon-slate" x="902" y="330" width="26" height="26"/><text x="995" y="340" text-anchor="middle" class="title">ECS service</text><text x="995" y="362" text-anchor="middle" class="sub">infra repo ↗</text>
+          </a>
+          <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer">
+            <rect class="node node-dark" x="1160" y="230" width="110" height="74" rx="18"/><use href="#icon-orchestrator" class="arch-icon white-icon" x="1173" y="250" width="26" height="26"/><text x="1228" y="260" text-anchor="middle" class="title white-text">ALB</text><text x="1228" y="282" text-anchor="middle" class="sub white-text">infra ↗</text>
+          </a>
 
           <g class="flow blue"><path class="hit" d="M230 267 C260 224 280 198 310 197"/><path class="line" d="M230 267 C260 224 280 198 310 197"/></g>
           <g class="flow blue"><path class="hit" d="M230 267 C260 310 280 346 310 347"/><path class="line" d="M230 267 C260 310 280 346 310 347"/></g>
@@ -645,38 +677,49 @@
               <rect x="55" y="118" width="165" height="128" rx="24" fill="#f8fbff" stroke="#d8e2ef"/>
               <use href="#icon-catalog" class="arch-icon icon-blue" x="122" y="132" width="28" height="28"/>
               <text x="138" y="178" text-anchor="middle" class="title">Source repos</text>
-              <text x="138" y="203" text-anchor="middle" class="tiny">infra, simulator</text>
-              <text x="138" y="224" text-anchor="middle" class="tiny">glue, dbt, apps</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><text x="138" y="203" text-anchor="middle" class="tiny">infra live ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-cdc-simulator" target="_blank" rel="noopener noreferrer"><text x="96" y="224" text-anchor="middle" class="tiny">simulator ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-glue-jobs" target="_blank" rel="noopener noreferrer"><text x="144" y="224" text-anchor="middle" class="tiny">glue ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><text x="189" y="224" text-anchor="middle" class="tiny">dbt ↗</text></a>
 
               <rect class="node node-dark" x="55" y="310" width="165" height="90" rx="22"/>
               <use href="#icon-shield" class="arch-icon white-icon" x="123" y="325" width="30" height="30"/>
               <text x="138" y="369" text-anchor="middle" class="title white-text">GitHub Actions</text>
               <text x="138" y="390" text-anchor="middle" class="sub white-text">OIDC session</text>
 
-              <rect class="node node-violet" x="285" y="80" width="195" height="74" rx="20"/>
-              <use href="#icon-orchestrator" class="arch-icon icon-violet" x="368" y="88" width="28" height="28"/>
-              <text x="382" y="126" text-anchor="middle" class="small-title">1. Terraform apply</text>
-              <text x="382" y="146" text-anchor="middle" class="tiny">network, lake, IAM, runtime</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer">
+                <rect class="node node-violet" x="285" y="80" width="195" height="74" rx="20"/>
+                <use href="#icon-orchestrator" class="arch-icon icon-violet" x="368" y="88" width="28" height="28"/>
+                <text x="382" y="126" text-anchor="middle" class="small-title">1. Terraform apply</text>
+                <text x="382" y="146" text-anchor="middle" class="tiny">network, lake, IAM, runtime ↗</text>
+              </a>
 
-              <rect class="node node-blue" x="285" y="190" width="195" height="74" rx="20"/>
-              <use href="#icon-database" class="arch-icon icon-blue" x="368" y="198" width="28" height="28"/>
-              <text x="382" y="236" text-anchor="middle" class="small-title">2. Source ready</text>
-              <text x="382" y="256" text-anchor="middle" class="tiny">RDS, simulator, DMS</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-cdc-simulator" target="_blank" rel="noopener noreferrer">
+                <rect class="node node-blue" x="285" y="190" width="195" height="74" rx="20"/>
+                <use href="#icon-database" class="arch-icon icon-blue" x="368" y="198" width="28" height="28"/>
+                <text x="382" y="236" text-anchor="middle" class="small-title">2. Source ready</text>
+                <text x="382" y="256" text-anchor="middle" class="tiny">simulator with RDS/DMS ↗</text>
+              </a>
 
               <rect class="node node-amber" x="285" y="300" width="195" height="74" rx="20"/>
               <use href="#icon-storage" class="arch-icon icon-amber" x="368" y="308" width="28" height="28"/>
               <text x="382" y="346" text-anchor="middle" class="small-title">3. Artifacts</text>
-              <text x="382" y="366" text-anchor="middle" class="tiny">Glue scripts, dbt project</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-glue-jobs" target="_blank" rel="noopener noreferrer"><text x="346" y="366" text-anchor="middle" class="tiny">Glue ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><text x="418" y="366" text-anchor="middle" class="tiny">dbt ↗</text></a>
 
-              <rect class="node node-violet" x="575" y="190" width="205" height="74" rx="20"/>
-              <use href="#icon-orchestrator" class="arch-icon icon-violet" x="664" y="198" width="28" height="28"/>
-              <text x="678" y="236" text-anchor="middle" class="small-title">4. Run pipeline</text>
-              <text x="678" y="256" text-anchor="middle" class="tiny">Step Functions default path</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-session-orchestrator" target="_blank" rel="noopener noreferrer">
+                <rect class="node node-violet" x="575" y="190" width="205" height="74" rx="20"/>
+                <use href="#icon-orchestrator" class="arch-icon icon-violet" x="664" y="198" width="28" height="28"/>
+                <text x="678" y="236" text-anchor="middle" class="small-title">4. Run pipeline</text>
+                <text x="678" y="256" text-anchor="middle" class="tiny">session orchestrator ↗</text>
+              </a>
 
               <rect class="node node-teal" x="875" y="110" width="205" height="74" rx="20"/>
               <use href="#icon-browser" class="arch-icon icon-teal" x="964" y="118" width="28" height="28"/>
               <text x="978" y="156" text-anchor="middle" class="small-title">5. Entry points</text>
-              <text x="978" y="176" text-anchor="middle" class="tiny">agent, web, Slack gateway</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer"><text x="922" y="176" text-anchor="middle" class="tiny">agent ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web" target="_blank" rel="noopener noreferrer"><text x="982" y="176" text-anchor="middle" class="tiny">web ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-slack-mcp-gateway" target="_blank" rel="noopener noreferrer"><text x="1046" y="176" text-anchor="middle" class="tiny">Slack ↗</text></a>
 
               <rect class="node node-rose" x="875" y="300" width="205" height="74" rx="20"/>
               <use href="#icon-shield" class="arch-icon icon-rose" x="964" y="308" width="28" height="28"/>
@@ -724,6 +767,7 @@
 
               <rect x="54" y="115" width="240" height="420" rx="28" fill="#eef7ff" stroke="#93c5fd"/>
               <text x="174" y="150" text-anchor="middle" class="title">Simulator events</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-cdc-simulator" target="_blank" rel="noopener noreferrer"><text x="174" y="174" text-anchor="middle" class="tiny">platform-cdc-simulator ↗</text></a>
               <rect class="node node-teal" x="82" y="188" width="184" height="62" rx="18"/><text x="174" y="215" text-anchor="middle" class="small-title">I: insert</text><text x="174" y="236" text-anchor="middle" class="tiny">new customer, new order</text>
               <rect class="node node-amber" x="82" y="278" width="184" height="62" rx="18"/><text x="174" y="305" text-anchor="middle" class="small-title">U: update</text><text x="174" y="326" text-anchor="middle" class="tiny">status, payment, shipment</text>
               <rect class="node node-rose" x="82" y="368" width="184" height="62" rx="18"/><text x="174" y="395" text-anchor="middle" class="small-title">D: delete</text><text x="174" y="416" text-anchor="middle" class="tiny">cancellations or cleanup</text>
@@ -775,6 +819,7 @@
 
               <rect x="585" y="145" width="250" height="300" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
               <use href="#icon-orchestrator" class="arch-icon icon-violet" x="610" y="160" width="30" height="30"/><text x="722" y="181" text-anchor="middle" class="title">AWS DMS</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><text x="722" y="204" text-anchor="middle" class="tiny">terraform-platform-infra-live ↗</text></a>
               <rect class="node node-violet" x="625" y="230" width="170" height="72" rx="20"/><text x="710" y="258" text-anchor="middle" class="small-title">Full load</text><text x="710" y="281" text-anchor="middle" class="tiny">existing rows once</text>
               <rect class="node node-violet" x="625" y="330" width="170" height="72" rx="20"/><text x="710" y="358" text-anchor="middle" class="small-title">CDC stream</text><text x="710" y="381" text-anchor="middle" class="tiny">new changes after load</text>
 
@@ -821,6 +866,7 @@
 
               <rect x="330" y="140" width="460" height="320" rx="28" fill="#f1f5f9" stroke="#c7d2df"/>
               <use href="#icon-compute" class="arch-icon icon-slate" x="445" y="154" width="32" height="32"/><text x="575" y="178" text-anchor="middle" class="title">Glue PySpark logic</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-glue-jobs" target="_blank" rel="noopener noreferrer"><text x="575" y="201" text-anchor="middle" class="tiny">platform-glue-jobs ↗</text></a>
               <rect class="node" x="380" y="220" width="360" height="50" rx="16"/><text x="560" y="251" text-anchor="middle" class="small-title">1. group by business key</text>
               <rect class="node" x="380" y="288" width="360" height="50" rx="16"/><text x="560" y="319" text-anchor="middle" class="small-title">2. sort by DMS timestamp descending</text>
               <rect class="node" x="380" y="356" width="360" height="50" rx="16"/><text x="560" y="387" text-anchor="middle" class="small-title">3. keep rank 1, filter op D, validate</text>
@@ -893,6 +939,7 @@
 
               <rect x="410" y="118" width="460" height="430" rx="34" fill="none" stroke="#d8e2ef" stroke-width="2"/>
               <text x="640" y="145" text-anchor="middle" class="title">Silver model boundary</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-glue-jobs" target="_blank" rel="noopener noreferrer"><text x="640" y="170" text-anchor="middle" class="tiny">platform-glue-jobs ↗</text></a>
               <text x="640" y="576" text-anchor="middle" class="sub">2 dimensions plus 4 fact tables, registered in Glue Catalog and stored as Parquet in S3.</text>
 
               <path d="M340 198 C430 200 460 254 520 286" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-5)"/><text x="415" y="215" text-anchor="middle" class="tiny">customer_id</text>
@@ -925,6 +972,7 @@
 
               <rect x="290" y="130" width="315" height="392" rx="28" fill="#fff9e8" stroke="#f5bd4f"/>
               <use href="#icon-compute" class="arch-icon icon-gold" x="315" y="144" width="32" height="32"/><text x="462" y="166" text-anchor="middle" class="title">run_dbt job</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><text x="462" y="190" text-anchor="middle" class="tiny">platform-dbt-analytics ↗</text></a>
               <rect class="node node-gold" x="325" y="205" width="110" height="50" rx="15"/><text x="380" y="236" text-anchor="middle" class="small-title">dbt deps</text>
               <rect class="node node-gold" x="465" y="205" width="110" height="50" rx="15"/><text x="520" y="236" text-anchor="middle" class="small-title">freshness</text>
               <rect class="node node-gold" x="325" y="285" width="110" height="50" rx="15"/><text x="380" y="316" text-anchor="middle" class="small-title">dbt run</text>
@@ -934,6 +982,7 @@
 
               <rect x="705" y="115" width="555" height="430" rx="30" fill="#fff7e6" stroke="#f5bd4f"/>
               <use href="#icon-storage" class="arch-icon icon-gold" x="795" y="128" width="34" height="34"/><text x="1000" y="151" text-anchor="middle" class="title">S3 Gold: business question answer tables</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><text x="1000" y="176" text-anchor="middle" class="tiny">Gold models in platform-dbt-analytics ↗</text></a>
               <rect class="node node-gold" x="735" y="195" width="220" height="62" rx="17"/><text x="845" y="220" text-anchor="middle" class="small-title">monthly_revenue_trend</text><text x="845" y="240" text-anchor="middle" class="tiny">How is revenue trending?</text>
               <rect class="node node-gold" x="985" y="195" width="220" height="62" rx="17"/><text x="1095" y="220" text-anchor="middle" class="small-title">revenue_by_country</text><text x="1095" y="240" text-anchor="middle" class="tiny">Which countries drive revenue?</text>
               <rect class="node node-gold" x="735" y="280" width="220" height="62" rx="17"/><text x="845" y="305" text-anchor="middle" class="small-title">customer_segments</text><text x="845" y="325" text-anchor="middle" class="tiny">Who are our customer groups?</text>
@@ -968,17 +1017,19 @@
               <text x="44" y="52" class="title" style="font-size:24px">Orchestration: one pipeline, two runners</text>
               <text x="44" y="80" class="sub" style="font-size:14px">The ordered work is the same. Step Functions is compact for short sessions; MWAA shows the same stages as an Airflow DAG.</text>
 
-              <rect class="node node-violet" x="55" y="265" width="150" height="76" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="68" y="285" width="24" height="24"/><text x="142" y="296" text-anchor="middle" class="title">Session Start</text><text x="142" y="320" text-anchor="middle" class="sub">GitHub workflow</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-session-orchestrator" target="_blank" rel="noopener noreferrer">
+                <rect class="node node-violet" x="55" y="265" width="150" height="76" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="68" y="285" width="24" height="24"/><text x="142" y="296" text-anchor="middle" class="title">Session Start</text><text x="142" y="320" text-anchor="middle" class="sub">orchestrator ↗</text>
+              </a>
               <rect x="260" y="118" width="1010" height="360" rx="30" fill="#f8fbff" stroke="#d5e0ef"/>
               <text x="765" y="158" text-anchor="middle" class="title">Same logical pipeline stages</text>
               <text x="765" y="184" text-anchor="middle" class="sub">Both runners clean Bronze, refresh the Catalog, build Gold, validate rows, run tests, and publish metadata.</text>
 
-              <rect class="node node-violet" x="300" y="244" width="120" height="84" rx="16"/><use href="#icon-compute" class="arch-icon icon-violet" x="348" y="255" width="24" height="24"/><text x="360" y="294" text-anchor="middle" class="small-title">6 Silver jobs</text><text x="360" y="315" text-anchor="middle" class="tiny">clean Bronze</text>
-              <rect class="node node-rose" x="455" y="244" width="135" height="84" rx="16"/><use href="#icon-metrics" class="arch-icon icon-rose" x="510" y="255" width="24" height="24"/><text x="522" y="294" text-anchor="middle" class="small-title">row-count check</text><text x="522" y="315" text-anchor="middle" class="tiny">fail empty tables</text>
-              <rect class="node node-blue" x="625" y="244" width="135" height="84" rx="16"/><use href="#icon-catalog" class="arch-icon icon-blue" x="680" y="255" width="24" height="24"/><text x="692" y="294" text-anchor="middle" class="small-title">Catalog crawler</text><text x="692" y="315" text-anchor="middle" class="tiny">refresh schemas</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-glue-jobs" target="_blank" rel="noopener noreferrer"><rect class="node node-violet" x="300" y="244" width="120" height="84" rx="16"/><use href="#icon-compute" class="arch-icon icon-violet" x="348" y="255" width="24" height="24"/><text x="360" y="294" text-anchor="middle" class="small-title">6 Silver jobs</text><text x="360" y="315" text-anchor="middle" class="tiny">glue repo ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><rect class="node node-rose" x="455" y="244" width="135" height="84" rx="16"/><use href="#icon-metrics" class="arch-icon icon-rose" x="510" y="255" width="24" height="24"/><text x="522" y="294" text-anchor="middle" class="small-title">row-count check</text><text x="522" y="315" text-anchor="middle" class="tiny">infra repo ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><rect class="node node-blue" x="625" y="244" width="135" height="84" rx="16"/><use href="#icon-catalog" class="arch-icon icon-blue" x="680" y="255" width="24" height="24"/><text x="692" y="294" text-anchor="middle" class="small-title">Catalog crawler</text><text x="692" y="315" text-anchor="middle" class="tiny">infra repo ↗</text></a>
               <rect class="node node-gold" x="795" y="244" width="135" height="84" rx="16"/><use href="#icon-shield" class="arch-icon icon-gold" x="850" y="255" width="24" height="24"/><text x="862" y="294" text-anchor="middle" class="small-title">freshness gate</text><text x="862" y="315" text-anchor="middle" class="tiny">dbt source test</text>
-              <rect class="node node-gold" x="965" y="244" width="120" height="84" rx="16"/><use href="#icon-warehouse" class="arch-icon icon-gold" x="1013" y="255" width="24" height="24"/><text x="1025" y="294" text-anchor="middle" class="small-title">dbt run</text><text x="1025" y="315" text-anchor="middle" class="tiny">build Gold</text>
-              <rect class="node node-rose" x="1120" y="244" width="120" height="84" rx="16"/><use href="#icon-shield" class="arch-icon icon-rose" x="1168" y="255" width="24" height="24"/><text x="1180" y="294" text-anchor="middle" class="small-title">Gold checks</text><text x="1180" y="315" text-anchor="middle" class="tiny">counts, tests, docs</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><rect class="node node-gold" x="965" y="244" width="120" height="84" rx="16"/><use href="#icon-warehouse" class="arch-icon icon-gold" x="1013" y="255" width="24" height="24"/><text x="1025" y="294" text-anchor="middle" class="small-title">dbt run</text><text x="1025" y="315" text-anchor="middle" class="tiny">dbt repo ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><rect class="node node-rose" x="1120" y="244" width="120" height="84" rx="16"/><use href="#icon-shield" class="arch-icon icon-rose" x="1168" y="255" width="24" height="24"/><text x="1180" y="294" text-anchor="middle" class="small-title">Gold checks</text><text x="1180" y="315" text-anchor="middle" class="tiny">dbt tests ↗</text></a>
 
               <path d="M205 303 H300" fill="none" stroke="#6d28d9" stroke-width="2.3" marker-end="url(#story-arrow-7)"/>
               <path d="M420 286 H455" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
@@ -987,12 +1038,12 @@
               <path d="M930 286 H965" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
               <path d="M1085 286 H1120" fill="none" stroke="#6d28d9" stroke-width="2.2" marker-end="url(#story-arrow-7)"/>
 
-              <rect class="node node-violet" x="315" y="390" width="360" height="60" rx="17"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="335" y="405" width="28" height="28"/><text x="510" y="414" text-anchor="middle" class="small-title">Step Functions default runner</text><text x="510" y="434" text-anchor="middle" class="tiny">starts the same pipeline stages directly</text>
-              <rect class="node node-blue" x="855" y="390" width="360" height="60" rx="17"/><use href="#icon-orchestrator" class="arch-icon icon-blue" x="875" y="405" width="28" height="28"/><text x="1050" y="414" text-anchor="middle" class="small-title">MWAA Airflow runner</text><text x="1050" y="434" text-anchor="middle" class="tiny">shows the same pipeline stages as DAG tasks</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><rect class="node node-violet" x="315" y="390" width="360" height="60" rx="17"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="335" y="405" width="28" height="28"/><text x="510" y="414" text-anchor="middle" class="small-title">Step Functions default runner</text><text x="510" y="434" text-anchor="middle" class="tiny">defined in infra repo ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-orchestration-mwaa-airflow" target="_blank" rel="noopener noreferrer"><rect class="node node-blue" x="855" y="390" width="360" height="60" rx="17"/><use href="#icon-orchestrator" class="arch-icon icon-blue" x="875" y="405" width="28" height="28"/><text x="1050" y="414" text-anchor="middle" class="small-title">MWAA Airflow runner</text><text x="1050" y="434" text-anchor="middle" class="tiny">Airflow DAG repo ↗</text></a>
               <text x="765" y="365" text-anchor="middle" class="tiny">Runner choice changes how the stages start, not what the stages do.</text>
 
-              <rect class="node node-blue" x="330" y="505" width="280" height="62" rx="18"/><text x="470" y="530" text-anchor="middle" class="small-title">Catalog crawler</text><text x="470" y="550" text-anchor="middle" class="tiny">updates Glue Catalog so Athena/dbt can see Silver tables</text>
-              <rect class="node node-rose" x="710" y="505" width="310" height="62" rx="18"/><text x="865" y="530" text-anchor="middle" class="small-title">row-count check</text><text x="865" y="550" text-anchor="middle" class="tiny">fails the run if tables are empty, missing, or lose too many rows</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><rect class="node node-blue" x="330" y="505" width="280" height="62" rx="18"/><text x="470" y="530" text-anchor="middle" class="small-title">Catalog crawler</text><text x="470" y="550" text-anchor="middle" class="tiny">updates Glue Catalog for Athena/dbt ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><rect class="node node-rose" x="710" y="505" width="310" height="62" rx="18"/><text x="865" y="530" text-anchor="middle" class="small-title">row-count check</text><text x="865" y="550" text-anchor="middle" class="tiny">fails empty, missing, or sharply changed tables ↗</text></a>
             </svg>
           </div>
         </article>
@@ -1020,15 +1071,15 @@
               <rect class="node node-teal" x="60" y="420" width="150" height="82" rx="22"/><use href="#icon-browser" class="arch-icon icon-teal" x="123" y="431" width="24" height="24"/><text x="135" y="470" text-anchor="middle" class="title">Slack user</text><text x="135" y="490" text-anchor="middle" class="sub">asks in Slack</text>
               <rect class="node node-teal" x="285" y="255" width="150" height="88" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-teal" x="348" y="266" width="24" height="24"/><text x="360" y="306" text-anchor="middle" class="title">ALB</text><text x="360" y="328" text-anchor="middle" class="sub">browser entry</text>
 
-              <rect class="node node-blue" x="560" y="145" width="210" height="88" rx="22"/><use href="#icon-browser" class="arch-icon icon-blue" x="653" y="156" width="24" height="24"/><text x="665" y="195" text-anchor="middle" class="title">Analytics Web</text><text x="665" y="216" text-anchor="middle" class="sub">HTML app, proxies API</text>
-              <rect class="node node-violet" x="560" y="285" width="210" height="88" rx="22"/><use href="#icon-browser" class="arch-icon icon-violet" x="653" y="296" width="24" height="24"/><text x="665" y="335" text-anchor="middle" class="title">Streamlit UI</text><text x="665" y="356" text-anchor="middle" class="sub">same task as FastAPI</text>
-              <rect class="node node-teal" x="560" y="425" width="210" height="88" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-teal" x="653" y="436" width="24" height="24"/><text x="665" y="475" text-anchor="middle" class="title">Slack gateway</text><text x="665" y="496" text-anchor="middle" class="sub">calls agent endpoint</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web" target="_blank" rel="noopener noreferrer"><rect class="node node-blue" x="560" y="145" width="210" height="88" rx="22"/><use href="#icon-browser" class="arch-icon icon-blue" x="653" y="156" width="24" height="24"/><text x="665" y="195" text-anchor="middle" class="title">Analytics Web</text><text x="665" y="216" text-anchor="middle" class="sub">platform-analytics-web ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer"><rect class="node node-violet" x="560" y="285" width="210" height="88" rx="22"/><use href="#icon-browser" class="arch-icon icon-violet" x="653" y="296" width="24" height="24"/><text x="665" y="335" text-anchor="middle" class="title">Streamlit UI</text><text x="665" y="356" text-anchor="middle" class="sub">platform-analytics-agent ↗</text></a>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-slack-mcp-gateway" target="_blank" rel="noopener noreferrer"><rect class="node node-teal" x="560" y="425" width="210" height="88" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-teal" x="653" y="436" width="24" height="24"/><text x="665" y="475" text-anchor="middle" class="title">Slack gateway</text><text x="665" y="496" text-anchor="middle" class="sub">slack gateway repo ↗</text></a>
 
               <rect x="895" y="245" width="230" height="170" rx="28" fill="#f5edff" stroke="#c4a1ff"/>
               <use href="#icon-compute" class="arch-icon icon-violet" x="998" y="260" width="32" height="32"/><text x="1014" y="305" text-anchor="middle" class="title">Analytics Agent</text>
-              <rect class="node node-violet" x="930" y="325" width="160" height="58" rx="16"/><use href="#icon-compute" class="arch-icon icon-violet" x="948" y="342" width="22" height="22"/><text x="1025" y="360" text-anchor="middle" class="small-title">FastAPI 8080</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer"><rect class="node node-violet" x="930" y="325" width="160" height="58" rx="16"/><use href="#icon-compute" class="arch-icon icon-violet" x="948" y="342" width="22" height="22"/><text x="1025" y="360" text-anchor="middle" class="small-title">FastAPI 8080 ↗</text></a>
               <text x="1010" y="399" text-anchor="middle" class="tiny">only service that queries Gold</text>
-              <rect class="node node-gold" x="1165" y="280" width="130" height="104" rx="22"/><use href="#icon-warehouse" class="arch-icon icon-gold" x="1218" y="294" width="28" height="28"/><text x="1230" y="338" text-anchor="middle" class="title">Gold marts</text><text x="1230" y="363" text-anchor="middle" class="sub">Athena query</text>
+              <a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><rect class="node node-gold" x="1165" y="280" width="130" height="104" rx="22"/><use href="#icon-warehouse" class="arch-icon icon-gold" x="1218" y="294" width="28" height="28"/><text x="1230" y="338" text-anchor="middle" class="title">Gold marts</text><text x="1230" y="363" text-anchor="middle" class="sub">dbt repo ↗</text></a>
 
               <path d="M210 208 C250 208 245 298 285 298" fill="none" stroke="#0f766e" stroke-width="2.3" marker-end="url(#story-arrow-8)"/>
               <path d="M435 290 C495 235 505 188 560 188" fill="none" stroke="#2563eb" stroke-width="2.2" marker-end="url(#story-arrow-8)"/><text x="505" y="230" text-anchor="middle" class="tiny">HTML</text>
@@ -1066,8 +1117,8 @@
 
               <g class="lifeline"><rect class="node node-teal" x="60" y="120" width="130" height="46" rx="10"/><text x="125" y="149" text-anchor="middle" class="tiny">Stakeholder</text><path d="M125 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
               <g class="lifeline"><rect class="node node-teal" x="250" y="120" width="150" height="46" rx="10"/><text x="325" y="149" text-anchor="middle" class="tiny">AWS Load Balancer</text><path d="M325 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
-              <g class="lifeline"><rect class="node node-violet" x="465" y="120" width="145" height="46" rx="10"/><text x="537" y="149" text-anchor="middle" class="tiny">Streamlit UI</text><path d="M537 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
-              <g class="lifeline"><rect class="node node-violet" x="735" y="120" width="165" height="46" rx="10"/><text x="817" y="149" text-anchor="middle" class="tiny">FastAPI backend</text><path d="M817 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer"><rect class="node node-violet" x="465" y="120" width="145" height="46" rx="10"/><text x="537" y="149" text-anchor="middle" class="tiny">Streamlit UI ↗</text></a><path d="M537 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
+              <g class="lifeline"><a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer"><rect class="node node-violet" x="735" y="120" width="165" height="46" rx="10"/><text x="817" y="149" text-anchor="middle" class="tiny">FastAPI backend ↗</text></a><path d="M817 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
               <g class="lifeline"><rect class="node node-violet" x="1080" y="120" width="160" height="46" rx="10"/><text x="1160" y="149" text-anchor="middle" class="tiny">Claude on AWS</text><path d="M1160 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
               <g class="lifeline"><rect class="node node-gold" x="1320" y="120" width="150" height="46" rx="10"/><text x="1395" y="149" text-anchor="middle" class="tiny">Amazon Athena</text><path d="M1395 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
               <g class="lifeline"><rect class="node node-amber" x="1490" y="120" width="80" height="46" rx="10"/><text x="1530" y="149" text-anchor="middle" class="tiny">S3 logs</text><path d="M1530 166 V1125" stroke="#8b5cf6" stroke-width="1.4"/></g>
@@ -1145,18 +1196,18 @@
               <rect width="1320" height="820" rx="30" fill="#fbfdff"/>
               <text x="44" y="52" class="title" style="font-size:24px">IAM: permissions are separated by service responsibility</text>
               <text x="44" y="80" class="sub" style="font-size:14px">Authentication identifies the caller. Authorization is the list of allowed actions shown in each box.</text>
-              <rect class="node node-blue" x="45" y="125" width="285" height="112" rx="22"/><use href="#icon-compute" class="arch-icon icon-blue" x="67" y="144" width="30" height="30"/><text x="202" y="158" text-anchor="middle" class="title">Source simulator ECS</text><text x="202" y="186" text-anchor="middle" class="sub">Can read database connection config</text><text x="202" y="210" text-anchor="middle" class="sub">Can connect only to source RDS</text>
-              <rect class="node node-amber" x="365" y="125" width="285" height="112" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-amber" x="387" y="144" width="30" height="30"/><text x="522" y="158" text-anchor="middle" class="title">DMS</text><text x="522" y="186" text-anchor="middle" class="sub">Can read the source database stream</text><text x="522" y="210" text-anchor="middle" class="sub">Can write raw CDC files only to Bronze</text>
-              <rect class="node" x="685" y="125" width="285" height="112" rx="22"/><use href="#icon-compute" class="arch-icon icon-slate" x="707" y="144" width="30" height="30"/><text x="842" y="158" text-anchor="middle" class="title">Glue Silver jobs</text><text x="842" y="186" text-anchor="middle" class="sub">Can read Bronze raw files</text><text x="842" y="210" text-anchor="middle" class="sub">Can write Silver and Quarantine</text>
-              <rect class="node node-gold" x="1005" y="125" width="285" height="112" rx="22"/><use href="#icon-compute" class="arch-icon icon-gold" x="1027" y="144" width="30" height="30"/><text x="1162" y="158" text-anchor="middle" class="title">run_dbt Glue job</text><text x="1162" y="186" text-anchor="middle" class="sub">Can read Silver and dbt project files</text><text x="1162" y="210" text-anchor="middle" class="sub">Can write Gold tables and dbt metadata</text>
-              <rect class="node node-violet" x="45" y="295" width="285" height="112" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="67" y="314" width="30" height="30"/><text x="202" y="328" text-anchor="middle" class="title">Step Functions</text><text x="202" y="356" text-anchor="middle" class="sub">Can start Glue jobs and crawler</text><text x="202" y="380" text-anchor="middle" class="sub">Can invoke row-count Lambda</text>
-              <rect class="node node-violet" x="365" y="295" width="285" height="112" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="387" y="314" width="30" height="30"/><text x="522" y="328" text-anchor="middle" class="title">MWAA Airflow</text><text x="522" y="356" text-anchor="middle" class="sub">Can read DAG and dbt artifacts</text><text x="522" y="380" text-anchor="middle" class="sub">Can start Glue, crawler, and Athena</text>
+              <rect class="node node-blue" x="45" y="125" width="285" height="112" rx="22"/><use href="#icon-compute" class="arch-icon icon-blue" x="67" y="144" width="30" height="30"/><text x="202" y="158" text-anchor="middle" class="title">Source simulator ECS</text><a href="https://github.com/enterprise-data-platform-emeka/platform-cdc-simulator" target="_blank" rel="noopener noreferrer"><text x="202" y="186" text-anchor="middle" class="sub">platform-cdc-simulator ↗</text></a><text x="202" y="210" text-anchor="middle" class="sub">Can connect only to source RDS</text>
+              <rect class="node node-amber" x="365" y="125" width="285" height="112" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-amber" x="387" y="144" width="30" height="30"/><text x="522" y="158" text-anchor="middle" class="title">DMS</text><a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><text x="522" y="186" text-anchor="middle" class="sub">terraform-platform-infra-live ↗</text></a><text x="522" y="210" text-anchor="middle" class="sub">Can write raw CDC files only to Bronze</text>
+              <rect class="node" x="685" y="125" width="285" height="112" rx="22"/><use href="#icon-compute" class="arch-icon icon-slate" x="707" y="144" width="30" height="30"/><text x="842" y="158" text-anchor="middle" class="title">Glue Silver jobs</text><a href="https://github.com/enterprise-data-platform-emeka/platform-glue-jobs" target="_blank" rel="noopener noreferrer"><text x="842" y="186" text-anchor="middle" class="sub">platform-glue-jobs ↗</text></a><text x="842" y="210" text-anchor="middle" class="sub">Can write Silver and Quarantine</text>
+              <rect class="node node-gold" x="1005" y="125" width="285" height="112" rx="22"/><use href="#icon-compute" class="arch-icon icon-gold" x="1027" y="144" width="30" height="30"/><text x="1162" y="158" text-anchor="middle" class="title">run_dbt Glue job</text><a href="https://github.com/enterprise-data-platform-emeka/platform-dbt-analytics" target="_blank" rel="noopener noreferrer"><text x="1162" y="186" text-anchor="middle" class="sub">platform-dbt-analytics ↗</text></a><text x="1162" y="210" text-anchor="middle" class="sub">Can write Gold tables and dbt metadata</text>
+              <rect class="node node-violet" x="45" y="295" width="285" height="112" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="67" y="314" width="30" height="30"/><text x="202" y="328" text-anchor="middle" class="title">Step Functions</text><a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><text x="202" y="356" text-anchor="middle" class="sub">terraform-platform-infra-live ↗</text></a><text x="202" y="380" text-anchor="middle" class="sub">Can invoke row-count Lambda</text>
+              <rect class="node node-violet" x="365" y="295" width="285" height="112" rx="22"/><use href="#icon-orchestrator" class="arch-icon icon-violet" x="387" y="314" width="30" height="30"/><text x="522" y="328" text-anchor="middle" class="title">MWAA Airflow</text><a href="https://github.com/enterprise-data-platform-emeka/platform-orchestration-mwaa-airflow" target="_blank" rel="noopener noreferrer"><text x="522" y="356" text-anchor="middle" class="sub">platform-orchestration-mwaa-airflow ↗</text></a><text x="522" y="380" text-anchor="middle" class="sub">Can start Glue, crawler, and Athena</text>
               <rect class="node node-gold" x="685" y="295" width="285" height="112" rx="22"/><use href="#icon-warehouse" class="arch-icon icon-gold" x="707" y="314" width="30" height="30"/><text x="842" y="328" text-anchor="middle" class="title">Athena workgroup</text><text x="842" y="356" text-anchor="middle" class="sub">Can read Catalog table definitions</text><text x="842" y="380" text-anchor="middle" class="sub">Can write query results to results path</text>
-              <rect class="node node-gold" x="1005" y="295" width="285" height="112" rx="22"/><use href="#icon-ai" class="arch-icon icon-gold" x="1027" y="314" width="30" height="30"/><text x="1162" y="328" text-anchor="middle" class="title">Analytics Agent</text><text x="1162" y="356" text-anchor="middle" class="sub">Can query Gold through Athena</text><text x="1162" y="380" text-anchor="middle" class="sub">Can write audit evidence and charts</text>
+              <rect class="node node-gold" x="1005" y="295" width="285" height="112" rx="22"/><use href="#icon-ai" class="arch-icon icon-gold" x="1027" y="314" width="30" height="30"/><text x="1162" y="328" text-anchor="middle" class="title">Analytics Agent</text><a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-agent" target="_blank" rel="noopener noreferrer"><text x="1162" y="356" text-anchor="middle" class="sub">platform-analytics-agent ↗</text></a><text x="1162" y="380" text-anchor="middle" class="sub">Can write audit evidence and charts</text>
               <rect class="node node-teal" x="45" y="465" width="285" height="112" rx="22"/><text x="187" y="498" text-anchor="middle" class="title">Claude Platform on AWS</text><text x="187" y="526" text-anchor="middle" class="sub">Agent can call configured workspace</text><text x="187" y="550" text-anchor="middle" class="sub">Used for SQL, intent check, insight</text>
-              <rect class="node node-teal" x="365" y="465" width="285" height="112" rx="22"/><text x="507" y="498" text-anchor="middle" class="title">Analytics Web</text><text x="507" y="526" text-anchor="middle" class="sub">No permission to read lake buckets</text><text x="507" y="550" text-anchor="middle" class="sub">Can proxy browser calls to the agent</text>
-              <rect class="node node-teal" x="685" y="465" width="285" height="112" rx="22"/><text x="827" y="498" text-anchor="middle" class="title">Slack gateway</text><text x="827" y="526" text-anchor="middle" class="sub">No permission to read lake buckets</text><text x="827" y="550" text-anchor="middle" class="sub">Can call the Analytics Agent API</text>
-              <rect class="node node-rose" x="1005" y="465" width="285" height="112" rx="22"/><text x="1147" y="498" text-anchor="middle" class="title">Redshift serving</text><text x="1147" y="526" text-anchor="middle" class="sub">Can read Silver and Gold from S3</text><text x="1147" y="550" text-anchor="middle" class="sub">Can read table definitions from Catalog</text>
+              <rect class="node node-teal" x="365" y="465" width="285" height="112" rx="22"/><text x="507" y="498" text-anchor="middle" class="title">Analytics Web</text><a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web" target="_blank" rel="noopener noreferrer"><text x="507" y="526" text-anchor="middle" class="sub">platform-analytics-web ↗</text></a><text x="507" y="550" text-anchor="middle" class="sub">Can proxy browser calls to the agent</text>
+              <rect class="node node-teal" x="685" y="465" width="285" height="112" rx="22"/><text x="827" y="498" text-anchor="middle" class="title">Slack gateway</text><a href="https://github.com/enterprise-data-platform-emeka/platform-slack-mcp-gateway" target="_blank" rel="noopener noreferrer"><text x="827" y="526" text-anchor="middle" class="sub">platform-slack-mcp-gateway ↗</text></a><text x="827" y="550" text-anchor="middle" class="sub">Can call the Analytics Agent API</text>
+              <rect class="node node-rose" x="1005" y="465" width="285" height="112" rx="22"/><text x="1147" y="498" text-anchor="middle" class="title">Redshift serving</text><a href="https://github.com/enterprise-data-platform-emeka/terraform-platform-infra-live" target="_blank" rel="noopener noreferrer"><text x="1147" y="526" text-anchor="middle" class="sub">terraform-platform-infra-live ↗</text></a><text x="1147" y="550" text-anchor="middle" class="sub">Can read table definitions from Catalog</text>
               <rect class="node node-rose" x="220" y="650" width="285" height="76" rx="22"/><text x="362" y="680" text-anchor="middle" class="title">Public logs</text><text x="362" y="704" text-anchor="middle" class="sub">Show summaries, not identifiers or URLs</text>
               <rect class="node node-dark" x="815" y="650" width="285" height="76" rx="22"/><text x="957" y="680" text-anchor="middle" class="title white-text">Destroy</text><text x="957" y="704" text-anchor="middle" class="sub white-text">Runtime services removed after session</text>
             </svg>
