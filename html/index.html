@@ -429,23 +429,45 @@
     body[data-theme="dark"] .flow text { fill: #d8e5f8; }
     body[data-theme="dark"] svg > rect:first-of-type,
     body[data-theme="dark"] .svg-frame svg rect[fill="#fbfdff"] {
-      fill: #0b1220;
+      fill: #0a1220 !important;
     }
-    body[data-theme="dark"] .svg-frame svg rect[fill="#fff"] {
-      fill: #101a2c;
+    body[data-theme="dark"] .svg-frame svg rect[fill="#fff"],
+    body[data-theme="dark"] .svg-frame svg rect[fill="#f8fbff"],
+    body[data-theme="dark"] .svg-frame svg rect[fill="#f1f5f9"] {
+      fill: #101a2c !important;
+      stroke: rgba(148,163,184,.46) !important;
     }
-    body[data-theme="dark"] .svg-frame svg rect[fill="#eaf2ff"] {
-      fill: #132542;
+    body[data-theme="dark"] .svg-frame svg rect[fill="#eaf2ff"],
+    body[data-theme="dark"] .svg-frame svg rect[fill="#eef7ff"] {
+      fill: #12233c !important;
+      stroke: rgba(147,197,253,.62) !important;
     }
     body[data-theme="dark"] .svg-frame svg rect[fill="#e7f6f3"] {
-      fill: #0f2a2a;
+      fill: #0f2a2a !important;
+      stroke: rgba(94,234,212,.56) !important;
     }
     body[data-theme="dark"] .svg-frame svg rect[fill="#fffbea"],
-    body[data-theme="dark"] .svg-frame svg rect[fill="#fff6df"] {
-      fill: #2f2810;
+    body[data-theme="dark"] .svg-frame svg rect[fill="#fff6df"],
+    body[data-theme="dark"] .svg-frame svg rect[fill="#fff7e6"] {
+      fill: #2f2810 !important;
+      stroke: rgba(250,204,21,.56) !important;
+    }
+    body[data-theme="dark"] .svg-frame svg rect[fill="#f5edff"],
+    body[data-theme="dark"] .svg-frame svg rect[fill="#f3e8ff"] {
+      fill: #24183b !important;
+      stroke: rgba(196,181,253,.62) !important;
     }
     body[data-theme="dark"] .svg-frame svg rect[fill="#fff0ef"] {
-      fill: #331b1d;
+      fill: #331b1d !important;
+      stroke: rgba(252,165,165,.58) !important;
+    }
+    body[data-theme="dark"] .title,
+    body[data-theme="dark"] .small-title,
+    body[data-theme="dark"] .sub,
+    body[data-theme="dark"] .tiny {
+      paint-order: stroke;
+      stroke: rgba(10,18,32,.45);
+      stroke-width: 2.5px;
     }
     body[data-theme="dark"] svg path[stroke="#344054"],
     body[data-theme="dark"] svg line[stroke="#344054"] {
