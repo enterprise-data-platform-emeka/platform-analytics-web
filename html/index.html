@@ -481,6 +481,166 @@
     .concept { padding: 1rem; box-shadow: var(--soft-shadow); }
     .concept h3 { margin-bottom: .45rem; }
     .concept p { font-size: .94rem; }
+    .tree-panel {
+      margin: .25rem 1.25rem 1.25rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(248,251,255,.88);
+      box-shadow: 0 10px 26px rgba(16,24,40,.04);
+    }
+    body[data-theme="dark"] .tree-panel {
+      background: rgba(15,23,42,.82);
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+    .tree-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: .9rem;
+    }
+    .tree-head p { max-width: 760px; font-size: .92rem; }
+    .tree-toolbar { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tree-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: .5rem .72rem;
+      border: 1px solid #bdcbe0;
+      border-radius: 999px;
+      color: #344054;
+      background: #fff;
+      font: inherit;
+      font-size: .76rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(16,24,40,.05);
+    }
+    .tree-button:hover { color: var(--blue); border-color: #9cc2ff; }
+    body[data-theme="dark"] .tree-button {
+      color: #d8e5f8;
+      background: rgba(15,23,42,.92);
+      border-color: rgba(148,163,184,.32);
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    body[data-theme="dark"] .tree-button:hover {
+      color: #fff;
+      border-color: rgba(96,165,250,.68);
+      background: rgba(37,99,235,.24);
+    }
+    .tree-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: .85rem;
+    }
+    .tree-column {
+      padding: .85rem;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.88);
+    }
+    body[data-theme="dark"] .tree-column {
+      background: rgba(10,16,29,.9);
+    }
+    .tree-column h4 {
+      margin: 0 0 .22rem;
+      font-size: .98rem;
+      letter-spacing: -.02em;
+    }
+    .tree-column p {
+      margin-bottom: .85rem;
+      font-size: .86rem;
+      line-height: 1.5;
+    }
+    .tree {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tree details {
+      margin: .45rem 0 0 1rem;
+      padding-left: .9rem;
+      border-left: 1px solid #cfe0f6;
+    }
+    body[data-theme="dark"] .tree details {
+      border-left-color: rgba(148,163,184,.28);
+    }
+    .tree > li > details {
+      margin-left: 0;
+      padding-left: 0;
+      border-left: 0;
+    }
+    .tree summary {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      list-style: none;
+      cursor: pointer;
+    }
+    .tree summary::-webkit-details-marker { display: none; }
+    .tree-card {
+      display: block;
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: .72rem .82rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(16,24,40,.05);
+    }
+    body[data-theme="dark"] .tree-card {
+      background: rgba(15,23,42,.92);
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    .tree-card strong {
+      display: block;
+      margin-bottom: .16rem;
+      color: var(--ink);
+      font-size: .92rem;
+      letter-spacing: -.015em;
+    }
+    .tree-card span {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.45;
+    }
+    .tree-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .55rem;
+    }
+    .tree-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: .22rem .46rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .01em;
+    }
+    .pill-blue { background: rgba(37,99,235,.11); color: #1d4ed8; }
+    .pill-teal { background: rgba(15,118,110,.11); color: #0f766e; }
+    .pill-gold { background: rgba(202,138,4,.12); color: #a16207; }
+    .pill-violet { background: rgba(109,40,217,.11); color: #6d28d9; }
+    .pill-rose { background: rgba(180,35,24,.11); color: #b42318; }
+    body[data-theme="dark"] .pill-blue { color: #bfdbfe; background: rgba(96,165,250,.16); }
+    body[data-theme="dark"] .pill-teal { color: #99f6e4; background: rgba(94,234,212,.12); }
+    body[data-theme="dark"] .pill-gold { color: #fde68a; background: rgba(250,204,21,.12); }
+    body[data-theme="dark"] .pill-violet { color: #ddd6fe; background: rgba(196,181,253,.12); }
+    body[data-theme="dark"] .pill-rose { color: #fecaca; background: rgba(252,165,165,.12); }
+    .tree-leaf {
+      margin: .45rem 0 0 1rem;
+      padding-left: .9rem;
+      border-left: 1px solid #cfe0f6;
+    }
+    body[data-theme="dark"] .tree-leaf {
+      border-left-color: rgba(148,163,184,.28);
+    }
     .mini-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .42rem; margin: .72rem 0 .82rem; }
     .mini-node { padding: .42rem .58rem; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: #344054; font-size: .78rem; font-weight: 850; }
     .mini-arrow { color: var(--blue); font-weight: 950; }
@@ -494,6 +654,8 @@
       .story-head { grid-template-columns: auto minmax(0, 1fr); }
       .story-actions { grid-column: 1 / -1; justify-content: flex-start; }
       .diagram-head.split { display: block; }
+      .tree-head { display: block; }
+      .tree-toolbar { margin-top: .85rem; }
       .hero, .diagram-note, .grid { grid-template-columns: 1fr; }
       svg { min-width: 900px; }
       .wrap { width: min(100% - 1rem, 1320px); }
@@ -565,6 +727,7 @@
     <nav class="nav" aria-label="Page navigation">
       <a href="https://github.com/enterprise-data-platform-emeka/platform-analytics-web/blob/main/README.md">README.md</a>
       <a href="#position">Position</a>
+      <a href="#topology">Topology</a>
       <a href="#request">Request flow</a>
       <a href="#contract">API contract</a>
       <a href="#deploy">Deploy</a>
@@ -674,6 +837,180 @@
         <div class="note"><strong>Separate frontend</strong><span>This repo changes the browser experience without editing the Python agent service.</span></div>
         <div class="note"><strong>Shared backend</strong><span>Streamlit, HTML, and Slack all rely on the same governed SQL and audit behavior.</span></div>
         <div class="note"><strong>Demo value</strong><span>The HTML surface is easier to polish for stakeholders because layout, colors, tables, and exports are fully controlled.</span></div>
+      </div>
+    </section>
+
+    <section class="diagram-card" id="topology" data-repos="platform-analytics-web,platform-analytics-agent,platform-slack-mcp-gateway,platform-dbt-analytics,terraform-platform-infra-live">
+      <div class="diagram-head split">
+        <div>
+          <div class="eyebrow">Topology explorer</div>
+          <h2>Optional collapsible maps reveal ownership without replacing the flow diagrams.</h2>
+        </div>
+      </div>
+      <div class="tree-panel">
+        <div class="tree-head">
+          <div>
+            <h3>Responsibility map</h3>
+            <p>Use this org-style view when you want to inspect who depends on whom. It complements the sequence diagrams by grouping the platform into entry points, ownership boundaries, and governed data access.</p>
+          </div>
+          <div class="tree-toolbar" aria-label="Topology controls">
+            <button class="tree-button" type="button" data-tree-expand="topology-tree">Expand all</button>
+            <button class="tree-button" type="button" data-tree-collapse="topology-tree">Collapse all</button>
+          </div>
+        </div>
+        <div class="tree-layout" id="topology-tree">
+          <section class="tree-column" aria-labelledby="topology-entry-title">
+            <h4 id="topology-entry-title">Entry points</h4>
+            <p>Three surfaces collect questions, but none of them owns SQL or direct lake access.</p>
+            <ul class="tree">
+              <li>
+                <details open>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>Stakeholder surfaces</strong>
+                      <span>Thin UX layers that gather intent and present answers.</span>
+                      <div class="tree-pills">
+                        <span class="tree-pill pill-teal">Browser</span>
+                        <span class="tree-pill pill-teal">Slack</span>
+                        <span class="tree-pill pill-violet">Streamlit</span>
+                      </div>
+                    </div>
+                  </summary>
+                  <details open>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>Analytics Web</strong>
+                        <span>Static UI plus `/api` proxy for stakeholder-friendly presentation.</span>
+                        <div class="tree-pills"><span class="tree-pill pill-blue">platform-analytics-web</span></div>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf">
+                      <div class="tree-card">
+                        <strong>Browser session</strong>
+                        <span>KPI cards, tables, downloads, PDFs, and engineer log visibility.</span>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>Streamlit UI</strong>
+                        <span>Peer frontend for the same backend contract inside the agent repo.</span>
+                        <div class="tree-pills"><span class="tree-pill pill-violet">platform-analytics-agent</span></div>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf">
+                      <div class="tree-card">
+                        <strong>Local UI-to-agent call</strong>
+                        <span>Runs in the same ECS task as FastAPI in the demo deployment.</span>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>Slack gateway</strong>
+                        <span>Slack-native entry point that forwards questions to the governed agent.</span>
+                        <div class="tree-pills"><span class="tree-pill pill-teal">platform-slack-mcp-gateway</span></div>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf">
+                      <div class="tree-card">
+                        <strong>Slack event handling</strong>
+                        <span>Mentions and messages become Analytics Agent API calls, not direct data reads.</span>
+                      </div>
+                    </div>
+                  </details>
+                </details>
+              </li>
+            </ul>
+          </section>
+          <section class="tree-column" aria-labelledby="topology-owner-title">
+            <h4 id="topology-owner-title">Governed owner</h4>
+            <p>The shared middle layer is the point of control for SQL, guardrails, charts, and audit.</p>
+            <ul class="tree">
+              <li>
+                <details open>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>Analytics Agent</strong>
+                      <span>The only service that turns natural language into governed data access.</span>
+                      <div class="tree-pills">
+                        <span class="tree-pill pill-violet">FastAPI</span>
+                        <span class="tree-pill pill-violet">Guardrails</span>
+                        <span class="tree-pill pill-rose">Audit</span>
+                      </div>
+                    </div>
+                  </summary>
+                  <details open>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>Reasoning + validation</strong>
+                        <span>Intent check, SQL draft, repair loop, explanation, and chart/report packaging.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf">
+                      <div class="tree-card">
+                        <strong>Claude calls</strong>
+                        <span>Used for SQL generation and analytical narrative, never as a shortcut around policy.</span>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>Audit evidence</strong>
+                        <span>Writes logs, artifacts, and engineer traces to the governed evidence path.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf">
+                      <div class="tree-card">
+                        <strong>S3 artifacts</strong>
+                        <span>Charts, PDFs, and request evidence remain centralized and reviewable.</span>
+                      </div>
+                    </div>
+                  </details>
+                </details>
+              </li>
+            </ul>
+          </section>
+          <section class="tree-column" aria-labelledby="topology-data-title">
+            <h4 id="topology-data-title">Governed data path</h4>
+            <p>Data access fans out only after the agent has decided what is allowed.</p>
+            <ul class="tree">
+              <li>
+                <details open>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>Gold query boundary</strong>
+                      <span>The agent reads analytics-ready marts rather than raw operational tables.</span>
+                      <div class="tree-pills">
+                        <span class="tree-pill pill-gold">Athena</span>
+                        <span class="tree-pill pill-gold">Gold marts</span>
+                      </div>
+                    </div>
+                  </summary>
+                  <details open>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>dbt marts</strong>
+                        <span>Business-ready metrics and dimensions sourced from the broader Bronze/Silver/Gold pipeline.</span>
+                        <div class="tree-pills"><span class="tree-pill pill-gold">platform-dbt-analytics</span></div>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf">
+                      <div class="tree-card">
+                        <strong>Infra boundary</strong>
+                        <span>Routing, ECS, ALB, and execution roles are provisioned independently in infra.</span>
+                        <div class="tree-pills"><span class="tree-pill pill-blue">terraform-platform-infra-live</span></div>
+                      </div>
+                    </div>
+                  </details>
+                </details>
+              </li>
+            </ul>
+          </section>
+        </div>
       </div>
     </section>
 
@@ -846,6 +1183,167 @@
           <a class="story-action" href="#story-access" data-jump="story-access">8</a>
           <a class="story-action" href="#story-agent" data-jump="story-agent">9</a>
           <a class="story-action" href="#story-iam" data-jump="story-iam">10</a>
+        </div>
+      </div>
+      <div class="tree-panel">
+        <div class="tree-head">
+          <div>
+            <h3>Chapter map</h3>
+            <p>This compact tree turns the ten-frame walkthrough into a collapsible outline so readers can jump to the slice they care about before opening the full SVG story card.</p>
+          </div>
+          <div class="tree-toolbar" aria-label="Walkthrough chapter controls">
+            <button class="tree-button" type="button" data-tree-expand="walkthrough-tree">Expand all</button>
+            <button class="tree-button" type="button" data-tree-collapse="walkthrough-tree">Collapse all</button>
+          </div>
+        </div>
+        <div class="tree-layout" id="walkthrough-tree">
+          <section class="tree-column" aria-labelledby="walkthrough-foundation-title">
+            <h4 id="walkthrough-foundation-title">Foundation</h4>
+            <p>Environment bring-up and source modeling establish the platform shape before data lands in the lake.</p>
+            <ul class="tree">
+              <li>
+                <details open>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>1. Session start</strong>
+                      <span>Controlled deployment and destroy boundaries for the public demo.</span>
+                    </div>
+                  </summary>
+                  <div class="tree-leaf">
+                    <a class="tree-card" href="#story-session">
+                      <strong>Open frame 1</strong>
+                      <span>Terraform, orchestrator, simulator, and runtime entry points.</span>
+                    </a>
+                  </div>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>2. Source model</strong>
+                      <span>OLTP tables and I/U/D behavior that generate CDC events.</span>
+                    </div>
+                  </summary>
+                  <div class="tree-leaf">
+                    <a class="tree-card" href="#story-source-model">
+                      <strong>Open frame 2</strong>
+                      <span>Customers, orders, products, shipments, and event semantics.</span>
+                    </a>
+                  </div>
+                </details>
+              </li>
+            </ul>
+          </section>
+          <section class="tree-column" aria-labelledby="walkthrough-pipeline-title">
+            <h4 id="walkthrough-pipeline-title">Pipeline</h4>
+            <p>The central branch shows how raw changes become cleaned and analytics-ready data.</p>
+            <ul class="tree">
+              <li>
+                <details open>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>3-6. Bronze to Gold</strong>
+                      <span>Ingestion, reconciliation, star schema shaping, and dbt marts.</span>
+                      <div class="tree-pills">
+                        <span class="tree-pill pill-gold">Bronze</span>
+                        <span class="tree-pill pill-blue">Silver</span>
+                        <span class="tree-pill pill-gold">Gold</span>
+                      </div>
+                    </div>
+                  </summary>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>3. CDC ingestion</strong>
+                        <span>DMS full load and continuous changes into Bronze raw files.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-ingestion"><strong>Open frame 3</strong><span>PostgreSQL to DMS to S3 Bronze.</span></a></div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>4. Reconciliation</strong>
+                        <span>Glue keeps latest valid state and quarantines failures.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-reconciliation"><strong>Open frame 4</strong><span>Current-state Silver with quality gates.</span></a></div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>5. Star schema</strong>
+                        <span>Silver entities become dimensional analytics structures.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-star-schema"><strong>Open frame 5</strong><span>Facts, dimensions, and modeling intent.</span></a></div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>6. Gold modeling</strong>
+                        <span>dbt turns curated Silver data into business-facing marts.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-gold"><strong>Open frame 6</strong><span>Athena-facing marts for analytics consumers.</span></a></div>
+                  </details>
+                </details>
+              </li>
+            </ul>
+          </section>
+          <section class="tree-column" aria-labelledby="walkthrough-consumption-title">
+            <h4 id="walkthrough-consumption-title">Consumption</h4>
+            <p>Operational control, stakeholder access, and security boundaries sit on top of the modeled data.</p>
+            <ul class="tree">
+              <li>
+                <details open>
+                  <summary>
+                    <div class="tree-card">
+                      <strong>7-10. Runners, apps, and IAM</strong>
+                      <span>How the platform executes, exposes, and constrains analytics behavior.</span>
+                    </div>
+                  </summary>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>7. Orchestration</strong>
+                        <span>Step Functions and MWAA can both run the pipeline responsibly.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-orchestration"><strong>Open frame 7</strong><span>Execution options and repo ownership.</span></a></div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>8. Access layout</strong>
+                        <span>Three entry points route questions to one governed agent.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-access"><strong>Open frame 8</strong><span>Browser, Streamlit, Slack, and agent ownership.</span></a></div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>9. Agent loop</strong>
+                        <span>Full request path with guardrails, Athena execution, and audit writes.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-agent"><strong>Open frame 9</strong><span>Detailed call sequence from question to answer.</span></a></div>
+                  </details>
+                  <details>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>10. Least privilege</strong>
+                        <span>Each service gets only the reads, writes, and starts required for its job.</span>
+                      </div>
+                    </summary>
+                    <div class="tree-leaf"><a class="tree-card" href="#story-iam"><strong>Open frame 10</strong><span>Permission boundaries by service responsibility.</span></a></div>
+                  </details>
+                </details>
+              </li>
+            </ul>
+          </section>
         </div>
       </div>
       <div class="legend-row" aria-label="Diagram color legend">
@@ -1293,6 +1791,128 @@
               <text x="660" y="575" text-anchor="middle" class="sub">Permission boundary: web, Streamlit, and Slack collect questions. The Analytics Agent owns the governed Gold query.</text>
             </svg>
           </div>
+          <div class="tree-panel">
+            <div class="tree-head">
+              <div>
+                <h3>Expandable responsibility tree</h3>
+                <p>This org-style view is useful when a reader cares more about ownership and handoff boundaries than about the precise path geometry in the SVG.</p>
+              </div>
+              <div class="tree-toolbar" aria-label="Access tree controls">
+                <button class="tree-button" type="button" data-tree-expand="access-tree">Expand all</button>
+                <button class="tree-button" type="button" data-tree-collapse="access-tree">Collapse all</button>
+              </div>
+            </div>
+            <div id="access-tree">
+              <ul class="tree">
+                <li>
+                  <details open>
+                    <summary>
+                      <div class="tree-card">
+                        <strong>Stakeholder questions</strong>
+                        <span>One business ask can enter through different channels.</span>
+                      </div>
+                    </summary>
+                    <details open>
+                      <summary>
+                        <div class="tree-card">
+                          <strong>Browser path</strong>
+                          <span>ALB routes the user into the HTML service or Streamlit peer experience.</span>
+                          <div class="tree-pills">
+                            <span class="tree-pill pill-teal">User</span>
+                            <span class="tree-pill pill-blue">Web</span>
+                            <span class="tree-pill pill-violet">Streamlit</span>
+                          </div>
+                        </div>
+                      </summary>
+                      <details>
+                        <summary>
+                          <div class="tree-card">
+                            <strong>Analytics Web</strong>
+                            <span>Serves static assets and proxies `/api/*` to the agent.</span>
+                          </div>
+                        </summary>
+                        <div class="tree-leaf">
+                          <div class="tree-card">
+                            <strong>Thin browser service</strong>
+                            <span>Presentation logic stays here; analytics logic does not.</span>
+                          </div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          <div class="tree-card">
+                            <strong>Streamlit UI</strong>
+                            <span>Alternative browser surface with the same governed backend.</span>
+                          </div>
+                        </summary>
+                        <div class="tree-leaf">
+                          <div class="tree-card">
+                            <strong>Peer frontend</strong>
+                            <span>Lives with the agent repo but still defers analytics ownership to FastAPI.</span>
+                          </div>
+                        </div>
+                      </details>
+                    </details>
+                    <details>
+                      <summary>
+                        <div class="tree-card">
+                          <strong>Slack path</strong>
+                          <span>Slack events become agent API calls through the gateway service.</span>
+                          <div class="tree-pills"><span class="tree-pill pill-teal">Slack gateway</span></div>
+                        </div>
+                      </summary>
+                      <div class="tree-leaf">
+                        <div class="tree-card">
+                          <strong>Slack-native delivery</strong>
+                          <span>Returns answers in channel without granting Slack direct access to Gold.</span>
+                        </div>
+                      </div>
+                    </details>
+                    <details open>
+                      <summary>
+                        <div class="tree-card">
+                          <strong>Shared governed owner</strong>
+                          <span>All entry points converge on the Analytics Agent.</span>
+                          <div class="tree-pills">
+                            <span class="tree-pill pill-violet">FastAPI</span>
+                            <span class="tree-pill pill-gold">Gold read-only</span>
+                          </div>
+                        </div>
+                      </summary>
+                      <details>
+                        <summary>
+                          <div class="tree-card">
+                            <strong>Analytics Agent</strong>
+                            <span>The only service that queries Gold marts and packages the answer.</span>
+                          </div>
+                        </summary>
+                        <div class="tree-leaf">
+                          <div class="tree-card">
+                            <strong>Governed outputs</strong>
+                            <span>Insight text, chart image, PDFs, cost, verdict, and audit evidence.</span>
+                          </div>
+                        </div>
+                      </details>
+                      <details>
+                        <summary>
+                          <div class="tree-card">
+                            <strong>Gold marts</strong>
+                            <span>dbt-managed analytics tables exposed through Athena.</span>
+                          </div>
+                        </summary>
+                        <div class="tree-leaf">
+                          <div class="tree-card">
+                            <strong>Read-only dependency</strong>
+                            <span>Consumers depend on curated analytics models instead of raw zones.</span>
+                          </div>
+                        </div>
+                      </details>
+                    </details>
+                  </details>
+                </li>
+              </ul>
+            </div>
+          </div>
         </article>
 
         <article class="story-card" id="story-agent" data-repos="platform-analytics-agent,platform-analytics-web,platform-dbt-analytics">
@@ -1413,6 +2033,110 @@
               <rect class="node node-dark" x="815" y="650" width="285" height="76" rx="22"/><text x="957" y="680" text-anchor="middle" class="title white-text">Destroy</text><text x="957" y="704" text-anchor="middle" class="sub white-text">Runtime services removed after session</text>
             </svg>
           </div>
+          <div class="tree-panel">
+            <div class="tree-head">
+              <div>
+                <h3>Permission tree</h3>
+                <p>The SVG gives the full cross-platform view. This tree lets readers open only one trust boundary at a time, which makes least-privilege rules easier to scan.</p>
+              </div>
+              <div class="tree-toolbar" aria-label="Permission tree controls">
+                <button class="tree-button" type="button" data-tree-expand="iam-tree">Expand all</button>
+                <button class="tree-button" type="button" data-tree-collapse="iam-tree">Collapse all</button>
+              </div>
+            </div>
+            <div class="tree-layout" id="iam-tree">
+              <section class="tree-column" aria-labelledby="iam-ingest-title">
+                <h4 id="iam-ingest-title">Ingestion and shaping</h4>
+                <p>Early-stage services can touch only the storage layers they are responsible for advancing.</p>
+                <ul class="tree">
+                  <li>
+                    <details open>
+                      <summary><div class="tree-card"><strong>Source simulator ECS</strong><span>Can connect only to the source RDS to create operational changes.</span><div class="tree-pills"><span class="tree-pill pill-blue">Read/write source only</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>No lake access</strong><span>It does not write Bronze, Silver, or Gold directly.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>DMS</strong><span>Copies full load and CDC records into Bronze raw storage.</span><div class="tree-pills"><span class="tree-pill pill-gold">Bronze write only</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Raw boundary</strong><span>Stops at Bronze and cannot clean or model downstream data.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>Glue Silver jobs</strong><span>Read Bronze, validate records, write Silver and quarantine, update catalog metadata.</span><div class="tree-pills"><span class="tree-pill pill-blue">Silver write</span><span class="tree-pill pill-rose">Quarantine</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Quality boundary</strong><span>Can publish metrics and cleaned state but does not publish Gold marts.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>`run_dbt` Glue job</strong><span>Builds Gold tables and dbt metadata from curated upstream data.</span><div class="tree-pills"><span class="tree-pill pill-gold">Gold write</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Analytics boundary</strong><span>Shapes business marts without reaching back into application entry points.</span></div></div>
+                    </details>
+                  </li>
+                </ul>
+              </section>
+              <section class="tree-column" aria-labelledby="iam-runner-title">
+                <h4 id="iam-runner-title">Runners and query surfaces</h4>
+                <p>Execution layers can start approved work, but their permissions remain bounded by role.</p>
+                <ul class="tree">
+                  <li>
+                    <details open>
+                      <summary><div class="tree-card"><strong>Step Functions</strong><span>Can invoke the row-count Lambda and coordinate approved checks.</span><div class="tree-pills"><span class="tree-pill pill-violet">Control plane</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Scoped coordination</strong><span>It orchestrates; it does not transform datasets itself.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>MWAA Airflow</strong><span>Can start Glue jobs, crawlers, and Athena work approved by the DAG.</span><div class="tree-pills"><span class="tree-pill pill-violet">Runner</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>No direct stakeholder role</strong><span>Its job is orchestration, not serving user-facing analytics responses.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>Athena workgroup</strong><span>Can read catalog definitions and write query results to its results path.</span><div class="tree-pills"><span class="tree-pill pill-gold">Query engine</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Execution boundary</strong><span>Runs queries but depends on upstream controls to decide which queries are allowed.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>Analytics Agent</strong><span>Can query Gold through Athena and write audit evidence, charts, and reports.</span><div class="tree-pills"><span class="tree-pill pill-violet">Guardrails</span><span class="tree-pill pill-rose">Audit write</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Governed analytics owner</strong><span>The central policy and explanation layer for every frontend.</span></div></div>
+                    </details>
+                  </li>
+                </ul>
+              </section>
+              <section class="tree-column" aria-labelledby="iam-edge-title">
+                <h4 id="iam-edge-title">Edge surfaces and platform rules</h4>
+                <p>Public-facing services get only the minimum needed to relay requests, and platform hygiene constrains what logs can reveal.</p>
+                <ul class="tree">
+                  <li>
+                    <details open>
+                      <summary><div class="tree-card"><strong>Analytics Web</strong><span>Can proxy browser calls to the agent and serve the UI.</span><div class="tree-pills"><span class="tree-pill pill-blue">Proxy only</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>No direct Gold access</strong><span>Presentation code cannot bypass the agent boundary.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>Slack gateway</strong><span>Can call the Analytics Agent API on behalf of Slack conversations.</span><div class="tree-pills"><span class="tree-pill pill-teal">Message relay</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>No warehouse query role</strong><span>It depends on the agent for governed analytics access.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>Claude platform on AWS</strong><span>The agent can call the configured workspace for intent checks, SQL generation, and insight text.</span><div class="tree-pills"><span class="tree-pill pill-violet">Model access</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Model boundary</strong><span>Reasoning assistance exists inside the governed agent workflow, not as a free-standing data actor.</span></div></div>
+                    </details>
+                  </li>
+                  <li>
+                    <details>
+                      <summary><div class="tree-card"><strong>Platform hygiene</strong><span>Public logs show summaries, while destroy removes runtime services after a session.</span><div class="tree-pills"><span class="tree-pill pill-rose">Log masking</span><span class="tree-pill pill-rose">Ephemeral runtime</span></div></div></summary>
+                      <div class="tree-leaf"><div class="tree-card"><strong>Security posture</strong><span>Operational visibility stays useful without exposing identifiers, URLs, or sensitive runtime details.</span></div></div>
+                    </details>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -1518,6 +2242,14 @@
       });
     }
 
+    function setTreeState(containerId, open) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.querySelectorAll("details").forEach((node) => {
+        node.open = open;
+      });
+    }
+
     function closeFocusedStory() {
       document.querySelectorAll(".story-card.focus-mode").forEach((card) => {
         card.classList.remove("focus-mode");
@@ -1580,6 +2312,20 @@
         if (!target) return;
         target.scrollIntoView({ behavior: "smooth", block: "start" });
         history.replaceState(null, "", `#${jumpLink.dataset.jump}`);
+        return;
+      }
+
+      const expandButton = event.target.closest("[data-tree-expand]");
+      if (expandButton) {
+        event.preventDefault();
+        setTreeState(expandButton.dataset.treeExpand, true);
+        return;
+      }
+
+      const collapseButton = event.target.closest("[data-tree-collapse]");
+      if (collapseButton) {
+        event.preventDefault();
+        setTreeState(collapseButton.dataset.treeCollapse, false);
       }
     });
 
