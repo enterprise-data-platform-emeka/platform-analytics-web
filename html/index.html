@@ -641,6 +641,185 @@
     body[data-theme="dark"] .tree-leaf {
       border-left-color: rgba(148,163,184,.28);
     }
+    .org-chart {
+      overflow-x: auto;
+      padding: .25rem 0 .4rem;
+    }
+    .org-stage {
+      min-width: 980px;
+      padding: .25rem 0 .75rem;
+    }
+    .org-branch {
+      display: grid;
+      justify-items: center;
+      gap: 1.1rem;
+    }
+    .org-children {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1rem;
+      width: 100%;
+      padding-top: 1.2rem;
+    }
+    .org-children::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 1.2rem;
+      background: #58a6ff;
+      transform: translateX(-50%);
+      opacity: .7;
+    }
+    .org-row {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: nowrap;
+      width: 100%;
+      padding-top: 1.2rem;
+    }
+    .org-row::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: calc(100% - 8rem);
+      max-width: 900px;
+      height: 1px;
+      background: rgba(88,166,255,.32);
+      transform: translateX(-50%);
+    }
+    .org-row::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 1.2rem;
+      background: #58a6ff;
+      transform: translateX(-50%);
+      opacity: .7;
+    }
+    .org-child {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: .95rem;
+      min-width: 220px;
+      flex: 0 1 280px;
+    }
+    .org-child::before {
+      content: "";
+      position: absolute;
+      top: -1.2rem;
+      left: 50%;
+      width: 2px;
+      height: 1.2rem;
+      background: rgba(88,166,255,.7);
+      transform: translateX(-50%);
+    }
+    .org-card {
+      width: min(100%, 280px);
+      padding: 1rem 1rem .9rem;
+      border: 1px solid rgba(148,163,184,.24);
+      border-radius: 24px;
+      background: rgba(15,23,42,.72);
+      box-shadow: 0 18px 38px rgba(2,6,23,.24);
+    }
+    .org-card.center { text-align: center; }
+    .org-card.highlight {
+      border-color: #1da1f2;
+      box-shadow: 0 16px 38px rgba(29,161,242,.14);
+    }
+    .org-card.secondary {
+      border-radius: 22px;
+      background: rgba(15,23,42,.62);
+    }
+    body:not([data-theme="dark"]) .org-card {
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 18px 38px rgba(16,24,40,.10);
+    }
+    .org-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-bottom: .5rem;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .org-title {
+      margin: 0 0 .22rem;
+      font-size: 1.05rem;
+      line-height: 1.12;
+      letter-spacing: -.02em;
+    }
+    .org-copy {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.48;
+    }
+    .org-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .42rem;
+      margin-top: .8rem;
+      justify-content: center;
+    }
+    .org-card:not(.center) .org-meta { justify-content: flex-start; }
+    .org-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: .28rem .58rem;
+      border-radius: 999px;
+      font-size: .74rem;
+      font-weight: 900;
+      letter-spacing: .01em;
+    }
+    .org-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      margin-top: .9rem;
+      padding-top: .8rem;
+      border-top: 1px solid rgba(148,163,184,.16);
+    }
+    .org-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2rem;
+      min-height: 1.7rem;
+      padding: 0 .55rem;
+      border-radius: 999px;
+      background: rgba(88,166,255,.12);
+      color: #7dd3fc;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+    .org-toggle {
+      border: 0;
+      padding: 0;
+      color: #7dd3fc;
+      background: transparent;
+      font: inherit;
+      font-size: .78rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .org-toggle:hover { color: #bae6fd; }
+    .org-group[hidden] { display: none !important; }
+    .org-card a { color: inherit; }
     .mini-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .42rem; margin: .72rem 0 .82rem; }
     .mini-node { padding: .42rem .58rem; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: #344054; font-size: .78rem; font-weight: 850; }
     .mini-arrow { color: var(--blue); font-weight: 950; }
@@ -858,158 +1037,83 @@
             <button class="tree-button" type="button" data-tree-collapse="topology-tree">Collapse all</button>
           </div>
         </div>
-        <div class="tree-layout" id="topology-tree">
-          <section class="tree-column" aria-labelledby="topology-entry-title">
-            <h4 id="topology-entry-title">Entry points</h4>
-            <p>Three surfaces collect questions, but none of them owns SQL or direct lake access.</p>
-            <ul class="tree">
-              <li>
-                <details open>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>Stakeholder surfaces</strong>
-                      <span>Thin UX layers that gather intent and present answers.</span>
-                      <div class="tree-pills">
-                        <span class="tree-pill pill-teal">Browser</span>
-                        <span class="tree-pill pill-teal">Slack</span>
-                        <span class="tree-pill pill-violet">Streamlit</span>
+        <div class="org-chart">
+          <div class="org-stage" id="topology-tree" data-org-container>
+            <div class="org-branch">
+              <article class="org-card center highlight">
+                <div class="org-kicker">Topology</div>
+                <h4 class="org-title">One governed analytics core</h4>
+                <div class="org-copy">Three presentation surfaces sit above a single control point for SQL, audit, and governed Gold access.</div>
+                <div class="org-meta">
+                  <span class="org-chip pill-blue">HTML</span>
+                  <span class="org-chip pill-violet">Streamlit</span>
+                  <span class="org-chip pill-teal">Slack</span>
+                </div>
+              </article>
+              <div class="org-children">
+                <div class="org-row">
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Entry Point</div>
+                      <h4 class="org-title">Analytics Web</h4>
+                      <div class="org-copy">Custom browser UX, static asset delivery, and `/api` proxy behavior for stakeholder-facing polish.</div>
+                      <div class="org-meta"><span class="org-chip pill-blue">platform-analytics-web</span></div>
+                    </article>
+                  </div>
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Entry Point</div>
+                      <h4 class="org-title">Streamlit UI</h4>
+                      <div class="org-copy">Peer browser surface in the agent repo that still depends on the same backend contract.</div>
+                      <div class="org-meta"><span class="org-chip pill-violet">platform-analytics-agent</span></div>
+                    </article>
+                  </div>
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Entry Point</div>
+                      <h4 class="org-title">Slack gateway</h4>
+                      <div class="org-copy">Slack-native front door that forwards questions without reading analytics data itself.</div>
+                      <div class="org-meta"><span class="org-chip pill-teal">platform-slack-mcp-gateway</span></div>
+                    </article>
+                  </div>
+                  <div class="org-child">
+                    <article class="org-card secondary highlight">
+                      <div class="org-kicker">Governed Owner</div>
+                      <h4 class="org-title">Analytics Agent</h4>
+                      <div class="org-copy">The only service that owns SQL generation, validation, chart packaging, and audit evidence.</div>
+                      <div class="org-meta">
+                        <span class="org-chip pill-violet">FastAPI</span>
+                        <span class="org-chip pill-rose">Audit</span>
                       </div>
-                    </div>
-                  </summary>
-                  <details open>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>Analytics Web</strong>
-                        <span>Static UI plus `/api` proxy for stakeholder-friendly presentation.</span>
-                        <div class="tree-pills"><span class="tree-pill pill-blue">platform-analytics-web</span></div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+              <div class="org-children">
+                <div class="org-row">
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Governed Data</div>
+                      <h4 class="org-title">Gold marts</h4>
+                      <div class="org-copy">dbt-managed business metrics and dimensions exposed through Athena for read-only analytics access.</div>
+                      <div class="org-meta">
+                        <span class="org-chip pill-gold">platform-dbt-analytics</span>
+                        <span class="org-chip pill-gold">Athena</span>
                       </div>
-                    </summary>
-                    <div class="tree-leaf">
-                      <div class="tree-card">
-                        <strong>Browser session</strong>
-                        <span>KPI cards, tables, downloads, PDFs, and engineer log visibility.</span>
-                      </div>
-                    </div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>Streamlit UI</strong>
-                        <span>Peer frontend for the same backend contract inside the agent repo.</span>
-                        <div class="tree-pills"><span class="tree-pill pill-violet">platform-analytics-agent</span></div>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf">
-                      <div class="tree-card">
-                        <strong>Local UI-to-agent call</strong>
-                        <span>Runs in the same ECS task as FastAPI in the demo deployment.</span>
-                      </div>
-                    </div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>Slack gateway</strong>
-                        <span>Slack-native entry point that forwards questions to the governed agent.</span>
-                        <div class="tree-pills"><span class="tree-pill pill-teal">platform-slack-mcp-gateway</span></div>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf">
-                      <div class="tree-card">
-                        <strong>Slack event handling</strong>
-                        <span>Mentions and messages become Analytics Agent API calls, not direct data reads.</span>
-                      </div>
-                    </div>
-                  </details>
-                </details>
-              </li>
-            </ul>
-          </section>
-          <section class="tree-column" aria-labelledby="topology-owner-title">
-            <h4 id="topology-owner-title">Governed owner</h4>
-            <p>The shared middle layer is the point of control for SQL, guardrails, charts, and audit.</p>
-            <ul class="tree">
-              <li>
-                <details open>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>Analytics Agent</strong>
-                      <span>The only service that turns natural language into governed data access.</span>
-                      <div class="tree-pills">
-                        <span class="tree-pill pill-violet">FastAPI</span>
-                        <span class="tree-pill pill-violet">Guardrails</span>
-                        <span class="tree-pill pill-rose">Audit</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <details open>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>Reasoning + validation</strong>
-                        <span>Intent check, SQL draft, repair loop, explanation, and chart/report packaging.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf">
-                      <div class="tree-card">
-                        <strong>Claude calls</strong>
-                        <span>Used for SQL generation and analytical narrative, never as a shortcut around policy.</span>
-                      </div>
-                    </div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>Audit evidence</strong>
-                        <span>Writes logs, artifacts, and engineer traces to the governed evidence path.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf">
-                      <div class="tree-card">
-                        <strong>S3 artifacts</strong>
-                        <span>Charts, PDFs, and request evidence remain centralized and reviewable.</span>
-                      </div>
-                    </div>
-                  </details>
-                </details>
-              </li>
-            </ul>
-          </section>
-          <section class="tree-column" aria-labelledby="topology-data-title">
-            <h4 id="topology-data-title">Governed data path</h4>
-            <p>Data access fans out only after the agent has decided what is allowed.</p>
-            <ul class="tree">
-              <li>
-                <details open>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>Gold query boundary</strong>
-                      <span>The agent reads analytics-ready marts rather than raw operational tables.</span>
-                      <div class="tree-pills">
-                        <span class="tree-pill pill-gold">Athena</span>
-                        <span class="tree-pill pill-gold">Gold marts</span>
-                      </div>
-                    </div>
-                  </summary>
-                  <details open>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>dbt marts</strong>
-                        <span>Business-ready metrics and dimensions sourced from the broader Bronze/Silver/Gold pipeline.</span>
-                        <div class="tree-pills"><span class="tree-pill pill-gold">platform-dbt-analytics</span></div>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf">
-                      <div class="tree-card">
-                        <strong>Infra boundary</strong>
-                        <span>Routing, ECS, ALB, and execution roles are provisioned independently in infra.</span>
-                        <div class="tree-pills"><span class="tree-pill pill-blue">terraform-platform-infra-live</span></div>
-                      </div>
-                    </div>
-                  </details>
-                </details>
-              </li>
-            </ul>
-          </section>
+                    </article>
+                  </div>
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Infra Boundary</div>
+                      <h4 class="org-title">Runtime wiring</h4>
+                      <div class="org-copy">ALB, ECS, routing, and execution roles are provisioned independently so the surfaces stay thin.</div>
+                      <div class="org-meta"><span class="org-chip pill-blue">terraform-platform-infra-live</span></div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1802,115 +1906,132 @@
                 <button class="tree-button" type="button" data-tree-collapse="access-tree">Collapse all</button>
               </div>
             </div>
-            <div id="access-tree">
-              <ul class="tree">
-                <li>
-                  <details open>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>Stakeholder questions</strong>
-                        <span>One business ask can enter through different channels.</span>
-                      </div>
-                    </summary>
-                    <details open>
-                      <summary>
-                        <div class="tree-card">
-                          <strong>Browser path</strong>
-                          <span>ALB routes the user into the HTML service or Streamlit peer experience.</span>
-                          <div class="tree-pills">
-                            <span class="tree-pill pill-teal">User</span>
-                            <span class="tree-pill pill-blue">Web</span>
-                            <span class="tree-pill pill-violet">Streamlit</span>
+            <div class="org-chart">
+              <div class="org-stage" id="access-tree" data-org-container>
+                <div class="org-branch">
+                  <article class="org-card center highlight">
+                    <div class="org-kicker">Access Root</div>
+                    <h4 class="org-title">Stakeholder questions</h4>
+                    <div class="org-copy">A single business question can enter through browser or Slack, but every governed answer converges on one analytics owner.</div>
+                    <div class="org-meta">
+                      <span class="org-chip pill-teal">User</span>
+                      <span class="org-chip pill-blue">Web</span>
+                      <span class="org-chip pill-violet">Agent</span>
+                    </div>
+                  </article>
+                  <div class="org-children">
+                    <div class="org-row">
+                      <div class="org-child">
+                        <article class="org-card secondary">
+                          <div class="org-kicker">Branch</div>
+                          <h4 class="org-title">Browser path</h4>
+                          <div class="org-copy">ALB routes the user into the HTML service or the Streamlit peer experience.</div>
+                          <div class="org-meta">
+                            <span class="org-chip pill-teal">User</span>
+                            <span class="org-chip pill-blue">Web</span>
+                            <span class="org-chip pill-violet">Streamlit</span>
                           </div>
-                        </div>
-                      </summary>
-                      <details>
-                        <summary>
-                          <div class="tree-card">
-                            <strong>Analytics Web</strong>
-                            <span>Serves static assets and proxies `/api/*` to the agent.</span>
+                          <div class="org-footer">
+                            <span class="org-count">2</span>
+                            <button class="org-toggle" type="button" data-org-toggle="access-browser-group" aria-expanded="true">Collapse</button>
                           </div>
-                        </summary>
-                        <div class="tree-leaf">
-                          <div class="tree-card">
-                            <strong>Thin browser service</strong>
-                            <span>Presentation logic stays here; analytics logic does not.</span>
+                        </article>
+                        <div class="org-group" id="access-browser-group">
+                          <div class="org-children">
+                            <div class="org-row">
+                              <div class="org-child">
+                                <article class="org-card secondary">
+                                  <div class="org-kicker">Surface</div>
+                                  <h4 class="org-title">Analytics Web</h4>
+                                  <div class="org-copy">Serves static assets and proxies `/api/*` to the agent for a custom stakeholder experience.</div>
+                                  <div class="org-meta"><span class="org-chip pill-blue">platform-analytics-web</span></div>
+                                </article>
+                              </div>
+                              <div class="org-child">
+                                <article class="org-card secondary">
+                                  <div class="org-kicker">Surface</div>
+                                  <h4 class="org-title">Streamlit UI</h4>
+                                  <div class="org-copy">Alternative browser surface with the same governed backend and local UI-to-agent call.</div>
+                                  <div class="org-meta"><span class="org-chip pill-violet">platform-analytics-agent</span></div>
+                                </article>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </details>
-                      <details>
-                        <summary>
-                          <div class="tree-card">
-                            <strong>Streamlit UI</strong>
-                            <span>Alternative browser surface with the same governed backend.</span>
-                          </div>
-                        </summary>
-                        <div class="tree-leaf">
-                          <div class="tree-card">
-                            <strong>Peer frontend</strong>
-                            <span>Lives with the agent repo but still defers analytics ownership to FastAPI.</span>
-                          </div>
-                        </div>
-                      </details>
-                    </details>
-                    <details>
-                      <summary>
-                        <div class="tree-card">
-                          <strong>Slack path</strong>
-                          <span>Slack events become agent API calls through the gateway service.</span>
-                          <div class="tree-pills"><span class="tree-pill pill-teal">Slack gateway</span></div>
-                        </div>
-                      </summary>
-                      <div class="tree-leaf">
-                        <div class="tree-card">
-                          <strong>Slack-native delivery</strong>
-                          <span>Returns answers in channel without granting Slack direct access to Gold.</span>
                         </div>
                       </div>
-                    </details>
-                    <details open>
-                      <summary>
-                        <div class="tree-card">
-                          <strong>Shared governed owner</strong>
-                          <span>All entry points converge on the Analytics Agent.</span>
-                          <div class="tree-pills">
-                            <span class="tree-pill pill-violet">FastAPI</span>
-                            <span class="tree-pill pill-gold">Gold read-only</span>
+                      <div class="org-child">
+                        <article class="org-card secondary">
+                          <div class="org-kicker">Branch</div>
+                          <h4 class="org-title">Slack path</h4>
+                          <div class="org-copy">Slack events become Analytics Agent API calls through the gateway service.</div>
+                          <div class="org-meta"><span class="org-chip pill-teal">Slack gateway</span></div>
+                          <div class="org-footer">
+                            <span class="org-count">1</span>
+                            <button class="org-toggle" type="button" data-org-toggle="access-slack-group" aria-expanded="true">Collapse</button>
+                          </div>
+                        </article>
+                        <div class="org-group" id="access-slack-group">
+                          <div class="org-children">
+                            <div class="org-row">
+                              <div class="org-child">
+                                <article class="org-card secondary">
+                                  <div class="org-kicker">Relay</div>
+                                  <h4 class="org-title">Slack-native delivery</h4>
+                                  <div class="org-copy">Answers return in channel without granting Slack direct access to Gold marts or Athena.</div>
+                                  <div class="org-meta"><span class="org-chip pill-teal">platform-slack-mcp-gateway</span></div>
+                                </article>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </summary>
-                      <details>
-                        <summary>
-                          <div class="tree-card">
-                            <strong>Analytics Agent</strong>
-                            <span>The only service that queries Gold marts and packages the answer.</span>
+                      </div>
+                      <div class="org-child">
+                        <article class="org-card secondary highlight">
+                          <div class="org-kicker">Governed Owner</div>
+                          <h4 class="org-title">Shared analytics owner</h4>
+                          <div class="org-copy">All entry points converge on the Analytics Agent, which alone queries Gold and packages the answer.</div>
+                          <div class="org-meta">
+                            <span class="org-chip pill-violet">FastAPI</span>
+                            <span class="org-chip pill-gold">Gold read-only</span>
                           </div>
-                        </summary>
-                        <div class="tree-leaf">
-                          <div class="tree-card">
-                            <strong>Governed outputs</strong>
-                            <span>Insight text, chart image, PDFs, cost, verdict, and audit evidence.</span>
+                          <div class="org-footer">
+                            <span class="org-count">2</span>
+                            <button class="org-toggle" type="button" data-org-toggle="access-owner-group" aria-expanded="true">Collapse</button>
+                          </div>
+                        </article>
+                        <div class="org-group" id="access-owner-group">
+                          <div class="org-children">
+                            <div class="org-row">
+                              <div class="org-child">
+                                <article class="org-card secondary">
+                                  <div class="org-kicker">Service</div>
+                                  <h4 class="org-title">Analytics Agent</h4>
+                                  <div class="org-copy">Generates SQL, validates intent, renders governed outputs, and writes audit evidence.</div>
+                                  <div class="org-meta">
+                                    <span class="org-chip pill-violet">Guardrails</span>
+                                    <span class="org-chip pill-rose">Audit</span>
+                                  </div>
+                                </article>
+                              </div>
+                              <div class="org-child">
+                                <article class="org-card secondary">
+                                  <div class="org-kicker">Data Boundary</div>
+                                  <h4 class="org-title">Gold marts</h4>
+                                  <div class="org-copy">dbt-managed analytics tables exposed through Athena as the read-only source for answers.</div>
+                                  <div class="org-meta">
+                                    <span class="org-chip pill-gold">dbt</span>
+                                    <span class="org-chip pill-gold">Athena</span>
+                                  </div>
+                                </article>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </details>
-                      <details>
-                        <summary>
-                          <div class="tree-card">
-                            <strong>Gold marts</strong>
-                            <span>dbt-managed analytics tables exposed through Athena.</span>
-                          </div>
-                        </summary>
-                        <div class="tree-leaf">
-                          <div class="tree-card">
-                            <strong>Read-only dependency</strong>
-                            <span>Consumers depend on curated analytics models instead of raw zones.</span>
-                          </div>
-                        </div>
-                      </details>
-                    </details>
-                  </details>
-                </li>
-              </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -2250,6 +2371,29 @@
       });
     }
 
+    function setOrgGroupState(containerId, open) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.querySelectorAll(".org-group").forEach((group) => {
+        group.hidden = !open;
+      });
+      container.querySelectorAll("[data-org-toggle]").forEach((button) => {
+        button.setAttribute("aria-expanded", String(open));
+        button.textContent = open ? "Collapse" : "Expand";
+      });
+    }
+
+    function toggleOrgGroup(groupId, button) {
+      const group = document.getElementById(groupId);
+      if (!group) return;
+      const willOpen = group.hidden;
+      group.hidden = !willOpen;
+      if (button) {
+        button.setAttribute("aria-expanded", String(willOpen));
+        button.textContent = willOpen ? "Collapse" : "Expand";
+      }
+    }
+
     function closeFocusedStory() {
       document.querySelectorAll(".story-card.focus-mode").forEach((card) => {
         card.classList.remove("focus-mode");
@@ -2319,6 +2463,7 @@
       if (expandButton) {
         event.preventDefault();
         setTreeState(expandButton.dataset.treeExpand, true);
+        setOrgGroupState(expandButton.dataset.treeExpand, true);
         return;
       }
 
@@ -2326,6 +2471,14 @@
       if (collapseButton) {
         event.preventDefault();
         setTreeState(collapseButton.dataset.treeCollapse, false);
+        setOrgGroupState(collapseButton.dataset.treeCollapse, false);
+        return;
+      }
+
+      const orgToggle = event.target.closest("[data-org-toggle]");
+      if (orgToggle) {
+        event.preventDefault();
+        toggleOrgGroup(orgToggle.dataset.orgToggle, orgToggle);
       }
     });
 
