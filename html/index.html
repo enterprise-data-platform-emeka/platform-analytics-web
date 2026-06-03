@@ -643,25 +643,25 @@
     }
     .org-chart {
       overflow-x: auto;
-      padding: .25rem 0 .4rem;
+      padding: .35rem 0 .55rem;
     }
     .org-stage {
-      min-width: 980px;
-      padding: .25rem 0 .75rem;
+      min-width: 1040px;
+      padding: .25rem 0 1rem;
     }
     .org-branch {
       display: grid;
       justify-items: center;
-      gap: 1.1rem;
+      gap: 1.35rem;
     }
     .org-children {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.35rem;
       width: 100%;
-      padding-top: 1.2rem;
+      padding-top: 1.45rem;
     }
     .org-children::before {
       content: "";
@@ -669,30 +669,29 @@
       top: 0;
       left: 50%;
       width: 2px;
-      height: 1.2rem;
-      background: #58a6ff;
+      height: 1.45rem;
+      background: rgba(96,165,250,.82);
       transform: translateX(-50%);
-      opacity: .7;
     }
     .org-row {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 1.35rem;
       flex-wrap: nowrap;
       width: 100%;
-      padding-top: 1.2rem;
+      padding-top: 1.45rem;
     }
     .org-row::before {
       content: "";
       position: absolute;
       top: 0;
       left: 50%;
-      width: calc(100% - 8rem);
-      max-width: 900px;
-      height: 1px;
-      background: rgba(88,166,255,.32);
+      width: calc(100% - 10rem);
+      max-width: 940px;
+      height: 2px;
+      background: rgba(147,197,253,.72);
       transform: translateX(-50%);
     }
     .org-row::after {
@@ -701,77 +700,79 @@
       top: 0;
       left: 50%;
       width: 2px;
-      height: 1.2rem;
-      background: #58a6ff;
+      height: 1.45rem;
+      background: rgba(96,165,250,.82);
       transform: translateX(-50%);
-      opacity: .7;
     }
     .org-child {
       position: relative;
       display: grid;
       justify-items: center;
-      gap: .95rem;
-      min-width: 220px;
-      flex: 0 1 280px;
+      gap: 1rem;
+      min-width: 230px;
+      flex: 0 1 260px;
     }
     .org-child::before {
       content: "";
       position: absolute;
-      top: -1.2rem;
+      top: -1.45rem;
       left: 50%;
       width: 2px;
-      height: 1.2rem;
-      background: rgba(88,166,255,.7);
+      height: 1.45rem;
+      background: rgba(96,165,250,.82);
       transform: translateX(-50%);
     }
     .org-card {
-      width: min(100%, 280px);
-      padding: 1rem 1rem .9rem;
-      border: 1px solid rgba(148,163,184,.24);
-      border-radius: 24px;
+      width: min(100%, 260px);
+      padding: 1rem 1rem 0;
+      border: 1px solid rgba(148,163,184,.22);
+      border-radius: 22px;
       background: rgba(15,23,42,.72);
-      box-shadow: 0 18px 38px rgba(2,6,23,.24);
+      box-shadow: 0 14px 34px rgba(2,6,23,.18);
     }
-    .org-card.center { text-align: center; }
+    .org-card.center {
+      width: min(100%, 360px);
+      text-align: center;
+    }
     .org-card.highlight {
-      border-color: #1da1f2;
-      box-shadow: 0 16px 38px rgba(29,161,242,.14);
+      border-color: #3b9dff;
+      box-shadow: 0 16px 36px rgba(59,157,255,.14);
     }
     .org-card.secondary {
-      border-radius: 22px;
       background: rgba(15,23,42,.62);
     }
     body:not([data-theme="dark"]) .org-card {
-      background: rgba(255,255,255,.96);
-      box-shadow: 0 18px 38px rgba(16,24,40,.10);
+      background: rgba(255,255,255,.98);
+      border-color: rgba(191,219,254,.9);
+      box-shadow: 0 18px 42px rgba(15,23,42,.08);
     }
     .org-kicker {
       display: inline-flex;
       align-items: center;
       gap: .4rem;
-      margin-bottom: .5rem;
-      color: var(--muted);
-      font-size: .72rem;
+      margin-bottom: .55rem;
+      color: #667085;
+      font-size: .71rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .06em;
+      letter-spacing: .09em;
     }
     .org-title {
-      margin: 0 0 .22rem;
-      font-size: 1.05rem;
-      line-height: 1.12;
+      margin: 0 0 .28rem;
+      font-size: 1rem;
+      line-height: 1.18;
       letter-spacing: -.02em;
     }
     .org-copy {
       color: var(--muted);
-      font-size: .9rem;
-      line-height: 1.48;
+      font-size: .87rem;
+      line-height: 1.44;
     }
     .org-meta {
       display: flex;
       flex-wrap: wrap;
       gap: .42rem;
-      margin-top: .8rem;
+      margin-top: .9rem;
       justify-content: center;
     }
     .org-card:not(.center) .org-meta { justify-content: flex-start; }
@@ -790,27 +791,29 @@
       align-items: center;
       justify-content: space-between;
       gap: .75rem;
-      margin-top: .9rem;
-      padding-top: .8rem;
+      margin: .95rem -1rem 0;
+      padding: .7rem 1rem .78rem;
       border-top: 1px solid rgba(148,163,184,.16);
+      background: rgba(148,163,184,.08);
+      border-radius: 0 0 22px 22px;
     }
     .org-count {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 2rem;
-      min-height: 1.7rem;
-      padding: 0 .55rem;
+      min-width: 2.15rem;
+      min-height: 1.55rem;
+      padding: 0 .62rem;
       border-radius: 999px;
-      background: rgba(88,166,255,.12);
-      color: #7dd3fc;
-      font-size: .78rem;
+      background: rgba(96,165,250,.18);
+      color: #38bdf8;
+      font-size: .76rem;
       font-weight: 900;
     }
     .org-toggle {
       border: 0;
       padding: 0;
-      color: #7dd3fc;
+      color: #60a5fa;
       background: transparent;
       font: inherit;
       font-size: .78rem;
@@ -820,6 +823,34 @@
     .org-toggle:hover { color: #bae6fd; }
     .org-group[hidden] { display: none !important; }
     .org-card a { color: inherit; }
+    .org-stack {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+      width: 100%;
+      padding-top: 1.25rem;
+      justify-items: center;
+    }
+    .org-stack::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 1.25rem;
+      background: rgba(96,165,250,.82);
+      transform: translateX(-50%);
+    }
+    .org-stack .org-card {
+      width: min(100%, 248px);
+    }
+    body:not([data-theme="dark"]) .org-footer {
+      background: rgba(239,246,255,.72);
+      border-top-color: rgba(191,219,254,.8);
+    }
+    body[data-theme="dark"] .org-footer {
+      background: rgba(30,41,59,.34);
+    }
     .mini-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .42rem; margin: .72rem 0 .82rem; }
     .mini-node { padding: .42rem .58rem; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: #344054; font-size: .78rem; font-weight: 850; }
     .mini-arrow { color: var(--blue); font-weight: 950; }
@@ -1022,15 +1053,15 @@
     <section class="diagram-card" id="topology" data-repos="platform-analytics-web,platform-analytics-agent,platform-slack-mcp-gateway,platform-dbt-analytics,terraform-platform-infra-live">
       <div class="diagram-head split">
         <div>
-          <div class="eyebrow">Topology explorer</div>
-          <h2>Optional collapsible maps reveal ownership without replacing the flow diagrams.</h2>
+          <div class="eyebrow">Platform Topology</div>
+          <h2>Frontend surfaces, analytics ownership, and governed Gold access.</h2>
         </div>
       </div>
       <div class="tree-panel">
         <div class="tree-head">
           <div>
-            <h3>Responsibility map</h3>
-            <p>Use this org-style view when you want to inspect who depends on whom. It complements the sequence diagrams by grouping the platform into entry points, ownership boundaries, and governed data access.</p>
+            <h3>Platform topology</h3>
+            <p>HTML, Streamlit, and Slack hand off to one analytics service, which reads curated Gold marts through Athena.</p>
           </div>
           <div class="tree-toolbar" aria-label="Topology controls">
             <button class="tree-button" type="button" data-tree-expand="topology-tree">Expand all</button>
@@ -1043,7 +1074,7 @@
               <article class="org-card center highlight">
                 <div class="org-kicker">Topology</div>
                 <h4 class="org-title">One governed analytics core</h4>
-                <div class="org-copy">Three presentation surfaces sit above a single control point for SQL, audit, and governed Gold access.</div>
+                <div class="org-copy">Three entry points share one control point for SQL, audit evidence, and governed Gold access.</div>
                 <div class="org-meta">
                   <span class="org-chip pill-blue">HTML</span>
                   <span class="org-chip pill-violet">Streamlit</span>
@@ -1056,7 +1087,7 @@
                     <article class="org-card secondary">
                       <div class="org-kicker">Entry Point</div>
                       <h4 class="org-title">Analytics Web</h4>
-                      <div class="org-copy">Custom browser UX, static asset delivery, and `/api` proxy behavior for stakeholder-facing polish.</div>
+                      <div class="org-copy">Browser UI, static assets, and the `/api` proxy for the stakeholder-facing surface.</div>
                       <div class="org-meta"><span class="org-chip pill-blue">platform-analytics-web</span></div>
                     </article>
                   </div>
@@ -1064,7 +1095,7 @@
                     <article class="org-card secondary">
                       <div class="org-kicker">Entry Point</div>
                       <h4 class="org-title">Streamlit UI</h4>
-                      <div class="org-copy">Peer browser surface in the agent repo that still depends on the same backend contract.</div>
+                      <div class="org-copy">Peer interface in the agent repo on the same governed backend contract.</div>
                       <div class="org-meta"><span class="org-chip pill-violet">platform-analytics-agent</span></div>
                     </article>
                   </div>
@@ -1072,7 +1103,7 @@
                     <article class="org-card secondary">
                       <div class="org-kicker">Entry Point</div>
                       <h4 class="org-title">Slack gateway</h4>
-                      <div class="org-copy">Slack-native front door that forwards questions without reading analytics data itself.</div>
+                      <div class="org-copy">Slack entry point that forwards questions without warehouse access.</div>
                       <div class="org-meta"><span class="org-chip pill-teal">platform-slack-mcp-gateway</span></div>
                     </article>
                   </div>
@@ -1080,7 +1111,7 @@
                     <article class="org-card secondary highlight">
                       <div class="org-kicker">Governed Owner</div>
                       <h4 class="org-title">Analytics Agent</h4>
-                      <div class="org-copy">The only service that owns SQL generation, validation, chart packaging, and audit evidence.</div>
+                      <div class="org-copy">Owns SQL generation, validation, chart packaging, and audit evidence.</div>
                       <div class="org-meta">
                         <span class="org-chip pill-violet">FastAPI</span>
                         <span class="org-chip pill-rose">Audit</span>
@@ -1095,7 +1126,7 @@
                     <article class="org-card secondary">
                       <div class="org-kicker">Governed Data</div>
                       <h4 class="org-title">Gold marts</h4>
-                      <div class="org-copy">dbt-managed business metrics and dimensions exposed through Athena for read-only analytics access.</div>
+                      <div class="org-copy">dbt-built metrics and dimensions queried read-only through Athena.</div>
                       <div class="org-meta">
                         <span class="org-chip pill-gold">platform-dbt-analytics</span>
                         <span class="org-chip pill-gold">Athena</span>
@@ -1106,7 +1137,7 @@
                     <article class="org-card secondary">
                       <div class="org-kicker">Infra Boundary</div>
                       <h4 class="org-title">Runtime wiring</h4>
-                      <div class="org-copy">ALB, ECS, routing, and execution roles are provisioned independently so the surfaces stay thin.</div>
+                      <div class="org-copy">ALB routing, ECS services, and execution roles that keep the surfaces thin.</div>
                       <div class="org-meta"><span class="org-chip pill-blue">terraform-platform-infra-live</span></div>
                     </article>
                   </div>
@@ -1292,162 +1323,133 @@
       <div class="tree-panel">
         <div class="tree-head">
           <div>
-            <h3>Chapter map</h3>
-            <p>This compact tree turns the ten-frame walkthrough into a collapsible outline so readers can jump to the slice they care about before opening the full SVG story card.</p>
+            <h3>Walkthrough stages</h3>
+            <p>The public demo progresses from setup, through Bronze-to-Gold processing, into stakeholder-facing delivery.</p>
           </div>
           <div class="tree-toolbar" aria-label="Walkthrough chapter controls">
             <button class="tree-button" type="button" data-tree-expand="walkthrough-tree">Expand all</button>
             <button class="tree-button" type="button" data-tree-collapse="walkthrough-tree">Collapse all</button>
           </div>
         </div>
-        <div class="tree-layout" id="walkthrough-tree">
-          <section class="tree-column" aria-labelledby="walkthrough-foundation-title">
-            <h4 id="walkthrough-foundation-title">Foundation</h4>
-            <p>Environment bring-up and source modeling establish the platform shape before data lands in the lake.</p>
-            <ul class="tree">
-              <li>
-                <details open>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>1. Session start</strong>
-                      <span>Controlled deployment and destroy boundaries for the public demo.</span>
+        <div class="org-chart">
+          <div class="org-stage" id="walkthrough-tree" data-org-container>
+            <div class="org-branch">
+              <article class="org-card center highlight">
+                <div class="org-kicker">Walkthrough</div>
+                <h4 class="org-title">Public demo sequence</h4>
+                <div class="org-copy">Ten frames follow setup, pipeline shaping, orchestration, governed access, and service boundaries.</div>
+                <div class="org-meta">
+                  <span class="org-chip pill-blue">10 frames</span>
+                  <span class="org-chip pill-gold">Pipeline</span>
+                  <span class="org-chip pill-violet">Agent</span>
+                </div>
+              </article>
+              <div class="org-children">
+                <div class="org-row">
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Stage</div>
+                      <h4 class="org-title">Foundation</h4>
+                      <div class="org-copy">Runtime setup, source modeling, and the operational starting point for CDC.</div>
+                      <div class="org-footer">
+                        <span class="org-count">2</span>
+                        <button class="org-toggle" type="button" data-org-toggle="walkthrough-foundation-group" aria-expanded="true">Collapse</button>
+                      </div>
+                    </article>
+                    <div class="org-group" id="walkthrough-foundation-group">
+                      <div class="org-stack">
+                        <a class="org-card secondary" href="#story-session">
+                          <div class="org-kicker">Frame 1</div>
+                          <h4 class="org-title">Session start</h4>
+                          <div class="org-copy">Controlled deploy, source preparation, runtime access, and teardown.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-source-model">
+                          <div class="org-kicker">Frame 2</div>
+                          <h4 class="org-title">Source model</h4>
+                          <div class="org-copy">Customers, orders, products, shipments, and I/U/D behavior in the OLTP source.</div>
+                        </a>
+                      </div>
                     </div>
-                  </summary>
-                  <div class="tree-leaf">
-                    <a class="tree-card" href="#story-session">
-                      <strong>Open frame 1</strong>
-                      <span>Terraform, orchestrator, simulator, and runtime entry points.</span>
-                    </a>
                   </div>
-                </details>
-              </li>
-              <li>
-                <details>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>2. Source model</strong>
-                      <span>OLTP tables and I/U/D behavior that generate CDC events.</span>
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Stage</div>
+                      <h4 class="org-title">Pipeline</h4>
+                      <div class="org-copy">Raw changes land in Bronze, reconcile in Silver, and become marts in Gold.</div>
+                      <div class="org-meta">
+                        <span class="org-chip pill-gold">Bronze</span>
+                        <span class="org-chip pill-blue">Silver</span>
+                        <span class="org-chip pill-gold">Gold</span>
+                      </div>
+                      <div class="org-footer">
+                        <span class="org-count">4</span>
+                        <button class="org-toggle" type="button" data-org-toggle="walkthrough-pipeline-group" aria-expanded="true">Collapse</button>
+                      </div>
+                    </article>
+                    <div class="org-group" id="walkthrough-pipeline-group">
+                      <div class="org-stack">
+                        <a class="org-card secondary" href="#story-ingestion">
+                          <div class="org-kicker">Frame 3</div>
+                          <h4 class="org-title">CDC ingestion</h4>
+                          <div class="org-copy">Full load and CDC changes land in Bronze raw storage.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-reconciliation">
+                          <div class="org-kicker">Frame 4</div>
+                          <h4 class="org-title">Reconciliation</h4>
+                          <div class="org-copy">Glue keeps the latest valid state and quarantines failed records.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-star-schema">
+                          <div class="org-kicker">Frame 5</div>
+                          <h4 class="org-title">Star schema</h4>
+                          <div class="org-copy">Silver entities become dimensional analytics structures.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-gold">
+                          <div class="org-kicker">Frame 6</div>
+                          <h4 class="org-title">Gold modeling</h4>
+                          <div class="org-copy">dbt turns curated Silver data into business-facing marts.</div>
+                        </a>
+                      </div>
                     </div>
-                  </summary>
-                  <div class="tree-leaf">
-                    <a class="tree-card" href="#story-source-model">
-                      <strong>Open frame 2</strong>
-                      <span>Customers, orders, products, shipments, and event semantics.</span>
-                    </a>
                   </div>
-                </details>
-              </li>
-            </ul>
-          </section>
-          <section class="tree-column" aria-labelledby="walkthrough-pipeline-title">
-            <h4 id="walkthrough-pipeline-title">Pipeline</h4>
-            <p>The central branch shows how raw changes become cleaned and analytics-ready data.</p>
-            <ul class="tree">
-              <li>
-                <details open>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>3-6. Bronze to Gold</strong>
-                      <span>Ingestion, reconciliation, star schema shaping, and dbt marts.</span>
-                      <div class="tree-pills">
-                        <span class="tree-pill pill-gold">Bronze</span>
-                        <span class="tree-pill pill-blue">Silver</span>
-                        <span class="tree-pill pill-gold">Gold</span>
+                  <div class="org-child">
+                    <article class="org-card secondary">
+                      <div class="org-kicker">Stage</div>
+                      <h4 class="org-title">Consumption</h4>
+                      <div class="org-copy">Orchestration, access paths, agent reasoning, and service boundaries above the modeled data.</div>
+                      <div class="org-footer">
+                        <span class="org-count">4</span>
+                        <button class="org-toggle" type="button" data-org-toggle="walkthrough-consumption-group" aria-expanded="true">Collapse</button>
+                      </div>
+                    </article>
+                    <div class="org-group" id="walkthrough-consumption-group">
+                      <div class="org-stack">
+                        <a class="org-card secondary" href="#story-orchestration">
+                          <div class="org-kicker">Frame 7</div>
+                          <h4 class="org-title">Orchestration</h4>
+                          <div class="org-copy">Step Functions and MWAA run the pipeline through different control paths.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-access">
+                          <div class="org-kicker">Frame 8</div>
+                          <h4 class="org-title">Access layout</h4>
+                          <div class="org-copy">Browser, Streamlit, and Slack route questions to one governed owner.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-agent">
+                          <div class="org-kicker">Frame 9</div>
+                          <h4 class="org-title">Agent loop</h4>
+                          <div class="org-copy">Guardrails, Athena execution, and audit writes in one request loop.</div>
+                        </a>
+                        <a class="org-card secondary" href="#story-iam">
+                          <div class="org-kicker">Frame 10</div>
+                          <h4 class="org-title">Least privilege</h4>
+                          <div class="org-copy">Each service gets only the reads, writes, and starts needed for its job.</div>
+                        </a>
                       </div>
                     </div>
-                  </summary>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>3. CDC ingestion</strong>
-                        <span>DMS full load and continuous changes into Bronze raw files.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-ingestion"><strong>Open frame 3</strong><span>PostgreSQL to DMS to S3 Bronze.</span></a></div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>4. Reconciliation</strong>
-                        <span>Glue keeps latest valid state and quarantines failures.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-reconciliation"><strong>Open frame 4</strong><span>Current-state Silver with quality gates.</span></a></div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>5. Star schema</strong>
-                        <span>Silver entities become dimensional analytics structures.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-star-schema"><strong>Open frame 5</strong><span>Facts, dimensions, and modeling intent.</span></a></div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>6. Gold modeling</strong>
-                        <span>dbt turns curated Silver data into business-facing marts.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-gold"><strong>Open frame 6</strong><span>Athena-facing marts for analytics consumers.</span></a></div>
-                  </details>
-                </details>
-              </li>
-            </ul>
-          </section>
-          <section class="tree-column" aria-labelledby="walkthrough-consumption-title">
-            <h4 id="walkthrough-consumption-title">Consumption</h4>
-            <p>Operational control, stakeholder access, and security boundaries sit on top of the modeled data.</p>
-            <ul class="tree">
-              <li>
-                <details open>
-                  <summary>
-                    <div class="tree-card">
-                      <strong>7-10. Runners, apps, and IAM</strong>
-                      <span>How the platform executes, exposes, and constrains analytics behavior.</span>
-                    </div>
-                  </summary>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>7. Orchestration</strong>
-                        <span>Step Functions and MWAA can both run the pipeline responsibly.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-orchestration"><strong>Open frame 7</strong><span>Execution options and repo ownership.</span></a></div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>8. Access layout</strong>
-                        <span>Three entry points route questions to one governed agent.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-access"><strong>Open frame 8</strong><span>Browser, Streamlit, Slack, and agent ownership.</span></a></div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>9. Agent loop</strong>
-                        <span>Full request path with guardrails, Athena execution, and audit writes.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-agent"><strong>Open frame 9</strong><span>Detailed call sequence from question to answer.</span></a></div>
-                  </details>
-                  <details>
-                    <summary>
-                      <div class="tree-card">
-                        <strong>10. Least privilege</strong>
-                        <span>Each service gets only the reads, writes, and starts required for its job.</span>
-                      </div>
-                    </summary>
-                    <div class="tree-leaf"><a class="tree-card" href="#story-iam"><strong>Open frame 10</strong><span>Permission boundaries by service responsibility.</span></a></div>
-                  </details>
-                </details>
-              </li>
-            </ul>
-          </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="legend-row" aria-label="Diagram color legend">
@@ -1898,8 +1900,8 @@
           <div class="tree-panel">
             <div class="tree-head">
               <div>
-                <h3>Expandable responsibility tree</h3>
-                <p>This org-style view is useful when a reader cares more about ownership and handoff boundaries than about the precise path geometry in the SVG.</p>
+                <h3>Stakeholder access</h3>
+                <p>Browser, Streamlit, and Slack all hand the same business question to one governed analytics service.</p>
               </div>
               <div class="tree-toolbar" aria-label="Access tree controls">
                 <button class="tree-button" type="button" data-tree-expand="access-tree">Expand all</button>
@@ -1912,7 +1914,7 @@
                   <article class="org-card center highlight">
                     <div class="org-kicker">Access Root</div>
                     <h4 class="org-title">Stakeholder questions</h4>
-                    <div class="org-copy">A single business question can enter through browser or Slack, but every governed answer converges on one analytics owner.</div>
+                    <div class="org-copy">Questions enter through browser or Slack, then converge on one analytics owner and one governed data path.</div>
                     <div class="org-meta">
                       <span class="org-chip pill-teal">User</span>
                       <span class="org-chip pill-blue">Web</span>
@@ -1925,7 +1927,7 @@
                         <article class="org-card secondary">
                           <div class="org-kicker">Branch</div>
                           <h4 class="org-title">Browser path</h4>
-                          <div class="org-copy">ALB routes the user into the HTML service or the Streamlit peer experience.</div>
+                          <div class="org-copy">ALB routes the user into the HTML service or the Streamlit peer interface.</div>
                           <div class="org-meta">
                             <span class="org-chip pill-teal">User</span>
                             <span class="org-chip pill-blue">Web</span>
@@ -1937,25 +1939,19 @@
                           </div>
                         </article>
                         <div class="org-group" id="access-browser-group">
-                          <div class="org-children">
-                            <div class="org-row">
-                              <div class="org-child">
-                                <article class="org-card secondary">
-                                  <div class="org-kicker">Surface</div>
-                                  <h4 class="org-title">Analytics Web</h4>
-                                  <div class="org-copy">Serves static assets and proxies `/api/*` to the agent for a custom stakeholder experience.</div>
-                                  <div class="org-meta"><span class="org-chip pill-blue">platform-analytics-web</span></div>
-                                </article>
-                              </div>
-                              <div class="org-child">
-                                <article class="org-card secondary">
-                                  <div class="org-kicker">Surface</div>
-                                  <h4 class="org-title">Streamlit UI</h4>
-                                  <div class="org-copy">Alternative browser surface with the same governed backend and local UI-to-agent call.</div>
-                                  <div class="org-meta"><span class="org-chip pill-violet">platform-analytics-agent</span></div>
-                                </article>
-                              </div>
-                            </div>
+                          <div class="org-stack">
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Surface</div>
+                              <h4 class="org-title">Analytics Web</h4>
+                              <div class="org-copy">Static assets, browser interaction, and `/api/*` proxy behavior.</div>
+                              <div class="org-meta"><span class="org-chip pill-blue">platform-analytics-web</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Surface</div>
+                              <h4 class="org-title">Streamlit UI</h4>
+                              <div class="org-copy">Peer browser surface in the agent repo on the same backend contract.</div>
+                              <div class="org-meta"><span class="org-chip pill-violet">platform-analytics-agent</span></div>
+                            </article>
                           </div>
                         </div>
                       </div>
@@ -1963,7 +1959,7 @@
                         <article class="org-card secondary">
                           <div class="org-kicker">Branch</div>
                           <h4 class="org-title">Slack path</h4>
-                          <div class="org-copy">Slack events become Analytics Agent API calls through the gateway service.</div>
+                          <div class="org-copy">Slack events become Analytics Agent API calls through the gateway.</div>
                           <div class="org-meta"><span class="org-chip pill-teal">Slack gateway</span></div>
                           <div class="org-footer">
                             <span class="org-count">1</span>
@@ -1971,17 +1967,13 @@
                           </div>
                         </article>
                         <div class="org-group" id="access-slack-group">
-                          <div class="org-children">
-                            <div class="org-row">
-                              <div class="org-child">
-                                <article class="org-card secondary">
-                                  <div class="org-kicker">Relay</div>
-                                  <h4 class="org-title">Slack-native delivery</h4>
-                                  <div class="org-copy">Answers return in channel without granting Slack direct access to Gold marts or Athena.</div>
-                                  <div class="org-meta"><span class="org-chip pill-teal">platform-slack-mcp-gateway</span></div>
-                                </article>
-                              </div>
-                            </div>
+                          <div class="org-stack">
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Relay</div>
+                              <h4 class="org-title">Slack-native delivery</h4>
+                              <div class="org-copy">Answers return in channel without direct access to Gold marts or Athena.</div>
+                              <div class="org-meta"><span class="org-chip pill-teal">platform-slack-mcp-gateway</span></div>
+                            </article>
                           </div>
                         </div>
                       </div>
@@ -2000,31 +1992,25 @@
                           </div>
                         </article>
                         <div class="org-group" id="access-owner-group">
-                          <div class="org-children">
-                            <div class="org-row">
-                              <div class="org-child">
-                                <article class="org-card secondary">
-                                  <div class="org-kicker">Service</div>
-                                  <h4 class="org-title">Analytics Agent</h4>
-                                  <div class="org-copy">Generates SQL, validates intent, renders governed outputs, and writes audit evidence.</div>
-                                  <div class="org-meta">
-                                    <span class="org-chip pill-violet">Guardrails</span>
-                                    <span class="org-chip pill-rose">Audit</span>
-                                  </div>
-                                </article>
+                          <div class="org-stack">
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Analytics Agent</h4>
+                              <div class="org-copy">Generates SQL, validates intent, renders outputs, and writes audit evidence.</div>
+                              <div class="org-meta">
+                                <span class="org-chip pill-violet">Guardrails</span>
+                                <span class="org-chip pill-rose">Audit</span>
                               </div>
-                              <div class="org-child">
-                                <article class="org-card secondary">
-                                  <div class="org-kicker">Data Boundary</div>
-                                  <h4 class="org-title">Gold marts</h4>
-                                  <div class="org-copy">dbt-managed analytics tables exposed through Athena as the read-only source for answers.</div>
-                                  <div class="org-meta">
-                                    <span class="org-chip pill-gold">dbt</span>
-                                    <span class="org-chip pill-gold">Athena</span>
-                                  </div>
-                                </article>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Data Boundary</div>
+                              <h4 class="org-title">Gold marts</h4>
+                              <div class="org-copy">dbt-managed analytics tables exposed through Athena as the read-only answer source.</div>
+                              <div class="org-meta">
+                                <span class="org-chip pill-gold">dbt</span>
+                                <span class="org-chip pill-gold">Athena</span>
                               </div>
-                            </div>
+                            </article>
                           </div>
                         </div>
                       </div>
@@ -2157,105 +2143,159 @@
           <div class="tree-panel">
             <div class="tree-head">
               <div>
-                <h3>Permission tree</h3>
-                <p>The SVG gives the full cross-platform view. This tree lets readers open only one trust boundary at a time, which makes least-privilege rules easier to scan.</p>
+                <h3>Least-privilege map</h3>
+                <p>Each service stops at a specific boundary across ingestion, orchestration, query execution, and public entry points.</p>
               </div>
               <div class="tree-toolbar" aria-label="Permission tree controls">
                 <button class="tree-button" type="button" data-tree-expand="iam-tree">Expand all</button>
                 <button class="tree-button" type="button" data-tree-collapse="iam-tree">Collapse all</button>
               </div>
             </div>
-            <div class="tree-layout" id="iam-tree">
-              <section class="tree-column" aria-labelledby="iam-ingest-title">
-                <h4 id="iam-ingest-title">Ingestion and shaping</h4>
-                <p>Early-stage services can touch only the storage layers they are responsible for advancing.</p>
-                <ul class="tree">
-                  <li>
-                    <details open>
-                      <summary><div class="tree-card"><strong>Source simulator ECS</strong><span>Can connect only to the source RDS to create operational changes.</span><div class="tree-pills"><span class="tree-pill pill-blue">Read/write source only</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>No lake access</strong><span>It does not write Bronze, Silver, or Gold directly.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>DMS</strong><span>Copies full load and CDC records into Bronze raw storage.</span><div class="tree-pills"><span class="tree-pill pill-gold">Bronze write only</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Raw boundary</strong><span>Stops at Bronze and cannot clean or model downstream data.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>Glue Silver jobs</strong><span>Read Bronze, validate records, write Silver and quarantine, update catalog metadata.</span><div class="tree-pills"><span class="tree-pill pill-blue">Silver write</span><span class="tree-pill pill-rose">Quarantine</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Quality boundary</strong><span>Can publish metrics and cleaned state but does not publish Gold marts.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>`run_dbt` Glue job</strong><span>Builds Gold tables and dbt metadata from curated upstream data.</span><div class="tree-pills"><span class="tree-pill pill-gold">Gold write</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Analytics boundary</strong><span>Shapes business marts without reaching back into application entry points.</span></div></div>
-                    </details>
-                  </li>
-                </ul>
-              </section>
-              <section class="tree-column" aria-labelledby="iam-runner-title">
-                <h4 id="iam-runner-title">Runners and query surfaces</h4>
-                <p>Execution layers can start approved work, but their permissions remain bounded by role.</p>
-                <ul class="tree">
-                  <li>
-                    <details open>
-                      <summary><div class="tree-card"><strong>Step Functions</strong><span>Can invoke the row-count Lambda and coordinate approved checks.</span><div class="tree-pills"><span class="tree-pill pill-violet">Control plane</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Scoped coordination</strong><span>It orchestrates; it does not transform datasets itself.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>MWAA Airflow</strong><span>Can start Glue jobs, crawlers, and Athena work approved by the DAG.</span><div class="tree-pills"><span class="tree-pill pill-violet">Runner</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>No direct stakeholder role</strong><span>Its job is orchestration, not serving user-facing analytics responses.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>Athena workgroup</strong><span>Can read catalog definitions and write query results to its results path.</span><div class="tree-pills"><span class="tree-pill pill-gold">Query engine</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Execution boundary</strong><span>Runs queries but depends on upstream controls to decide which queries are allowed.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>Analytics Agent</strong><span>Can query Gold through Athena and write audit evidence, charts, and reports.</span><div class="tree-pills"><span class="tree-pill pill-violet">Guardrails</span><span class="tree-pill pill-rose">Audit write</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Governed analytics owner</strong><span>The central policy and explanation layer for every frontend.</span></div></div>
-                    </details>
-                  </li>
-                </ul>
-              </section>
-              <section class="tree-column" aria-labelledby="iam-edge-title">
-                <h4 id="iam-edge-title">Edge surfaces and platform rules</h4>
-                <p>Public-facing services get only the minimum needed to relay requests, and platform hygiene constrains what logs can reveal.</p>
-                <ul class="tree">
-                  <li>
-                    <details open>
-                      <summary><div class="tree-card"><strong>Analytics Web</strong><span>Can proxy browser calls to the agent and serve the UI.</span><div class="tree-pills"><span class="tree-pill pill-blue">Proxy only</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>No direct Gold access</strong><span>Presentation code cannot bypass the agent boundary.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>Slack gateway</strong><span>Can call the Analytics Agent API on behalf of Slack conversations.</span><div class="tree-pills"><span class="tree-pill pill-teal">Message relay</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>No warehouse query role</strong><span>It depends on the agent for governed analytics access.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>Claude platform on AWS</strong><span>The agent can call the configured workspace for intent checks, SQL generation, and insight text.</span><div class="tree-pills"><span class="tree-pill pill-violet">Model access</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Model boundary</strong><span>Reasoning assistance exists inside the governed agent workflow, not as a free-standing data actor.</span></div></div>
-                    </details>
-                  </li>
-                  <li>
-                    <details>
-                      <summary><div class="tree-card"><strong>Platform hygiene</strong><span>Public logs show summaries, while destroy removes runtime services after a session.</span><div class="tree-pills"><span class="tree-pill pill-rose">Log masking</span><span class="tree-pill pill-rose">Ephemeral runtime</span></div></div></summary>
-                      <div class="tree-leaf"><div class="tree-card"><strong>Security posture</strong><span>Operational visibility stays useful without exposing identifiers, URLs, or sensitive runtime details.</span></div></div>
-                    </details>
-                  </li>
-                </ul>
-              </section>
+            <div class="org-chart">
+              <div class="org-stage" id="iam-tree" data-org-container>
+                <div class="org-branch">
+                  <article class="org-card center highlight">
+                    <div class="org-kicker">Least Privilege</div>
+                    <h4 class="org-title">Service boundaries by responsibility</h4>
+                    <div class="org-copy">Pipeline services, orchestration layers, query surfaces, and public entry points each keep a separate trust boundary.</div>
+                    <div class="org-meta">
+                      <span class="org-chip pill-blue">Reads</span>
+                      <span class="org-chip pill-gold">Writes</span>
+                      <span class="org-chip pill-violet">Starts</span>
+                    </div>
+                  </article>
+                  <div class="org-children">
+                    <div class="org-row">
+                      <div class="org-child">
+                        <article class="org-card secondary">
+                          <div class="org-kicker">Boundary</div>
+                          <h4 class="org-title">Ingestion and shaping</h4>
+                          <div class="org-copy">Source simulation, DMS replication, Silver reconciliation, and Gold modeling stop at their own storage layer.</div>
+                          <div class="org-footer">
+                            <span class="org-count">4</span>
+                            <button class="org-toggle" type="button" data-org-toggle="iam-ingest-group" aria-expanded="true">Collapse</button>
+                          </div>
+                        </article>
+                        <div class="org-group" id="iam-ingest-group">
+                          <div class="org-stack">
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Source simulator ECS</h4>
+                              <div class="org-copy">Connects only to source RDS to create operational changes.</div>
+                              <div class="org-meta"><span class="org-chip pill-blue">Read/write source only</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">DMS</h4>
+                              <div class="org-copy">Copies full load and CDC records into Bronze raw storage.</div>
+                              <div class="org-meta"><span class="org-chip pill-gold">Bronze write only</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Glue Silver jobs</h4>
+                              <div class="org-copy">Reads Bronze, validates records, writes Silver and quarantine, and updates catalog metadata.</div>
+                              <div class="org-meta">
+                                <span class="org-chip pill-blue">Silver write</span>
+                                <span class="org-chip pill-rose">Quarantine</span>
+                              </div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">`run_dbt` Glue job</h4>
+                              <div class="org-copy">Builds Gold tables and dbt metadata from curated upstream data.</div>
+                              <div class="org-meta"><span class="org-chip pill-gold">Gold write</span></div>
+                            </article>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="org-child">
+                        <article class="org-card secondary">
+                          <div class="org-kicker">Boundary</div>
+                          <h4 class="org-title">Runners and query surfaces</h4>
+                          <div class="org-copy">Execution layers start approved work, while Athena and the agent stay bounded by role.</div>
+                          <div class="org-footer">
+                            <span class="org-count">4</span>
+                            <button class="org-toggle" type="button" data-org-toggle="iam-runner-group" aria-expanded="true">Collapse</button>
+                          </div>
+                        </article>
+                        <div class="org-group" id="iam-runner-group">
+                          <div class="org-stack">
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Step Functions</h4>
+                              <div class="org-copy">Invokes the row-count Lambda and coordinates approved checks.</div>
+                              <div class="org-meta"><span class="org-chip pill-violet">Control plane</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">MWAA Airflow</h4>
+                              <div class="org-copy">Starts Glue jobs, crawlers, and Athena work approved by the DAG.</div>
+                              <div class="org-meta"><span class="org-chip pill-violet">Runner</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Athena workgroup</h4>
+                              <div class="org-copy">Reads catalog definitions and writes query results to its results path.</div>
+                              <div class="org-meta"><span class="org-chip pill-gold">Query engine</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Analytics Agent</h4>
+                              <div class="org-copy">Queries Gold through Athena and writes audit evidence, charts, and reports.</div>
+                              <div class="org-meta">
+                                <span class="org-chip pill-violet">Guardrails</span>
+                                <span class="org-chip pill-rose">Audit write</span>
+                              </div>
+                            </article>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="org-child">
+                        <article class="org-card secondary">
+                          <div class="org-kicker">Boundary</div>
+                          <h4 class="org-title">Edge services and hygiene</h4>
+                          <div class="org-copy">Public entry points relay requests to the agent, while logging and teardown stay bounded.</div>
+                          <div class="org-footer">
+                            <span class="org-count">4</span>
+                            <button class="org-toggle" type="button" data-org-toggle="iam-edge-group" aria-expanded="true">Collapse</button>
+                          </div>
+                        </article>
+                        <div class="org-group" id="iam-edge-group">
+                          <div class="org-stack">
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Analytics Web</h4>
+                              <div class="org-copy">Proxies browser calls to the agent and serves the UI.</div>
+                              <div class="org-meta"><span class="org-chip pill-blue">Proxy only</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Slack gateway</h4>
+                              <div class="org-copy">Calls the Analytics Agent API on behalf of Slack conversations.</div>
+                              <div class="org-meta"><span class="org-chip pill-teal">Message relay</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Service</div>
+                              <h4 class="org-title">Claude platform on AWS</h4>
+                              <div class="org-copy">Provides the configured workspace for intent checks, SQL generation, and insight text.</div>
+                              <div class="org-meta"><span class="org-chip pill-violet">Model access</span></div>
+                            </article>
+                            <article class="org-card secondary">
+                              <div class="org-kicker">Platform rule</div>
+                              <h4 class="org-title">Platform hygiene</h4>
+                              <div class="org-copy">Public logs stay summarized, and destroy removes runtime services after a session.</div>
+                              <div class="org-meta">
+                                <span class="org-chip pill-rose">Log masking</span>
+                                <span class="org-chip pill-rose">Ephemeral runtime</span>
+                              </div>
+                            </article>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </article>
